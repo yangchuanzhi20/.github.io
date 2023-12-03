@@ -36,7 +36,7 @@ if (screen.width >= 768) {
 			waifuPath: live2d_path + "waifu-tips.json",
 			//apiPath: "https://api.moechun.fun/php/live2d_api/",
 			//cdnPath: "https://gcore.jsdelivr.net/npm/yzs-live2d_src@1.1.0/",
-                              cdnPath: "https://cdn.jsdelivr.net/gh/yangchuanzhi20/live2d_api@12.0/",
+                              cdnPath: "https://cdn.jsdelivr.net/gh/yangchuanzhi20/live2d_api@21.0/",
 			tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
 		});
 	});
