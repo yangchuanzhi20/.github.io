@@ -16,24 +16,27 @@
   <meta name="author" content="白色很哇塞">
   <meta name="keywords" content="发疯，生活">
   
-    <meta name="description" content="Make you placid, Deserve your life">
+    <meta name="description" content="python中typing库的使用🍩">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python中typing库的使用">
+<meta property="og:title" content="typing库的使用！🍩">
 <meta property="og:url" content="https://yangchuanzhi20.github.io/2023/12/06/%E7%AE%97%E6%B3%95/python/python%E4%B8%ADtyping%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
-<meta property="og:description" content="Make you placid, Deserve your life">
+<meta property="og:description" content="python中typing库的使用🍩">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yangchuanzhi20.github.io/img/29.jpg">
 <meta property="article:published_time" content="2023-12-06T10:12:09.000Z">
-<meta property="article:modified_time" content="2023-12-06T10:12:09.053Z">
+<meta property="article:modified_time" content="2023-12-06T10:16:35.574Z">
 <meta property="article:author" content="白色很哇塞">
-<meta property="article:tag" content="发疯，生活">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/29.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>python中typing库的使用 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+  <title>typing库的使用！🍩 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,13 +208,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default2.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/29.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">python中typing库的使用</span>
+            <span id="subtitle">typing库的使用！🍩</span>
           
         </div>
 
@@ -234,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          945 字
         
       </span>
     
@@ -245,7 +248,7 @@
         
         
         
-          1 分钟
+          8 分钟
         
       </span>
     
@@ -286,12 +289,43 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">python中typing库的使用</h1>
+            <h1 id="seo-header">typing库的使用！🍩</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h1 id="typing库的使用"><a href="#typing库的使用" class="headerlink" title="typing库的使用"></a>typing库的使用</h1><ul>
+<li><strong>typing模块的作用：</strong></li>
+</ul>
+<ol>
+<li>类型检查，防止运行时出现参数和返回值类型不符合。</li>
+<li>作为开发文档附加说明，方便使用者调用时传入和返回参数类型。</li>
+<li>该模块加入后并不会影响程序的运行，不会报正式的错误，只有提醒。</li>
+</ol>
+<ul>
+<li><strong>下面说说typing模块常用的方式：</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> <span class="hljs-type">List</span>, <span class="hljs-type">Tuple</span>, <span class="hljs-type">Dict</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a:<span class="hljs-built_in">int</span>, string:<span class="hljs-built_in">str</span>, f:<span class="hljs-built_in">float</span>, b:<span class="hljs-built_in">bool</span></span>) -&gt; <span class="hljs-type">Tuple</span>[<span class="hljs-type">List</span>, <span class="hljs-type">Tuple</span>, <span class="hljs-type">Dict</span>, <span class="hljs-built_in">bool</span>]:<br>    list1 = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(a))<br>    tup = (string, string, string)<br>    d = &#123;<span class="hljs-string">&quot;a&quot;</span>:f&#125;<br>    bl = b<br>    <span class="hljs-keyword">return</span> list1, tup, d,bl<br><span class="hljs-built_in">print</span>(add(<span class="hljs-number">5</span>,<span class="hljs-string">&quot;hhhh&quot;</span>, <span class="hljs-number">2.3</span>, <span class="hljs-literal">False</span>))<br><span class="hljs-comment"># 结果：([0, 1, 2, 3, 4], (&#x27;hhhh&#x27;, &#x27;hhhh&#x27;, &#x27;hhhh&#x27;), &#123;&#x27;a&#x27;: 2.3&#125;, False)</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>说明：</strong></li>
+<li>在传入参数时通过“参数名:类型”的形式声明参数的类型；</li>
+<li>返回结果通过”-&gt; 结果类型”的形式声明结果的类型。</li>
+<li>在调用的时候如果参数的类型不正确pycharm会有提醒，但不会影响程序的运行。</li>
+<li>对于如list列表等，还可以规定得更加具体一些，如：“-&gt; List[str]”,规定返回的是列表，并且元素是字符串。</li>
+<li><strong>由于python天生支持多态，迭代器中的元素可能多种，如下：</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> <span class="hljs-type">List</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">a:<span class="hljs-built_in">int</span>, string:<span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span> <span class="hljs-keyword">or</span> <span class="hljs-built_in">str</span>]:<br>    list1 = []<br>    list1.append(a)<br>    list1.append(string)<br>    <span class="hljs-keyword">return</span> list1<br><br><span class="hljs-comment"># 使用or关键字表示多种类型</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>typing常用的类型：</strong></li>
+<li>int,long,float: 整型,长整形,浮点型;</li>
+<li>bool,str: 布尔型，字符串类型；</li>
+<li>List, Tuple, Dict, Set:列表，元组，字典, 集合;</li>
+<li>Iterable,Iterator:可迭代类型，迭代器类型；</li>
+<li>Generator：生成器类型；</li>
+</ul>
+
                 
               </div>
             
@@ -299,6 +333,43 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/" class="category-chain-item">算法 ʕ≧ᴥ≦ʔ</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/Python/" class="category-chain-item">Python</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+    </div>
   
 </div>
 
@@ -308,7 +379,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>python中typing库的使用</div>
+      <div>typing库的使用！🍩</div>
       <div>https://yangchuanzhi20.github.io/2023/12/06/算法/python/python中typing库的使用/</div>
     </div>
     <div class="license-meta">
@@ -353,9 +424,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/06/python%E4%B8%ADtyping%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" title="typing库的使用！🍩">
+                      <a href="/2023/12/07/%E7%AE%97%E6%B3%95/python/python%E4%B8%ADDataclasses%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" title="dataclasses库的使用！🍩">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">typing库的使用！🍩</span>
+                        <span class="hidden-mobile">dataclasses库的使用！🍩</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

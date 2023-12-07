@@ -1,0 +1,884 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="白色很哇塞">
+  <meta name="keywords" content="发疯，生活">
+  
+    <meta name="description" content="python中dataclasses库的使用🍩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dataclasses库的使用！🍩">
+<meta property="og:url" content="https://yangchuanzhi20.github.io/2023/12/07/%E7%AE%97%E6%B3%95/python/python%E4%B8%ADDataclasses%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
+<meta property="og:description" content="python中dataclasses库的使用🍩">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yangchuanzhi20.github.io/img/30.jpg">
+<meta property="article:published_time" content="2023-12-07T03:42:00.000Z">
+<meta property="article:modified_time" content="2023-12-07T07:40:13.961Z">
+<meta property="article:author" content="白色很哇塞">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/30.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>dataclasses库的使用！🍩 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yangchuanzhi20.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"♡","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>白色很哇塞ฅ՞•ﻌ•՞ฅ</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/game/">
+                <i class="iconfont icon-switch-fill"></i>
+                <span>游戏</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/30.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">dataclasses库的使用！🍩</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-07 11:42" pubdate>
+          2023年12月7日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          73 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">dataclasses库的使用！🍩</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="dataclasses库的使用"><a href="#dataclasses库的使用" class="headerlink" title="dataclasses库的使用"></a>dataclasses库的使用</h1><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p><code>Dataclasses</code>是一些适合于存储数据对象（data object）的Python类。</p>
+<p>他们存储并表示特定的数据类型。例如：一个数字。</p>
+<p>并且他们能够被用于和同类型的其他对象进行比较。</p>
+<h2 id="2-用法"><a href="#2-用法" class="headerlink" title="2.用法"></a>2.用法</h2><p>Python3.7 提供了一个装饰器<code>dataclass</code>，用以把一个类转化为<code>dataclass</code>。</p>
+<p>你需要做的就是把类包裹进装饰器里：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> dataclasses <span class="hljs-keyword">import</span> dataclass<br><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>:<br> ...<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3.初始化"></a>3.初始化</h2><p>正常的初始化过程：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Number</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, val</span>):<br>        self.val = val<br><span class="hljs-meta">&gt;&gt;&gt; </span>one = Number(<span class="hljs-number">1</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>one.val<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>用<code>dataclass</code>是这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Number</span>:<br>    val:<span class="hljs-built_in">int</span> <br><span class="hljs-meta">&gt;&gt;&gt; </span>one = Number(<span class="hljs-number">1</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>one.val<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>以下是<code>dataclass</code>装饰器带来的变化：</p>
+<ol>
+<li>无需定义<code>__init__</code>，然后将值赋给<code>self</code>，<code>dataclass</code>负责处理它</li>
+<li>我们以更加易读的方式预先定义了成员属性，以及<strong>类型提示</strong>。我们现在立即能知道<code>val</code>是<code>int</code>类型。这无疑比一般定义类成员的方式更具可读性。</li>
+</ol>
+<p>它也可以定义默认值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Number</span>:<br>    val:<span class="hljs-built_in">int</span> = <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="4-表示"><a href="#4-表示" class="headerlink" title="4.表示"></a>4.表示</h2><p>对象表示指的是对象的一个有意义的字符串表示，它在调试时非常有用。</p>
+<p>默认的 Python 对象表示不是很直观：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Number</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, val = <span class="hljs-number">0</span></span>):<br>    self.val = val<br><span class="hljs-meta">&gt;&gt;&gt; </span>a = Number(<span class="hljs-number">1</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a<br><span class="hljs-meta">&gt;&gt;&gt; </span>&lt;__main__.Number <span class="hljs-built_in">object</span> at <span class="hljs-number">0x7ff395b2ccc0</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>这让我们无法知悉对象的作用，并且会导致糟糕的调试体验。</p>
+<p>一个有意义的表示可以通过在类中定义一个<code>__repr__</code>方法来实现。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">__repr__</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-keyword">return</span> self.val<br></code></pre></td></tr></table></figure>
+
+<p>现在我们得到这个对象有意义的表示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>a = Number(<span class="hljs-number">1</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p><code>dataclass</code>会自动添加一个<code>__repr__</code>函数，这样我们就不必手动实现它了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Number</span>:<br>    val: <span class="hljs-built_in">int</span> = <span class="hljs-number">0</span><br><br><span class="hljs-meta">&gt;&gt;&gt; </span>a = Number(<span class="hljs-number">1</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a<br><span class="hljs-meta">&gt;&gt;&gt; </span>Number(val = <span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="5-数据比较"><a href="#5-数据比较" class="headerlink" title="5.数据比较"></a>5.数据比较</h2><p>通常，数据对象之间需要相互比较。</p>
+<p>两个对象<code>a</code>和<code>b</code>之间的比较通常包括以下操作：</p>
+<ul>
+<li>a &lt; b</li>
+<li>a &gt; b</li>
+<li>a &#x3D;&#x3D; b</li>
+<li>a &gt;&#x3D; b</li>
+<li>a &lt;&#x3D; b</li>
+</ul>
+<p>在 Python 中，能够在可以执行上述操作的类中定义方法。为了简单起见，只展示<code>==</code>和<code>&lt;</code>的实现。</p>
+<p>通常这样写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Number</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params"> self, val = <span class="hljs-number">0</span></span>):<br>       self.val = val<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__eq__</span>(<span class="hljs-params">self, other</span>):<br>        <span class="hljs-keyword">return</span> self.val == other.val<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__lt__</span>(<span class="hljs-params">self, other</span>):<br>        <span class="hljs-keyword">return</span> self.val &lt; other.val<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>dataclass</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass(<span class="hljs-params">order = <span class="hljs-literal">True</span></span>)</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Number</span>:<br>    val: <span class="hljs-built_in">int</span> = <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p>我们不需要定义<code>__eq__</code>和<code>__lt__</code>方法，因为当<code>order = True</code>被调用时，<code>dataclass 装饰器</code>会自动将它们添加到我们的类定义中。</p>
+<p>当你使用<code>dataclass</code>时，它会在类定义中添加函数<code>__eq__</code>和<code>__lt__</code>。</p>
+<p>生成<code>__eq__</code>函数的 dataclass 类会比较两个属性构成的元组，一个由自己属性构成的，另一个由同类的其他实例的属性构成。在我们的例子中，自动生成的<code>__eq__</code>函数相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">__eq__</span>(<span class="hljs-params">self, other</span>):<br>    <span class="hljs-keyword">return</span> (self.val,) == (other.val,)<br></code></pre></td></tr></table></figure>
+
+<p>让我们来看一个更详细的例子：</p>
+<p>我们会编写一个<code>dataclass</code>类<code>Person</code>来保存<code>name</code>和<code>age</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass(<span class="hljs-params">order = <span class="hljs-literal">True</span></span>)</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span>:<br>    name: <span class="hljs-built_in">str</span><br>    age:<span class="hljs-built_in">int</span> = <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p>自动生成的<code>__eq__</code>方法等同于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">__eq__</span>(<span class="hljs-params">self, other</span>):<br>    <span class="hljs-keyword">return</span> (self.name, self.age) == ( other.name, other.age)<br></code></pre></td></tr></table></figure>
+
+<p>请注意属性的顺序。它们总是按照你在<code>dataclass</code>类中定义的顺序生成。</p>
+<p>同样，等效的<code>__le__</code>函数类似于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">__le__</span>(<span class="hljs-params">self, other</span>):<br>    <span class="hljs-keyword">return</span> (self.name, self.age) &lt;= (other.name, other.age)<br></code></pre></td></tr></table></figure>
+
+<h2 id="6-dataclass-作为一个可调用的装饰器"><a href="#6-dataclass-作为一个可调用的装饰器" class="headerlink" title="6.dataclass 作为一个可调用的装饰器"></a>6.dataclass 作为一个可调用的装饰器</h2><p>定义所有的<strong>魔法方法</strong>（下一篇详细介绍）并不总是值得的。你的用例可能只包括存储值和检查相等性。因此，你只需定义<code>__init__</code>和<code>__eq__</code>方法。如果我们可以告诉装饰器不生成其他方法，那么它会减少一些开销，并且我们将在数据对象上有正确的操作。</p>
+<p>幸运的是，这可以通过将<code>dataclass</code>装饰器作为可调用对象来实现。</p>
+<p>装饰器可以用作具有如下参数的可调用对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass(<span class="hljs-params">init=<span class="hljs-literal">True</span>, <span class="hljs-built_in">repr</span>=<span class="hljs-literal">True</span>, eq=<span class="hljs-literal">True</span>, order=<span class="hljs-literal">False</span>, unsafe_hash=<span class="hljs-literal">False</span>, frozen=<span class="hljs-literal">False</span></span>)</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">C</span>:<br> …<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>init</code>：默认将生成<code>__init__</code>方法。如果传入<code>False</code>，那么该类将不会有<code>__init__</code>方法。</li>
+<li><code>repr</code>：<code>__repr__</code>方法默认生成。如果传入<code>False</code>，那么该类将不会有<code>__repr__</code>方法。</li>
+<li><code>eq</code>：默认将生成<code>__eq__</code>方法。如果传入<code>False</code>，那么<code>__eq__</code>方法将不会被<code>dataclass</code>添加，但默认为<code>object.__eq__</code>。</li>
+<li><code>order</code>：默认将生成<code>__gt__</code>、<code>__ge__</code>、<code>__lt__</code>、<code>__le__</code>方法。如果传入<code>False</code>，则省略它们。<br>我们在接下来会讨论<code>frozen</code>。由于<code>unsafe_hash</code>参数复杂的用例，它值得单独发布一篇文章。</li>
+</ul>
+<p>现在回到我们的用例，以下是我们需要的：</p>
+<ol>
+<li><strong>init</strong></li>
+<li><strong>eq</strong></li>
+</ol>
+<p>默认会生成这些函数，因此我们需要的是不生成其他函数。那么我们该怎么做呢？很简单，只需将相关参数作为<code>false</code>传入给生成器即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass(<span class="hljs-params"><span class="hljs-built_in">repr</span> = <span class="hljs-literal">False</span></span>) </span><span class="hljs-comment"># order, unsafe_hash and frozen are False</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Number</span>:<br>    val: <span class="hljs-built_in">int</span> = <span class="hljs-number">0</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>a = Number(<span class="hljs-number">1</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a<br><span class="hljs-meta">&gt;&gt;&gt; </span>&lt;__main__.Number <span class="hljs-built_in">object</span> at <span class="hljs-number">0x7ff395afe898</span>&gt;<br><span class="hljs-meta">&gt;&gt;&gt; </span>b = Number(<span class="hljs-number">2</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>c = Number(<span class="hljs-number">1</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a == b<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-literal">False</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>a &lt; b<br><span class="hljs-comment">#下列错误表示 &lt; 操作没有实现</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>Traceback (most recent call last):<br> File “&lt;stdin&gt;”, line <span class="hljs-number">1</span>, <span class="hljs-keyword">in</span> &lt;module&gt;<br>TypeError: ‘&lt;’ <span class="hljs-keyword">not</span> supported between instances of ‘Number’ <span class="hljs-keyword">and</span> ‘Number’<br></code></pre></td></tr></table></figure>
+
+<h2 id="7-Frozen（不可变）-实例"><a href="#7-Frozen（不可变）-实例" class="headerlink" title="7.Frozen（不可变） 实例"></a>7.Frozen（不可变） 实例</h2><p>Frozen 实例是在初始化对象后无法修改其属性的对象。</p>
+<blockquote>
+<p>无法创建真正不可变的 Python 对象</p>
+</blockquote>
+<p>以下是我们期望不可变对象能够做到的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>a = Number(<span class="hljs-number">10</span>) <span class="hljs-comment">#Assuming Number class is immutable</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>a.val = <span class="hljs-number">10</span> <span class="hljs-comment"># Raises Error</span><br></code></pre></td></tr></table></figure>
+
+<p>有了<code>dataclass</code>，就可以通过使用<code>dataclass</code>装饰器作为可调用对象配合参数<code>frozen=True</code>来定义一个<code>frozen</code>对象。</p>
+<p>当实例化一个<code>frozen</code>对象时，任何企图修改对象属性的行为都会引发<code>FrozenInstanceError</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass(<span class="hljs-params">frozen = <span class="hljs-literal">True</span></span>)</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Number</span>:<br>    val: <span class="hljs-built_in">int</span> = <span class="hljs-number">0</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>a = Number(<span class="hljs-number">1</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a.val<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">1</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>a.val = <span class="hljs-number">2</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>Traceback (most recent call last):<br> File “&lt;stdin&gt;”, line <span class="hljs-number">1</span>, <span class="hljs-keyword">in</span> &lt;module&gt;<br> File “&lt;string&gt;”, line <span class="hljs-number">3</span>, <span class="hljs-keyword">in</span> __setattr__<br>dataclasses.FrozenInstanceError: cannot assign to field ‘val’<br></code></pre></td></tr></table></figure>
+
+<p>因此，一个<code>frozen 实例</code>是一种很好方式来存储：</p>
+<ul>
+<li>常数</li>
+<li>设置<br>这些通常不会在应用程序的生命周期内发生变化，任何企图修改它们的行为都应该被禁止。</li>
+</ul>
+<h2 id="8-后期初始化处理"><a href="#8-后期初始化处理" class="headerlink" title="8.后期初始化处理"></a>8.后期初始化处理</h2><p>有了<code>dataclass</code>，需要定义一个<code>__init__</code>方法来将变量赋给<code>self</code>这种初始化操作已经得到了处理。但是我们失去了在变量被赋值之后立即需要的函数调用或处理的灵活性。</p>
+<p>让我们来讨论一个用例，在这个用例中，我们定义一个<code>Float</code>类来包含浮点数，然后在初始化之后立即计算整数和小数部分。</p>
+<p>通常是这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Float</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, val = <span class="hljs-number">0</span></span>):<br>        self.val = val<br>        self.process()<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">process</span>(<span class="hljs-params">self</span>):<br>        self.decimal, self.integer = math.modf(self.val)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a = Float( <span class="hljs-number">2.2</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a.decimal<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">0.2000</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>a.integer<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">2.0</span><br></code></pre></td></tr></table></figure>
+
+<p>幸运的是，使用<strong>post_init</strong>方法已经能够处理后期初始化操作。</p>
+<p>生成的<code>__init__</code>方法在返回之前调用<code>__post_init__</code>返回。因此，可以在函数中进行任何处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">FloatNumber</span>:<br>    val: <span class="hljs-built_in">float</span> = <span class="hljs-number">0.0</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__post_init__</span>(<span class="hljs-params">self</span>):<br>        self.decimal, self.integer = math.modf(self.val)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a = Number(<span class="hljs-number">2.2</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a.val<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">2.2</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>a.integer<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">2.0</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>a.decimal<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">0.2</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="9-继承"><a href="#9-继承" class="headerlink" title="9.继承"></a>9.继承</h2><p><code>Dataclasses</code>支持继承，就像普通的<code>Python</code>类一样。</p>
+<p>因此，父类中定义的属性将在子类中可用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span>:<br>    age: <span class="hljs-built_in">int</span> = <span class="hljs-number">0</span><br>    name: <span class="hljs-built_in">str</span><br><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span>(<span class="hljs-title class_ inherited__">Person</span>):<br>    grade: <span class="hljs-built_in">int</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>s = Student(<span class="hljs-number">20</span>, <span class="hljs-string">&quot;John Doe&quot;</span>, <span class="hljs-number">12</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>s.age<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">20</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>s.name<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">&quot;John Doe&quot;</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>s.grade<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">12</span><br></code></pre></td></tr></table></figure>
+
+<p>请注意，<code>Student</code>的参数是在类中定义的字段的顺序。</p>
+<p>继承过程中<code>__post_init__</code>的行为是怎样的？</p>
+<p>由于<code>__post_init__</code>只是另一个函数，因此必须以传统方式调用它：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>:<br>    a: <span class="hljs-built_in">int</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__post_init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;A&quot;</span>)<br><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span>(<span class="hljs-title class_ inherited__">A</span>):<br>    b: <span class="hljs-built_in">int</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__post_init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;B&quot;</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a = B(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>B<br></code></pre></td></tr></table></figure>
+
+<p>在上面的例子中，只有<code>B</code>的<code>__post_init__</code>被调用，那么我们如何调用<code>A</code>的<code>__post_init__</code>呢？</p>
+<p>因为它是<code>父类的函数</code>，所以可以用<code>super</code>来调用它。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span>(<span class="hljs-title class_ inherited__">A</span>):<br>    b: <span class="hljs-built_in">int</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__post_init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>().__post_init__() <span class="hljs-comment"># 调用 A 的 post init</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;B&quot;</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a = B(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>A<br>    B<br></code></pre></td></tr></table></figure>
+
+<h2 id="10-field"><a href="#10-field" class="headerlink" title="10.field"></a>10.field</h2><p>我们已经知道<code>Dataclasses</code>会生成他们自身的<code>__init__</code>方法。它同时把初始化的值赋给这些字段。</p>
+<ul>
+<li>变量名</li>
+<li>数据类型</li>
+</ul>
+<p>这些内容仅给我们有限的<code>dataclass</code>字段使用范围。让我们讨论一下这些局限性，以及它们如何通过<code>dataclass.field</code>被解决。</p>
+<h3 id="1-复合初始化"><a href="#1-复合初始化" class="headerlink" title="1.复合初始化"></a>1.复合初始化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> <span class="hljs-type">List</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_random_marks</span>():<br>    retun [random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>)]<br><br><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span>:<br>    marks:<span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__post_init__</span>(<span class="hljs-params">seif</span>):<br>    self.marks = get_random_marks() <span class="hljs-comment">#Assign random speeds</span><br><br>&gt;&gt;&gt;a= Student()<br>&gt;&gt;&gt;a.marks<br>&gt;&gt;&gt;[<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">6</span>,<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure>
+
+<p>数据类<code>Student</code>产生了一个名为<code>marks</code>的列表。我们不传递<code>marks</code>的值，而是使用<code>__post_init__</code>方法初始化。这是我们定义的单一属性。此外，我们必须在<code>__post_init__</code>里调用<code>get_random_marks</code>函数。这些工作是额外的。</p>
+<p>辛运的是，<code>Python</code>为我们提供了一个解决方案。我们可以使用<code>dataclasses.field</code>来定制化<code>dataclass</code>字段的行为以及它们在<code>dataclass</code>的影响。</p>
+<p>仍然是上述的使用情形，让我们从<code>__post_init__</code>里去除<code>get_random_marks</code>的调用。以下是使用<code>dataclasses.field</code>的情形：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> dataclasses <span class="hljs-keyword">import</span> field<br><span class="hljs-meta">@dataclass</span><br>c1ass Student:<br>marks:<span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]= field(default_factory=get_random_marks)<br>&gt;&gt;&gt;s = Student()<br>&gt;&gt;&gt;s.marks<br>&gt;&gt;&gt;[<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">6</span>,<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure>
+
+<p><code>dataclasses.field</code>接受了一个名为<code>default_factory</code>的参数，它的作用是：如果在创建对象时没有赋值，则使用该方法初始化该字段。</p>
+<p><code>default_factory</code>必须是一个可以调用的无参数方法（通常为一个函数）。</p>
+<h3 id="2-使用全部字段进行数据比较"><a href="#2-使用全部字段进行数据比较" class="headerlink" title="2.使用全部字段进行数据比较"></a>2.使用全部字段进行数据比较</h3><p>我们了解到，<code>dataclass</code>能够自动生成<code>&lt;</code>,<code>=,&gt;</code>,<code>&lt;=</code>和<code>&gt;=</code>这些比较方法。但是这些比较方法的一个缺陷是，它们使用类中的所有字段进行比较，而这种情况往往不常见。更经常地，这种比较方法会给我们使用<code>dataclasses</code>造成麻烦。</p>
+<p>考虑以下的使用情形：你有一个数据类用于存放用户的信息。现在，它可能存在以下字段：</p>
+<ul>
+<li>姓名</li>
+<li>年龄</li>
+<li>身高</li>
+<li>体重</li>
+</ul>
+<p>你仅想比较用户对象的年龄、身高和体重。你不想比较姓名。这是后端开发者经常会遇到的使用情景。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass(<span class="hljs-params">order=<span class="hljs-literal">True</span></span>)</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span>:<br>    name:<span class="hljs-built_in">str</span><br>    age：<span class="hljs-built_in">int</span><br>    height:<span class="hljs-built_in">float</span><br>	weight:<span class="hljs-built_in">float</span><br></code></pre></td></tr></table></figure>
+
+<p>自动生成的比较方法会比较以下的数组：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">(self.name，self.agerself.height， self.weight)<br></code></pre></td></tr></table></figure>
+
+<p>这将会破坏我们的意图。我们不想让姓名<code>（name）</code>用于比较。那么，如何使用<code>dataclasses.field</code>来实现我们的想法呢？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass(<span class="hljs-params">orde=<span class="hljs-literal">True</span></span>)</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span>:<br>	name:<span class="hljs-built_in">str</span>=field(compare=<span class="hljs-literal">False</span>)<br>	age:<span class="hljs-built_in">int</span><br>	weight:<span class="hljs-built_in">float</span><br>	height:<span class="hljs-built_in">float</span><br>&gt;&gt;&gt;user_1=User(<span class="hljs-string">&quot;John Doe&quot;</span>,<span class="hljs-number">23</span>,<span class="hljs-number">70</span>,<span class="hljs-number">1.70</span>)<br>&gt;&gt;&gt;user_2=User(<span class="hljs-string">&quot;Adam&quot;</span>,<span class="hljs-number">24</span>,<span class="hljs-number">65</span>,<span class="hljs-number">1.60</span>)<br>&gt;&gt;&gt;user_1&lt;user_2<br>&gt;&gt;&gt;<span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+
+<p>默认情况下，所用的字段都用于比较，因此我们仅仅需要指定哪些字段用于比较，而实现方法是直接把不需要的字段定义为<code>filed（compare=False）</code>。</p>
+<h3 id="3-使用全部字段进行数据表示"><a href="#3-使用全部字段进行数据表示" class="headerlink" title="3.使用全部字段进行数据表示"></a>3.使用全部字段进行数据表示</h3><p>自动生成的<code>__repr__</code>方法使用所有的字段用于表示。当然，这也不是大多数情形下的理想选择，尤其是当你的数据类有大量的字段时。单个对象的表示会变得异常臃肿，对调试来说也不利。</p>
+<p>我们也能够个性化这种行为。考虑一个类似的使用场景，也许最合适的用于表示的属性是姓名（name）。那么对<code>__repr__</code>，我们仅使用它：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass(<span class="hljs-params">order=<span class="hljs-literal">True</span></span>)</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span>:<br>	name:<span class="hljs-built_in">str</span>=field(compare=false)<br>	age:<span class="hljs-built_in">int</span>= field(<span class="hljs-built_in">repr</span>=<span class="hljs-literal">False</span>)<br>	height:<span class="hljs-built_in">float</span>= field(<span class="hljs-built_in">repr</span>=<span class="hljs-literal">False</span>)<br>	weight:<span class="hljs-built_in">float</span>= field(<span class="hljs-built_in">repr</span>=<span class="hljs-literal">False</span>)<br>	city:<span class="hljs-built_in">str</span>=field(<span class="hljs-built_in">repr</span>=<span class="hljs-literal">False</span>,compare=<span class="hljs-literal">False</span>)<br>	country:<span class="hljs-built_in">str</span>=field(<span class="hljs-built_in">repr</span>=<span class="hljs-literal">False</span>,compare=<span class="hljs-literal">False</span>)<br>	<br>&gt;&gt;&gt;a=User(<span class="hljs-string">&quot;john Doe&quot;</span>,<span class="hljs-number">24</span>,<span class="hljs-number">1.7</span>,<span class="hljs-number">70</span>,<span class="hljs-string">&quot;Massachusetts&quot;</span>,<span class="hljs-string">&quot;United States ofAmerica&quot;</span>)<br>&gt;&gt;&gt;b=User(<span class="hljs-string">&quot;Adam&quot;</span>,<span class="hljs-number">24</span>,<span class="hljs-number">1.6</span>,<span class="hljs-number">65</span>,<span class="hljs-string">&quot;San Jose&quot;</span>,<span class="hljs-string">&quot;United Statesof America&quot;</span>)<br><br>&gt;&gt;&gt;a<br>&gt;&gt;&gt;User(name=<span class="hljs-string">&#x27;john Doe&#x27;</span>)<br>&gt;&gt;&gt;b<br>&gt;&gt;&gt;User(name=<span class="hljs-string">&#x27;Adam&#x27;</span>)<br>&gt;&gt;&gt;b&gt;a<br>&gt;&gt;&gt;<span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-从初始化中省略字段"><a href="#4-从初始化中省略字段" class="headerlink" title="4.从初始化中省略字段"></a>4.从初始化中省略字段</h3><p>目前为止我们看到的所有例子，都有一个共同特点——即我们需要为所有被声明的字段传递值，除了有默认值之外。在那种情形下（指有默认值的情况下），我们可以选择传递值，也可以不传递。</p>
+<p>但是，还有一种情形：我们可能不想在初始化时设定某个字段的值。这也是一种常见的使用场景。也许你在追踪一个对象的状态，并且希望它在初始化时一直被设为<code>False</code>。更一般地，这个值在初始化时不能够被传递。</p>
+<p>那么，我们如何实现上述想法呢？以下是具体内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span>:<br>	email:<span class="hljs-built_in">str</span>= field(<span class="hljs-built_in">repr</span>= <span class="hljs-literal">True</span>)<br>	verified:<span class="hljs-built_in">bool</span>=field(<span class="hljs-built_in">repr</span> = <span class="hljs-literal">False</span>,init=<span class="hljs-literal">False</span>,default=<span class="hljs-literal">False</span>)<br>	<span class="hljs-comment">#Omit verified from representation as well as __init__</span><br><br><br>&gt;&gt;&gt;a = User(<span class="hljs-string">&quot;a@test.com&quot;</span>)<br>&gt;&gt;&gt;User(email=<span class="hljs-string">&#x27;a@test.com&#x27;</span>)<br>&gt;&gt;&gt;a.verified<br>&gt;&gt;&gt;<span class="hljs-literal">False</span><br>        <br>        <br>&gt;&gt;&gt;b= User(<span class="hljs-string">&quot;betest.com&quot;</span>,<span class="hljs-literal">True</span>)<span class="hljs-comment">#Let us try to pass the value of verified</span><br>&gt;&gt;&gt;Traceback(most recent cal1 last):<br>    File<span class="hljs-string">&quot;&lt;stdin&gt;&quot;</span>,line1,<span class="hljs-keyword">in</span>&lt;module&gt;<br>	TypeError:__init__()<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/" class="category-chain-item">算法 ʕ≧ᴥ≦ʔ</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/Python/" class="category-chain-item">Python</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>dataclasses库的使用！🍩</div>
+      <div>https://yangchuanzhi20.github.io/2023/12/07/算法/python/python中Dataclasses库的使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>白色很哇塞</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年12月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/06/%E7%AE%97%E6%B3%95/python/python%E4%B8%ADtyping%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" title="typing库的使用！🍩">
+                        <span class="hidden-mobile">typing库的使用！🍩</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"uchVjxnRW51J2Mm7CW00jbKk-MdYXbMMI","appKey":"salCKdKKc0oJUGN300BBLXeE","path":"window.location.pathname","placeholder":"ʕ ᵔᴥᵔ ʔ","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://uchvjxnr.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/vvd_js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/gongde.js"></script>
+<script src="/js/move.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/js/duration.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
