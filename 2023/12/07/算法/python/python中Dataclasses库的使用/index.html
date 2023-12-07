@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/30.jpg">
 <meta property="article:published_time" content="2023-12-07T03:42:00.000Z">
-<meta property="article:modified_time" content="2023-12-07T07:40:13.961Z">
+<meta property="article:modified_time" content="2023-12-07T07:42:55.518Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Python">
@@ -415,7 +415,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>:<br>    a: <span class="hljs-built_in">int</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__post_init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;A&quot;</span>)<br><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span>(<span class="hljs-title class_ inherited__">A</span>):<br>    b: <span class="hljs-built_in">int</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__post_init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;B&quot;</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a = B(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>B<br></code></pre></td></tr></table></figure>
 
 <p>在上面的例子中，只有<code>B</code>的<code>__post_init__</code>被调用，那么我们如何调用<code>A</code>的<code>__post_init__</code>呢？</p>
-<p>因为它是<code>父类的函数</code>，所以可以用<code>super</code>来调用它。</p>
+<p>因为它是父类的函数，所以可以用<code>super</code>来调用它。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@dataclass</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span>(<span class="hljs-title class_ inherited__">A</span>):<br>    b: <span class="hljs-built_in">int</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__post_init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>().__post_init__() <span class="hljs-comment"># 调用 A 的 post init</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;B&quot;</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>a = B(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>A<br>    B<br></code></pre></td></tr></table></figure>
 
 <h2 id="10-field"><a href="#10-field" class="headerlink" title="10.field"></a>10.field</h2><p>我们已经知道<code>Dataclasses</code>会生成他们自身的<code>__init__</code>方法。它同时把初始化的值赋给这些字段。</p>
@@ -558,6 +558,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/12/07/%E7%AE%97%E6%B3%95/python/python%E9%AD%94%E6%B3%95%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/" title="python魔术方法大全！🍩">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">python魔术方法大全！🍩</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
