@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>界面认识！🥕</title>
+    <link href="/2023/12/08/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/Blender%E7%95%8C%E9%9D%A2%E8%AE%A4%E8%AF%86/"/>
+    <url>/2023/12/08/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/Blender%E7%95%8C%E9%9D%A2%E8%AE%A4%E8%AF%86/</url>
+    
+    <content type="html"><![CDATA[<h1 id="界面认识"><a href="#界面认识" class="headerlink" title="界面认识"></a>界面认识</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>迭代器和itertools库的使用！🍩</title>
     <link href="/2023/12/08/%E7%AE%97%E6%B3%95/python/python%E4%B8%AD%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8Citertools%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <url>/2023/12/08/%E7%AE%97%E6%B3%95/python/python%E4%B8%AD%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8Citertools%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
@@ -178,11 +209,11 @@
   
   
   <entry>
-    <title>Blender建模基础知识!🥕</title>
+    <title>视图和物体控制!🥕</title>
     <link href="/2023/12/06/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     <url>/2023/12/06/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="视图和物体控制"><a href="#视图和物体控制" class="headerlink" title="视图和物体控制"></a>视图和物体控制</h1><h2 id="1-控制视图和视角"><a href="#1-控制视图和视角" class="headerlink" title="1.控制视图和视角"></a>1.控制视图和视角</h2><blockquote><p>观察3D空间</p></blockquote><p><code>鼠标中键</code>或者点击视图窗口右上角的<code>小球图标</code><img src="/2023/12/06/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/2.png"></p><blockquote><p>平移3D空间</p></blockquote><p><code>shift+鼠标中键</code>或者点击视图窗口右上角的<code>小手图标</code><img src="/2023/12/06/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.png"></p><blockquote><p>缩放3D空间</p></blockquote><p><code>滚动鼠标中键</code>或者点击视图窗口右上角的<code>放大镜图标</code><img src="/2023/12/06/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/3.png"></p><blockquote><p>摄像机视角和正交 &#x2F; 透视视角切换</p></blockquote><p><img src="/2023/12/06/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/4.png"></p><h2 id="2-控制物体模型"><a href="#2-控制物体模型" class="headerlink" title="2.控制物体模型"></a>2.控制物体模型</h2><blockquote><p>新建物体</p></blockquote><p><code>shift + A</code></p><blockquote><p>正常的移动 &#x2F; 旋转 &#x2F; 缩放工具</p></blockquote><p><img src="/2023/12/06/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/5.png"></p><blockquote><p>移动</p></blockquote><p>移动快捷键：<code>G</code></p><p>固定轴移动：<code>G + X/Y/Z</code></p><p>撤销移动（恢复到原点）：<code>alt + G</code></p><blockquote><p>旋转</p></blockquote><p>旋转快捷键：<code>R</code></p><p>固定轴旋转：<code>R + X/Y/Z</code></p><p>撤销旋转：<code>alt + R</code></p><blockquote><p>缩放</p></blockquote><p>缩放快捷键：<code>S</code></p><p>固定轴缩放：<code>S + X/Y/Z</code></p><p>撤销缩放：<code>alt + S</code></p><blockquote><p>删除</p></blockquote><p>删除快捷键：<code>Del</code> 或者  <code>X</code></p><blockquote><p>隐藏 &#x2F; 显示</p></blockquote><p>隐藏选中物体快捷键：<code>H</code></p><p>隐藏未选中物体快捷键：<code>shift + H</code></p><p>显示快捷键：<code>alt + H</code></p><p>或者右上角<code>眼睛图标</code></p><p><img src="/2023/12/06/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/6.png"></p><blockquote><p>复制</p></blockquote><p>移动并复制快捷键：<code>shift + D</code></p><p><strong>注意：</strong>ctrl + Z撤回的话只是撤回移动部分，物体仍然被复制。</p><blockquote><p>选择</p></blockquote><p>长按左上角箭头，出现四个选项</p><p><img src="/2023/12/06/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/7.png"></p><p>调整：单选并移动物体。</p><p>框选：选框的方式进行多选。</p><p>刷选：移动鼠标进行多选。</p><p>套索：套索的方式进行多选。</p><p>切换选择工具：<code>W</code></p><h2 id="3-切换视图"><a href="#3-切换视图" class="headerlink" title="3.切换视图"></a>3.切换视图</h2><blockquote><p>方法一</p></blockquote><p>直接点击右上角小圆球的红蓝绿三个键</p><blockquote><p>方法二</p></blockquote><p>小键盘的数字键</p><p>1 &#x2F; 3 &#x2F; 7 &#x2F; 9 调整视图</p><p>2 &#x2F; 4 &#x2F; 6 &#x2F; 8 偏移视角，每按一次转15°</p><p>5 调整正交和透视</p><p>点击<code>.</code>，点击物体可将对象放大至视图中心</p><blockquote><p>方法三</p></blockquote><p>长按<code>~</code>键，选择视图</p><blockquote><p>方法四</p></blockquote><p><code>alt + 鼠标中键</code>改变视图</p>]]></content>
     
     
     <categories>
