@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/37.jpg">
 <meta property="article:published_time" content="2024-01-18T13:46:23.000Z">
-<meta property="article:modified_time" content="2024-01-18T14:01:40.952Z">
+<meta property="article:modified_time" content="2024-01-23T06:38:46.654Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Rust">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          70 字
+          9.1k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          1 分钟
+          76 分钟
         
       </span>
     
@@ -294,9 +294,292 @@
             
               <div class="markdown-body">
                 
-                <h1 id="rust基础知识"><a href="#rust基础知识" class="headerlink" title="rust基础知识"></a>rust基础知识</h1><h2 id="1-Cargo"><a href="#1-Cargo" class="headerlink" title="1.Cargo"></a>1.Cargo</h2><p>Cargo 是 Rust 的<code>构建系统</code>和<code>包管理器</code>。</p>
-<p>Rust 开发者常用 Cargo 来管理 Rust 工程和获取工程所依赖的库。</p>
+                <h1 id="rust基础知识"><a href="#rust基础知识" class="headerlink" title="rust基础知识"></a>rust基础知识</h1><h2 id="1-Cargo"><a href="#1-Cargo" class="headerlink" title="1.Cargo"></a>1.Cargo</h2><p>Cargo 是 Rust 的<code>构建系统</code>和<code>包管理器</code>。Rust 开发者常用 Cargo 来管理 Rust 工程和获取工程所依赖的库。</p>
 <p><img src="/2024/01/18/%E7%AE%97%E6%B3%95/rust/rust%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>Cargo 除了创建工程以外还具备构建（build）工程、运行（run）工程等一系列功能，构建和运行分别对应以下命令：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs rust">cargo build <br>cargo run <br></code></pre></td></tr></table></figure>
+
+<h2 id="2-输出到命令行"><a href="#2-输出到命令行" class="headerlink" title="2.输出到命令行"></a>2.输出到命令行</h2><p>Rust 输出文字的方式主要有两种：<code>println!()</code> 和 <code>print!()</code>。这两个”函数”都是向命令行输出字符串的方法，区别仅在于前者会在输出的最后附加输出一个<strong>换行符</strong>。当用这两个”函数”输出信息的时候，第一个参数是格式字符串，后面是一串可变参数，对应着格式字符串中的”占位符”，这一点与 C 语言中的 printf 函数很相似。但是，Rust 中格式字符串中的占位符不是 <strong>“% + 字母”</strong> 的形式，而是一对 <code>&#123;&#125;</code>。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123; <br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = <span class="hljs-number">12</span>; <br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;a is &#123;&#125;&quot;</span>, a); <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果我想把 a 输出两遍：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;a is &#123;0&#125;, a again is &#123;0&#125;&quot;</span>, a); <br></code></pre></td></tr></table></figure>
+
+<p>在 {}之间可以放一个数字，它将把之后的可变参数当作一个数组来访问，下标从 0 开始。</p>
+<p>如果要输出 { 或 } 怎么办呢？格式字符串中通过  分别转义代表 { 和 }。但是其他常用转义字符与 C 语言里的转义字符一样，都是<strong>反斜杠开头</strong>的形式。</p>
+<h2 id="3-变量"><a href="#3-变量" class="headerlink" title="3.变量"></a>3.变量</h2><p>Rust 是<strong>强类型语言</strong>，但具有自动判断变量类型的能力。这很容易让人与弱类型语言产生混淆。</p>
+<p>如果要声明变量，需要使用 <strong>let</strong> 关键字。例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = <span class="hljs-number">123</span>;<br></code></pre></td></tr></table></figure>
+
+<p>在这句声明语句之后，以下三行代码都是被禁止的：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs rust">a = <span class="hljs-string">&quot;abc&quot;</span>;<br>a = <span class="hljs-number">4.56</span>; <br>a = <span class="hljs-number">456</span>;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>第一行的错误在于当声明 a 是 123 以后，a 就被确定为整型数字，不能把字符串类型的值赋给它。</li>
+<li>第二行的错误在于自动转换数字精度有损失，Rust 语言不允许精度有损失的自动数据类型转换。</li>
+<li>第三行的错误在于 a 不是个可变变量。</li>
+</ul>
+<p>前两种错误很容易理解，但第三个是什么意思？难道 a 不是个变量吗？</p>
+<p>这就牵扯到了 Rust 语言为了高并发安全而做的设计：在语言层面<strong>尽量少的让变量的值可以改变</strong>。所以 a 的值不可变。但这**不意味着 a 不是”变量”**（英文中的 variable），官方文档称 a 这种变量为”不可变变量”。</p>
+<p>如果我们编写的程序的一部分在假设值永远不会改变的情况下运行，而我们代码的另一部分在改变该值，那么代码的第一部分可能就不会按照设计的意图去运转。由于这种原因造成的错误很难在事后找到。这是 Rust 语言设计这种机制的原因。</p>
+<p>当然，使变量变得”可变”（mutable）只需一个 <strong>mut</strong> 关键字。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">a</span> = <span class="hljs-number">123</span>;<br>a = <span class="hljs-number">456</span>;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<h3 id="常量与不可变变量的区别"><a href="#常量与不可变变量的区别" class="headerlink" title="常量与不可变变量的区别"></a>常量与不可变变量的区别</h3></blockquote>
+<p>既然不可变变量是不可变的，那不就是常量吗？为什么叫变量？</p>
+<p>变量和常量还是有区别的。在 Rust 中，以下程序是合法的：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = <span class="hljs-number">123</span>;   <span class="hljs-comment">// 可以编译，但可能有警告，因为该变量没有被使用</span><br><span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = <span class="hljs-number">456</span>;<br></code></pre></td></tr></table></figure>
+
+<p>但是如果 a 是常量就不合法：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">const</span> a: <span class="hljs-type">i32</span> = <span class="hljs-number">123</span>;<br><span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = <span class="hljs-number">456</span>;<br></code></pre></td></tr></table></figure>
+
+<p>变量的值可以”重新绑定”，但在”重新绑定”以前不能私自被改变，这样可以确保在每一次”绑定”之后的区域里编译器可以充分的推理程序逻辑。 虽然 Rust 有自动判断类型的功能，但有些情况下声明类型更加方便：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">a</span>: <span class="hljs-type">u64</span> = <span class="hljs-number">123</span>;<br></code></pre></td></tr></table></figure>
+
+<p>这里声明了 a 为无符号 64 位整型变量，如果没有声明类型，a 将自动被判断为有符号 32 位整型变量，这对于 a 的取值范围有很大的影响。</p>
+<blockquote>
+<h3 id="重影"><a href="#重影" class="headerlink" title="重影"></a>重影</h3></blockquote>
+<p>重影的概念与其他面向对象语言里的”重写”（Override）或”重载”（Overload）是不一样的。重影就是刚才讲述的所谓”重新绑定”，之所以加引号就是为了在没有介绍这个概念的时候代替一下概念。</p>
+<p>重影就是指变量的名称可以被重新使用的机制：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = <span class="hljs-number">5</span>;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = x + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = x * <span class="hljs-number">2</span>;<br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这段程序的运行结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs rust">The value of x is: <span class="hljs-number">12</span><br></code></pre></td></tr></table></figure>
+
+<p>重影与可变变量的赋值不是一个概念，<strong>重影是指用同一个名字重新代表另一个变量实体，其类型、可变属性和值都可以变化。但可变变量赋值仅能发生值的变化。</strong></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">s</span> = <span class="hljs-string">&quot;123&quot;</span>;<br>s = s.<span class="hljs-title function_ invoke__">len</span>();<br></code></pre></td></tr></table></figure>
+
+<p>这段程序会出错：不能给字符串变量赋整型值。</p>
+<h2 id="4-数据类型"><a href="#4-数据类型" class="headerlink" title="4.数据类型"></a>4.数据类型</h2><p>Rust 语言中的基础数据类型有以下几种。</p>
+<h3 id="4-1-整数型（Integer）"><a href="#4-1-整数型（Integer）" class="headerlink" title="4.1 整数型（Integer）"></a>4.1 整数型（Integer）</h3><p>整数型简称整型，按照比特位长度和有无符号分为以下种类：</p>
+<table>
+<thead>
+<tr>
+<th>位长度</th>
+<th>有符号</th>
+<th>无符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>8-bit</td>
+<td>i8</td>
+<td>u8</td>
+</tr>
+<tr>
+<td>16-bit</td>
+<td>i16</td>
+<td>u16</td>
+</tr>
+<tr>
+<td>32-bit</td>
+<td>i32</td>
+<td>u32</td>
+</tr>
+<tr>
+<td>64-bit</td>
+<td>i64</td>
+<td>u64</td>
+</tr>
+<tr>
+<td>128-bit</td>
+<td>i128</td>
+<td>u128</td>
+</tr>
+<tr>
+<td>arch</td>
+<td>isize</td>
+<td>usize</td>
+</tr>
+</tbody></table>
+<p>isize 和 usize 两种整数类型是用来衡量数据大小的，它们的位长度取决于所运行的目标平台，如果是 32 位架构的处理器将使用 32 位位长度整型。</p>
+<p>整数的表述方法有以下几种：</p>
+<table>
+<thead>
+<tr>
+<th>进制</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>十进制</td>
+<td>98_222</td>
+</tr>
+<tr>
+<td>十六进制</td>
+<td>0xff</td>
+</tr>
+<tr>
+<td>八进制</td>
+<td>0o77</td>
+</tr>
+<tr>
+<td>二进制</td>
+<td>0b1111_0000</td>
+</tr>
+<tr>
+<td>字节(只能表示 u8 型)</td>
+<td>b’A’</td>
+</tr>
+</tbody></table>
+<p>很显然，有的整数中间存在一个<strong>下划线</strong>，这种设计可以让人们在输入一个很大的数字时更容易判断数字的值大概是多少。</p>
+<h3 id="4-2-浮点数型（Floating-Point）"><a href="#4-2-浮点数型（Floating-Point）" class="headerlink" title="4.2 浮点数型（Floating-Point）"></a>4.2 浮点数型（Floating-Point）</h3><p>Rust 与其它语言一样支持 32 位浮点数（f32）和 64 位浮点数（f64）。默认情况下，64.0 将表示 64 位浮点数，因为现代计算机处理器对两种浮点数计算的速度几乎相同，但 64 位浮点数精度更高。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = <span class="hljs-number">2.0</span>; <span class="hljs-comment">// f64</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">y</span>: <span class="hljs-type">f32</span> = <span class="hljs-number">3.0</span>; <span class="hljs-comment">// f32</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-3-数学运算"><a href="#4-3-数学运算" class="headerlink" title="4.3 数学运算"></a>4.3 数学运算</h3><p>用一段程序反映数学运算：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123; <br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">sum</span> = <span class="hljs-number">5</span> + <span class="hljs-number">10</span>; <span class="hljs-comment">// 加 </span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">difference</span> = <span class="hljs-number">95.5</span> - <span class="hljs-number">4.3</span>; <span class="hljs-comment">// 减 </span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">product</span> = <span class="hljs-number">4</span> * <span class="hljs-number">30</span>; <span class="hljs-comment">// 乘 </span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">quotient</span> = <span class="hljs-number">56.7</span> / <span class="hljs-number">32.2</span>; <span class="hljs-comment">// 除 </span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">remainder</span> = <span class="hljs-number">43</span> % <span class="hljs-number">5</span>; <span class="hljs-comment">// 求余</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>许多运算符号之后加上 &#x3D; 号是自运算的意思，例如：</p>
+<p><strong>sum +&#x3D; 1</strong> 等同于 <strong>sum &#x3D; sum + 1</strong>。</p>
+<p><strong>注意：</strong>Rust 不支持 <strong>++</strong> 和 **–**，因为这两个运算符出现在变量的前后会影响代码可读性，减弱了开发者对变量改变的意识能力。</p>
+<h3 id="4-4-布尔型"><a href="#4-4-布尔型" class="headerlink" title="4.4 布尔型"></a>4.4 布尔型</h3><p>布尔型用 bool 表示，值只能为 true 或 false。</p>
+<h3 id="4-5-字符型"><a href="#4-5-字符型" class="headerlink" title="4.5 字符型"></a>4.5 字符型</h3><p>字符型用 char 表示。</p>
+<p>Rust的 char 类型大小为 4 个字节，代表 Unicode标量值，这意味着它可以支持中文，日文和韩文字符等非英文字符甚至表情符号和零宽度空格在 Rust 中都是有效的 char 值。</p>
+<p>Unicode 值的范围从 U+0000 到 U+D7FF 和 U+E000 到 U+10FFFF （包括两端）。 但是，”字符”这个概念并不存在于 Unicode 中，因此您对”字符”是什么的直觉可能与Rust中的字符概念不匹配。所以一般推荐使用字符串储存 UTF-8 文字（非英文字符尽可能地出现在字符串中）。</p>
+<p><strong>注意：</strong>由于中文文字编码有两种（GBK 和 UTF-8），所以编程中使用中文字符串有可能导致乱码的出现，这是因为源程序与命令行的文字编码不一致，所以<strong>在 Rust 中字符串和字符都必须使用 UTF-8 编码</strong>，否则编译器会报错。</p>
+<h3 id="4-6-复合类型"><a href="#4-6-复合类型" class="headerlink" title="4.6 复合类型"></a>4.6 复合类型</h3><p><strong>元组</strong>是用一对 <strong>( )</strong> 包括的一组数据，可以包含不同种类的数据：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">tup</span>: (<span class="hljs-type">i32</span>, <span class="hljs-type">f64</span>, <span class="hljs-type">u8</span>) = (<span class="hljs-number">500</span>, <span class="hljs-number">6.4</span>, <span class="hljs-number">1</span>);<br><span class="hljs-comment">// tup.0 等于 500</span><br><span class="hljs-comment">// tup.1 等于 6.4</span><br><span class="hljs-comment">// tup.2 等于 1</span><br><span class="hljs-keyword">let</span> (x, y, z) = tup;<br><span class="hljs-comment">// y 等于 6.4</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>数组</strong>用一对 <strong>[ ]</strong> 包括的同类型数据。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br><span class="hljs-comment">// a 是一个长度为 5 的整型数组</span><br><br><span class="hljs-keyword">let</span> <span class="hljs-variable">b</span> = [<span class="hljs-string">&quot;January&quot;</span>, <span class="hljs-string">&quot;February&quot;</span>, <span class="hljs-string">&quot;March&quot;</span>];<br><span class="hljs-comment">// b 是一个长度为 3 的字符串数组</span><br><br><span class="hljs-keyword">let</span> <span class="hljs-variable">c</span>: [<span class="hljs-type">i32</span>; <span class="hljs-number">5</span>] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br><span class="hljs-comment">// c 是一个长度为 5 的 i32 数组</span><br><br><span class="hljs-keyword">let</span> <span class="hljs-variable">d</span> = [<span class="hljs-number">3</span>; <span class="hljs-number">5</span>];<br><span class="hljs-comment">// 等同于 let d = [3, 3, 3, 3, 3];</span><br><br><span class="hljs-keyword">let</span> <span class="hljs-variable">first</span> = a[<span class="hljs-number">0</span>];<br><span class="hljs-keyword">let</span> <span class="hljs-variable">second</span> = a[<span class="hljs-number">1</span>];<br><span class="hljs-comment">// 数组访问</span><br><br>a[<span class="hljs-number">0</span>] = <span class="hljs-number">123</span>; <span class="hljs-comment">// 错误：数组 a 不可变</span><br><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">a</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br>a[<span class="hljs-number">0</span>] = <span class="hljs-number">4</span>; <span class="hljs-comment">// 正确</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="5-注释"><a href="#5-注释" class="headerlink" title="5.注释"></a>5.注释</h2><p>Rust 中的注释方式与其它语言（C、Java）一样，支持两种注释方式：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-comment">// 这是第一种注释方式</span><br><br><span class="hljs-comment">/* 这是第二种注释方式 */</span> <br><br><span class="hljs-comment">/* </span><br><span class="hljs-comment"> * 多行注释</span><br><span class="hljs-comment"> * 多行注释</span><br><span class="hljs-comment"> * 多行注释</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="5-1-用于说明文档的注释"><a href="#5-1-用于说明文档的注释" class="headerlink" title="5.1 用于说明文档的注释"></a>5.1 用于说明文档的注释</h3><p>在 Rust 中使用 <strong>&#x2F;&#x2F;</strong> 可以使其之后到第一个换行符的内容变成注释。</p>
+<p>在这种规则下，三个正斜杠 <strong>&#x2F;&#x2F;&#x2F;</strong> 依然是合法的注释开始。所以 Rust 可以用 <strong>&#x2F;&#x2F;&#x2F;</strong> 作为说明文档注释的开头：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-comment">/// Adds one to the number given. </span><br><span class="hljs-comment">/// </span><br><span class="hljs-comment">/// # Examples </span><br><span class="hljs-comment">/// </span><br><span class="hljs-comment">/// ``` </span><br><span class="hljs-comment">/// let x = add(1, 2); </span><br><span class="hljs-comment">/// </span><br><span class="hljs-comment">/// ``` </span><br><br><span class="hljs-keyword">fn</span> <span class="hljs-title function_">add</span>(a: <span class="hljs-type">i32</span>, b: <span class="hljs-type">i32</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">i32</span> &#123; <br>    <span class="hljs-keyword">return</span> a + b; <br>&#125; <br>    <br><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123; <br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;&#123;&#125;&quot;</span>,<span class="hljs-title function_ invoke__">add</span>(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)); <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>程序中的函数 add 就会拥有一段优雅的注释，并可以显示：</p>
+<p><img src="/2024/01/18/%E7%AE%97%E6%B3%95/rust/rust%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/2.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="6-函数"><a href="#6-函数" class="headerlink" title="6.函数"></a>6.函数</h2><p>函数在 Rust 语言中是普遍存在的。</p>
+<p>通过之前的章节已经可以了解到 Rust 函数的基本形式：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> &lt;函数名&gt; ( &lt;参数&gt; ) &lt;函数体&gt;<br></code></pre></td></tr></table></figure>
+
+<p>其中 Rust 函数名称的命名风格是<strong>小写字母以下划线分割</strong>：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123;<br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Hello, world!&quot;</span>);<br>    <span class="hljs-title function_ invoke__">another_function</span>();<br>&#125;<br><br><span class="hljs-keyword">fn</span> <span class="hljs-title function_">another_function</span>() &#123;<br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Hello, runoob!&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs rust">Hello, world!<br>Hello, runoob!<br></code></pre></td></tr></table></figure>
+
+<p>注意，我们在源代码中的 main 函数之后定义了another_function。 Rust<strong>不在乎您在何处定义函数</strong>，只需在某个地方定义它们即可。</p>
+<h3 id="6-1-函数参数"><a href="#6-1-函数参数" class="headerlink" title="6.1 函数参数"></a>6.1 函数参数</h3><p>Rust 中定义函数如果需要具备参数必须声明参数名称和类型：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123;<br>    <span class="hljs-title function_ invoke__">another_function</span>(<span class="hljs-number">5</span>, <span class="hljs-number">6</span>);<br>&#125;<br><br><span class="hljs-keyword">fn</span> <span class="hljs-title function_">another_function</span>(x: <span class="hljs-type">i32</span>, y: <span class="hljs-type">i32</span>) &#123;<br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;x 的值为 : &#123;&#125;&quot;</span>, x);<br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;y 的值为 : &#123;&#125;&quot;</span>, y);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs rust">x 的值为 : <span class="hljs-number">5</span><br>y 的值为 : <span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="6-2-函数体的语句和表达式"><a href="#6-2-函数体的语句和表达式" class="headerlink" title="6.2 函数体的语句和表达式"></a>6.2 函数体的语句和表达式</h3><p>Rust 函数体由一系列可以以表达式（Expression）结尾的语句（Statement）组成。到目前为止，我们仅见到了没有以表达式结尾的函数，但已经将表达式用作语句的一部分。</p>
+<p>语句是执行某些操作且没有返回值的步骤。例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = <span class="hljs-number">6</span>;<br></code></pre></td></tr></table></figure>
+
+<p>这个步骤没有返回值，所以以下语句不正确：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = (<span class="hljs-keyword">let</span> <span class="hljs-variable">b</span> = <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+
+<p>表达式有计算步骤且有返回值。以下是表达式（假设出现的标识符已经被定义）：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs rust">a = <span class="hljs-number">7</span><br>b + <span class="hljs-number">2</span><br>c * (a + b)<br></code></pre></td></tr></table></figure>
+
+<p>Rust 中可以在一个用 <strong>{}</strong> 包括的块里编写一个较为复杂的表达式：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = <span class="hljs-number">5</span>;<br><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">y</span> = &#123;<br>        <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = <span class="hljs-number">3</span>;<br>        x + <span class="hljs-number">1</span><br>    &#125;;<br><br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;x 的值为 : &#123;&#125;&quot;</span>, x);<br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;y 的值为 : &#123;&#125;&quot;</span>, y);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs rust">x 的值为 : <span class="hljs-number">5</span><br>y 的值为 : <span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
+
+<p>很显然，这段程序中包含了一个表达式块：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs rust">&#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = <span class="hljs-number">3</span>;<br>    x + <span class="hljs-number">1</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>而且在块中可以使用函数语句，最后一个步骤是表达式，此表达式的结果值是整个表达式块所代表的值。这种表达式块叫做函数体表达式。</p>
+<p>注意：<strong>x + 1</strong> 之后没有分号，否则它将变成一条语句！</p>
+<p>这种表达式块是一个合法的函数体。而且在 Rust 中，函数定义可以嵌套：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123;<br>    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">five</span>() <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">i32</span> &#123;<br>        <span class="hljs-number">5</span><br>    &#125;<br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;five() 的值为: &#123;&#125;&quot;</span>, <span class="hljs-title function_ invoke__">five</span>());<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-3-函数返回值"><a href="#6-3-函数返回值" class="headerlink" title="6.3 函数返回值"></a>6.3 函数返回值</h3><p>在上一个嵌套的例子中已经显示了 Rust 函数声明返回值类型的方式：在参数声明之后用 <strong>-&gt;</strong> 来声明函数返回值的类型（不是 <strong>:</strong> ）。</p>
+<p>在函数体中，随时都可以以 return 关键字结束函数运行并返回一个类型合适的值。这也是最接近大多数开发者经验的做法：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">add</span>(a: <span class="hljs-type">i32</span>, b: <span class="hljs-type">i32</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">i32</span> &#123;<br>    <span class="hljs-keyword">return</span> a + b;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>但是 Rust 不支持自动返回值类型判断！如果没有明确声明函数返回值的类型，函数将被认为是”纯过程”，不允许产生返回值，return 后面不能有返回值表达式。这样做的目的是为了让公开的函数能够形成可见的公报。</p>
+<p><strong>注意：</strong>函数体表达式并不能等同于函数体，它不能使用 <strong>return</strong> <strong>关键字。</strong></p>
+<h2 id="7-条件语句"><a href="#7-条件语句" class="headerlink" title="7.条件语句"></a>7.条件语句</h2><p>在 Rust 语言中的条件语句是这种格式的：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">number</span> = <span class="hljs-number">3</span>; <br>    <span class="hljs-keyword">if</span> number &lt; <span class="hljs-number">5</span> &#123; <br>        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;条件为 true&quot;</span>); <br>    &#125; <span class="hljs-keyword">else</span> &#123; <br>        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;条件为 false&quot;</span>); <br>    &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在上述程序中有条件 if 语句，这个语法在很多其它语言中很常见，但也有一些区别：首先，条件表达式 number &lt; 5 不需要用小括号包括（注意，不需要不是不允许）；但是 Rust 中的 if <strong>不存在单语句不用加 {} 的规则</strong>，<strong>不允许使用一个语句代替一个块</strong>。尽管如此，Rust 还是支持传统 else-if 语法的：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123; <br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = <span class="hljs-number">12</span>; <br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">b</span>; <br>    <span class="hljs-keyword">if</span> a &gt; <span class="hljs-number">0</span> &#123; <br>        b = <span class="hljs-number">1</span>; <br>    &#125;  <br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> a &lt; <span class="hljs-number">0</span> &#123; <br>        b = -<span class="hljs-number">1</span>; <br>    &#125;  <br>    <span class="hljs-keyword">else</span> &#123; <br>        b = <span class="hljs-number">0</span>; <br>    &#125; <br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;b is &#123;&#125;&quot;</span>, b); <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs rust">b 为 <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>Rust 中的条件表达式必须是 bool 类型，例如下面的程序是错误的：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123; <br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">number</span> = <span class="hljs-number">3</span>; <br>    <span class="hljs-keyword">if</span> number &#123;   <span class="hljs-comment">// 报错，expected `bool`, found integerrustc(E0308)</span><br>        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Yes&quot;</span>);<br>    &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>虽然 C&#x2F;C++ 语言中的条件表达式用整数表示，非 0 即真，但这个规则在很多注重代码安全性的语言中是被禁止的。</p>
+<p>结合之前章学习的函数体表达式我们加以联想：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">if</span> &lt;condition&gt; &#123; block <span class="hljs-number">1</span> &#125; <span class="hljs-keyword">else</span> &#123; block <span class="hljs-number">2</span> &#125; <br></code></pre></td></tr></table></figure>
+
+<p>这种语法中的 <strong>{ block 1 }</strong> 和 <strong>{ block 2 }</strong> 可不可以是函数体表达式呢？</p>
+<p>答案是肯定的！也就是说，在 Rust 中我们可以使用 if-else 结构实现类似于三元条件运算表达式 <strong>(A ? B : C)</strong> 的效果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123; <br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = <span class="hljs-number">3</span>; <br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">number</span> = <span class="hljs-keyword">if</span> a &gt; <span class="hljs-number">0</span> &#123; <span class="hljs-number">1</span> &#125; <span class="hljs-keyword">else</span> &#123; -<span class="hljs-number">1</span> &#125;; <br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;number 为 &#123;&#125;&quot;</span>, number); <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs rust">number 为 <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：两个函数体表达式的<strong>类型必须一样</strong>！且必须有一个 else 及其后的表达式块。</p>
+<h2 id="8-循环"><a href="#8-循环" class="headerlink" title="8.循环"></a>8.循环</h2><h3 id="8-1-while-循环"><a href="#8-1-while-循环" class="headerlink" title="8.1 while 循环"></a>8.1 while 循环</h3><p>while 循环是最典型的条件语句循环：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">number</span> = <span class="hljs-number">1</span>; <br>    <span class="hljs-keyword">while</span> number != <span class="hljs-number">4</span> &#123; <br>        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;&#123;&#125;&quot;</span>, number); <br>        number += <span class="hljs-number">1</span>; <br>    &#125; <br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;EXIT&quot;</span>); <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-number">1</span><br><span class="hljs-number">2</span><br><span class="hljs-number">3</span><br>EXIT<br></code></pre></td></tr></table></figure>
+
+<p>Rust 语言到此教程编撰之日还没有 do-while 的用法，但是 do 被规定为保留字，也许以后的版本中会用到。</p>
+<p>在 C 语言中 for 循环使用三元语句控制循环，但是 Rust 中没有这种用法，需要用 while 循环来代替：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> i; <br><span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123; <br>    <span class="hljs-comment">// 循环体</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">i</span> = <span class="hljs-number">0</span>; <br><span class="hljs-keyword">while</span> i &lt; <span class="hljs-number">10</span> &#123; <br>    <span class="hljs-comment">// 循环体 </span><br>    i += <span class="hljs-number">1</span>; <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="8-2-for-循环"><a href="#8-2-for-循环" class="headerlink" title="8.2 for 循环"></a>8.2 for 循环</h3><p>for 循环是最常用的循环结构，常用来遍历一个线性数据结构（比如数组）。for 循环遍历数组：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123; <br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>]; <br>    <span class="hljs-keyword">for</span> <span class="hljs-variable">i</span> <span class="hljs-keyword">in</span> a.<span class="hljs-title function_ invoke__">iter</span>() &#123; <br>        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;值为 : &#123;&#125;&quot;</span>, i); <br>    &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs rust">值为 : <span class="hljs-number">10</span><br>值为 : <span class="hljs-number">20</span><br>值为 : <span class="hljs-number">30</span><br>值为 : <span class="hljs-number">40</span><br>值为 : <span class="hljs-number">50</span><br></code></pre></td></tr></table></figure>
+
+<p>这个程序中的 for 循环完成了对数组 a 的遍历。a.iter() 代表 a 的迭代器（iterator），在学习有关于对象的章节以前不做赘述。</p>
+<p>当然，for 循环其实是可以通过下标来访问数组的：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123; <br><span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>]; <br>    <span class="hljs-keyword">for</span> <span class="hljs-variable">i</span> <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..<span class="hljs-number">5</span> &#123; <br>        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;a[&#123;&#125;] = &#123;&#125;&quot;</span>, i, a[i]); <br>    &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs rust">a[<span class="hljs-number">0</span>] = <span class="hljs-number">10</span><br>a[<span class="hljs-number">1</span>] = <span class="hljs-number">20</span><br>a[<span class="hljs-number">2</span>] = <span class="hljs-number">30</span><br>a[<span class="hljs-number">3</span>] = <span class="hljs-number">40</span><br>a[<span class="hljs-number">4</span>] = <span class="hljs-number">50</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="8-3-loop-循环"><a href="#8-3-loop-循环" class="headerlink" title="8.3 loop 循环"></a>8.3 loop 循环</h3><p>身经百战的开发者一定遇到过几次这样的情况：某个循环无法在开头和结尾判断是否继续进行循环，必须在循环体中间某处控制循环的进行。如果遇到这种情况，我们经常会在一个 while (true) 循环体里实现中途退出循环的操作。</p>
+<p>Rust 语言有原生的无限循环结构 —— loop：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123; <br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">s</span> = [<span class="hljs-string">&#x27;R&#x27;</span>, <span class="hljs-string">&#x27;U&#x27;</span>, <span class="hljs-string">&#x27;N&#x27;</span>, <span class="hljs-string">&#x27;O&#x27;</span>, <span class="hljs-string">&#x27;O&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>]; <br>    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">i</span> = <span class="hljs-number">0</span>; <br>    <span class="hljs-keyword">loop</span> &#123; <br>        <span class="hljs-keyword">let</span> <span class="hljs-variable">ch</span> = s[i]; <br>        <span class="hljs-keyword">if</span> ch == <span class="hljs-string">&#x27;O&#x27;</span> &#123; <br>            <span class="hljs-keyword">break</span>; <br>        &#125; <br>        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;\&#x27;&#123;&#125;\&#x27;&quot;</span>, ch);<br>        i += <span class="hljs-number">1</span>; <br>    &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-string">&#x27;R&#x27;</span> <br><span class="hljs-string">&#x27;U&#x27;</span> <br><span class="hljs-string">&#x27;N&#x27;</span> <br></code></pre></td></tr></table></figure>
+
+<p>loop 循环可以通过 break 关键字类似于 return 一样使整个循环退出并给予外部一个返回值。这是一个十分巧妙的设计，因为 loop 这样的循环常被用来当作查找工具使用，如果找到了某个东西当然要将这个结果交出去：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123; <br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">s</span> = [<span class="hljs-string">&#x27;R&#x27;</span>, <span class="hljs-string">&#x27;U&#x27;</span>, <span class="hljs-string">&#x27;N&#x27;</span>, <span class="hljs-string">&#x27;O&#x27;</span>, <span class="hljs-string">&#x27;O&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>]; <br>    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">i</span> = <span class="hljs-number">0</span>; <br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">location</span> = <span class="hljs-keyword">loop</span> &#123; <br>        <span class="hljs-keyword">let</span> <span class="hljs-variable">ch</span> = s[i];<br>        <span class="hljs-keyword">if</span> ch == <span class="hljs-string">&#x27;O&#x27;</span> &#123; <br>            <span class="hljs-keyword">break</span> i; <br>        &#125; <br>        i += <span class="hljs-number">1</span>; <br>    &#125;; <br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot; \&#x27;O\&#x27; 的索引为 &#123;&#125;&quot;</span>, location); <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-string">&#x27;O&#x27;</span> 的索引为 <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="9-所有权"><a href="#9-所有权" class="headerlink" title="9.所有权"></a>9.所有权</h2><p>计算机程序必须在运行时管理它们所使用的内存资源。大多数的编程语言都有管理内存的功能：C&#x2F;C++ 这样的语言主要通过手动方式管理内存，开发者需要手动的申请和释放内存资源。但为了提高开发效率，只要不影响程序功能的实现，许多开发者没有及时释放内存的习惯。所以手动管理内存的方式常常造成资源浪费。</p>
+<p>所有权对大多数开发者而言是一个新颖的概念，它是 Rust 语言为高效使用内存而设计的语法机制。所有权概念是为了让 Rust 在编译阶段更有效地分析内存资源的有用性以实现内存管理而诞生的概念。</p>
+<h3 id="9-1-所有权规则"><a href="#9-1-所有权规则" class="headerlink" title="9.1 所有权规则"></a>9.1 所有权规则</h3><p>所有权有以下三条规则：</p>
+<ul>
+<li>Rust 中的每个值都有一个变量，称为其所有者。</li>
+<li>一次只能有一个所有者。</li>
+<li>当所有者不在程序运行范围时，该值将被删除。</li>
+</ul>
+<p>这三条规则是所有权概念的基础。</p>
+<h3 id="9-2-变量范围"><a href="#9-2-变量范围" class="headerlink" title="9.2 变量范围"></a>9.2 变量范围</h3><p>我们用下面这段程序描述变量范围的概念：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs rust">&#123;<br>    <span class="hljs-comment">// 在声明以前，变量 s 无效</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">s</span> = <span class="hljs-string">&quot;runoob&quot;</span>;<br>    <span class="hljs-comment">// 这里是变量 s 的可用范围</span><br>&#125;<br><span class="hljs-comment">// 变量范围已经结束，变量 s 无效</span><br></code></pre></td></tr></table></figure>
+
+<p>变量范围是变量的一个属性，其代表变量的可行域，默认从声明变量开始有效直到变量所在域结束。</p>
+<p>我们把字符串样例程序用 C 语言等价编写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">&#123;<br>    <span class="hljs-type">char</span> *s = strdup(<span class="hljs-string">&quot;runoob&quot;</span>);<br>    <span class="hljs-built_in">free</span>(s); <span class="hljs-comment">// 释放 s 资源</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>ust 之所以没有明示释放的步骤是因为在变量范围结束的时候，Rust 编译器自动添加了调用释放资源函数的步骤。</p>
+<p>这种机制看似很简单了：它不过是帮助程序员在适当的地方添加了一个释放资源的函数调用而已。但这种简单的机制可以有效地解决一个史上最令程序员头疼的编程问题。</p>
+<h3 id="9-3-变量与数据交互的方式"><a href="#9-3-变量与数据交互的方式" class="headerlink" title="9.3 变量与数据交互的方式"></a>9.3 变量与数据交互的方式</h3><p>变量与数据交互方式主要有移动（Move）和克隆（Clone）两种：</p>
 
                 
               </div>
@@ -395,6 +678,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/01/19/%E7%BD%91%E7%AB%99/%E7%BD%91%E7%AB%99%E5%AE%9E%E4%BE%8B/ieir2024/ieir2024%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="ieir2024网站搭建!🐧">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ieir2024网站搭建!🐧</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

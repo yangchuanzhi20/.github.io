@@ -18,14 +18,14 @@
   
     <meta name="description" content="python中魔法方法的使用🍩">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python魔术方法大全！🍩">
+<meta property="og:title" content="python魔术方法使用！🍩">
 <meta property="og:url" content="https://yangchuanzhi20.github.io/2023/12/07/%E7%AE%97%E6%B3%95/python/python%E9%AD%94%E6%B3%95%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/index.html">
 <meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
 <meta property="og:description" content="python中魔法方法的使用🍩">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/31.jpg">
 <meta property="article:published_time" content="2023-12-07T07:44:06.000Z">
-<meta property="article:modified_time" content="2023-12-08T04:46:46.306Z">
+<meta property="article:modified_time" content="2024-01-24T06:31:00.384Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Python">
@@ -36,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>python魔术方法大全！🍩 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+  <title>python魔术方法使用！🍩 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">python魔术方法大全！🍩</span>
+            <span id="subtitle">python魔术方法使用！🍩</span>
           
         </div>
 
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          19k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          151 分钟
+          159 分钟
         
       </span>
     
@@ -289,12 +289,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">python魔术方法大全！🍩</h1>
+            <h1 id="seo-header">python魔术方法使用！🍩</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="python魔术方法大全"><a href="#python魔术方法大全" class="headerlink" title="python魔术方法大全"></a>python魔术方法大全</h1><p>所谓魔法函数（Magic Methods），是Python的一种高级语法，允许你在类中自定义函数，并绑定到类的特殊方法中。比如在类A中自定义__str__()函数，则在调用str(A())时，会自动调用__str__()函数，并返回相应的结果。</p>
+                <h1 id="python魔术方法使用"><a href="#python魔术方法使用" class="headerlink" title="python魔术方法使用"></a>python魔术方法使用</h1><p>所谓魔法函数（Magic Methods），是Python的一种高级语法，允许你在类中自定义函数，并绑定到类的特殊方法中。比如在类A中自定义__str__()函数，则在调用str(A())时，会自动调用__str__()函数，并返回相应的结果。</p>
 <p>Python 的类以其神奇的方法而闻名，通常称为 dunder（双下划线）方法。下面先列举Python里面的魔术方法，挑一些常用的魔术方法进行学习。</p>
 <h2 id="1-魔术方法索引"><a href="#1-魔术方法索引" class="headerlink" title="1.魔术方法索引"></a>1.魔术方法索引</h2><h3 id="1-二元操作符"><a href="#1-二元操作符" class="headerlink" title="1.二元操作符"></a>1.二元操作符</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">+	<span class="hljs-built_in">object</span>.__add__(self, other)<br>-	<span class="hljs-built_in">object</span>.__sub__(self, other)<br>*	<span class="hljs-built_in">object</span>.__mul__(self, other)<br>//	<span class="hljs-built_in">object</span>.__floordiv__(self, other)<br>/	<span class="hljs-built_in">object</span>.__div__(self, other)<br>%	<span class="hljs-built_in">object</span>.__mod__(self, other)<br>**	<span class="hljs-built_in">object</span>.__pow__(self, other[, modulo])<br>&lt;&lt;	<span class="hljs-built_in">object</span>.__lshift__(self, other)<br>&gt;&gt;	<span class="hljs-built_in">object</span>.__rshift__(self, other)<br>&amp;	<span class="hljs-built_in">object</span>.__and__(self, other)<br>^	<span class="hljs-built_in">object</span>.__xor__(self, other)<br>|	<span class="hljs-built_in">object</span>.__or__(self, other)<br></code></pre></td></tr></table></figure>
 
@@ -487,6 +487,12 @@
 <li>如果抛出<code>AttributeError</code>异常，则会直接调用<code>__getattr__</code>方法，因为属性没有找到，<code>__getattribute__</code>方法中为了避免在该方法中无限递归，它的实现应该永远调用基类的同名方法以访问需要的任何属性。</li>
 </ul>
 <p>需要注意的是，除非明确知道__getattrtbute__方法用来做什么，否则不要使用。</p>
+<h2 id="3-实例"><a href="#3-实例" class="headerlink" title="3.实例"></a>3.实例</h2><h3 id="3-1-setitem和getitem"><a href="#3-1-setitem和getitem" class="headerlink" title="3.1 setitem和getitem"></a>3.1 setitem和getitem</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        self.data = &#123;&#125;<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__setitem__</span>(<span class="hljs-params">self, key, value</span>):<br>        self.data[key] = value<br><br><span class="hljs-comment"># 创建 MyClass 实例</span><br>obj = MyClass()<br><br><span class="hljs-comment"># 使用 square bracket notation 进行赋值</span><br>obj[<span class="hljs-string">&#x27;name&#x27;</span>] = <span class="hljs-string">&#x27;John&#x27;</span><br>obj[<span class="hljs-string">&#x27;age&#x27;</span>] = <span class="hljs-number">30</span><br><br><span class="hljs-comment"># 打印结果</span><br><span class="hljs-built_in">print</span>(obj.data)<br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>__setitem__</code> 方法允许我们使用类似字典赋值的语法（<code>obj[&#39;name&#39;] = &#39;John&#39;</code>）将数据存储到 <code>MyClass</code> 实例中。在这里，<code>obj.data</code> 将包含键值对 <code>&#123;&#39;name&#39;: &#39;John&#39;, &#39;age&#39;: 30&#125;</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        self.data = &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;John&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>: <span class="hljs-number">30</span>&#125;<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__getitem__</span>(<span class="hljs-params">self, item</span>):<br>        <span class="hljs-keyword">return</span> self.data.get(item, <span class="hljs-literal">None</span>)<br><br><span class="hljs-comment"># 创建 MyClass 实例</span><br>obj = MyClass()<br><br><span class="hljs-comment"># 使用方括号表示法获取元素</span><br>name = obj[<span class="hljs-string">&#x27;name&#x27;</span>]<br>age = obj[<span class="hljs-string">&#x27;age&#x27;</span>]<br>unknown_key = obj[<span class="hljs-string">&#x27;unknown_key&#x27;</span>]<br><br><span class="hljs-comment"># 打印结果</span><br><span class="hljs-built_in">print</span>(name)  <span class="hljs-comment"># 输出: John</span><br><span class="hljs-built_in">print</span>(age)   <span class="hljs-comment"># 输出: 30</span><br><span class="hljs-built_in">print</span>(unknown_key)  <span class="hljs-comment"># 输出: None，因为键 &#x27;unknown_key&#x27; 在 data 中不存在</span><br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>__getitem__</code> 方法允许我们使用方括号表示法获取 <code>MyClass</code> 实例中的元素。如果请求的键在 <code>self.data</code> 字典中存在，则返回对应的值；否则返回 <code>None</code>。</p>
 
                 
               </div>
@@ -541,7 +547,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>python魔术方法大全！🍩</div>
+      <div>python魔术方法使用！🍩</div>
       <div>https://yangchuanzhi20.github.io/2023/12/07/算法/python/python魔法方法大全/</div>
     </div>
     <div class="license-meta">
