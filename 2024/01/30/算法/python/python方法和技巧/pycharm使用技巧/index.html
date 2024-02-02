@@ -1,0 +1,789 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="白色很哇塞">
+  <meta name="keywords" content="发疯，生活">
+  
+    <meta name="description" content="PyCharm的使用🍩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyCharm使用技巧!🍩">
+<meta property="og:url" content="https://yangchuanzhi20.github.io/2024/01/30/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/pycharm%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
+<meta property="og:description" content="PyCharm的使用🍩">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yangchuanzhi20.github.io/img/40.jpg">
+<meta property="article:published_time" content="2024-01-30T09:58:15.000Z">
+<meta property="article:modified_time" content="2024-02-01T03:58:20.304Z">
+<meta property="article:author" content="白色很哇塞">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/40.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>PyCharm使用技巧!🍩 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yangchuanzhi20.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"♡","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>白色很哇塞ฅ՞•ﻌ•՞ฅ</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/game/">
+                <i class="iconfont icon-switch-fill"></i>
+                <span>游戏</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/40.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">PyCharm使用技巧!🍩</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-01-30 17:58" pubdate>
+          2024年1月30日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">PyCharm使用技巧!🍩</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="PyCharm使用技巧"><a href="#PyCharm使用技巧" class="headerlink" title="PyCharm使用技巧"></a>PyCharm使用技巧</h1><h2 id="1-搜索"><a href="#1-搜索" class="headerlink" title="1.搜索"></a>1.搜索</h2><p>文件搜索：<code>Ctrl+F</code></p>
+<p>全局搜索：<code>Ctrl+Shift+F</code></p>
+<p><img src="/2024/01/30/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/pycharm%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/1.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-替换"><a href="#2-替换" class="headerlink" title="2.替换"></a>2.替换</h2><p>文件替换：<code>Ctrl+R</code></p>
+<p>全局替换：<code>Ctrl+Shift+R</code></p>
+<p>正则替换如下图所示：</p>
+<p><img src="/2024/01/30/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/pycharm%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/2.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>tips：</strong></p>
+<p>1.在替换模式中点击右上角的<code>.*</code>符号，切换到正则替换模式。</p>
+<p>2.用<code>\</code>加字符来匹配文件中的字符。</p>
+<p>3.用括号<code>()</code>将需要保留的内容括起来。</p>
+<p>4.用<code>$</code>加数字表示被括号括起来的内容，可以在替换中复用。</p>
+<p>5.<code>？</code>表示不使用贪婪搜索，而是尽可能少的匹配字符。</p>
+<h2 id="3-Debug"><a href="#3-Debug" class="headerlink" title="3.Debug"></a>3.Debug</h2><p><img src="/2024/01/30/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/pycharm%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/3.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>tips:</strong></p>
+<p>从左到右依次是：</p>
+<ul>
+<li><strong>step over</strong>（<code>F8</code>）：在单步执行时，在函数内遇到子函数时不会进入子函数内单步执行，而是将子函数整个执行完再停止，也就是把子函数整个作为一步。在不存在子函数的情况下是和step into效果一样的。简单的说就是，<strong>程序代码越过子函数，但子函数会执行，且不进入。</strong></li>
+<li><strong>step into</strong>（<code>F7</code>）：在单步执行时，遇到子函数就进入并且继续单步执行，有的会跳到源代码里面去执行。</li>
+<li><strong>step into my code</strong>（<code>Alt+Shift+F7</code>）：在单步执行时，遇到子函数就进入并且继续单步执行，不会进入到源码中。</li>
+<li><strong>step out</strong>（<code>Shift+F8</code>）：假如进入了一个函数体中，你看了两行代码，不想看了，跳出当前函数体内，返回到调用此函数的地方，即使用此功能即可。</li>
+</ul>
+<p><img src="/2024/01/30/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/pycharm%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/4.png" srcset="/img/loading.gif" lazyload></p>
+<p>每一步调试的变量结果都会在代码和调试框中出现。</p>
+<h2 id="4-追踪"><a href="#4-追踪" class="headerlink" title="4.追踪"></a>4.追踪</h2><p>PyCharm提供了查看特定变量在代码中使用情况的功能，包括查找其来源。</p>
+<ol>
+<li>在代码编辑器中选中想要追踪来源的变量。可以将光标放在变量上，然后按住 <code>Ctrl</code> 键并单击变量，或者右键单击变量并选择 “Find Usages”（查找用法）。</li>
+<li>如果想要查找变量的定义处（即变量的来源），可以在查找用法结果面板中右键单击并选择 “Go to”（转到）&gt; “Declaration”（定义），或者使用快捷键 <code>Ctrl + B</code>。</li>
+</ol>
+<p>通过这种方式，可以在PyCharm中轻松追踪特定变量的来源并了解其在代码中的使用情况。</p>
+<h2 id="5-包围代码块"><a href="#5-包围代码块" class="headerlink" title="5.包围代码块"></a>5.包围代码块</h2><p>快捷键:<code>Ctrl+Alt+T</code></p>
+<p><img src="/2024/01/30/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/pycharm%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/5.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="6-多行位移"><a href="#6-多行位移" class="headerlink" title="6.多行位移"></a>6.多行位移</h2><p>同时<strong>右移</strong>快捷键：<code>Tab</code></p>
+<p>同时<strong>左移</strong>快捷键：<code>Shift+Tab</code></p>
+<h2 id="7-创建新项目"><a href="#7-创建新项目" class="headerlink" title="7.创建新项目"></a>7.创建新项目</h2><p><strong>python创建新项目时base conda和自定义环境的区别</strong></p>
+<ol>
+<li><strong>Base Conda 环境</strong>：<ul>
+<li>Base conda 环境是 Miniconda 或 Anaconda 安装后默认创建的环境。</li>
+<li>这个环境包含了 Conda 及其默认的 Python 解释器和一些常用的包。</li>
+<li>在 base conda 环境中安装的软件包对所有项目都可见，因此可能存在版本冲突或依赖关系问题。</li>
+<li>由于其包含的软件包较多，可能会占用较多的磁盘空间。</li>
+</ul>
+</li>
+<li><strong>自定义环境</strong>：<ul>
+<li>自定义环境是用户根据项目需求自行创建的环境，可以根据项目需求选择所需的 Python 版本和软件包。</li>
+<li>可以使用 Conda 或者虚拟环境管理工具（如 venv 或 virtualenv）创建自定义环境。</li>
+<li>在自定义环境中，您可以根据项目的需求选择特定版本的软件包，从而更好地管理依赖关系和避免冲突。</li>
+<li>自定义环境可以减少磁盘空间占用，因为您只安装了项目所需的软件包。</li>
+</ul>
+</li>
+</ol>
+<p>总的来说，使用 base conda 环境可以方便快捷地开始新项目，但是可能会出现依赖冲突的问题。而使用自定义环境可以更好地管理项目依赖，避免冲突，并且可以根据具体需求精确控制软件包的版本。</p>
+<p><strong>conda和 virtualenv的区别</strong></p>
+<p><strong>依赖管理</strong>：</p>
+<ul>
+<li><strong>Conda</strong>：Conda 不仅可以管理 Python 软件包的依赖关系，还可以管理系统级别的依赖关系。此外，Conda 允许您<strong>创建包含不同版本 Python 的环境</strong>。</li>
+<li><strong>virtualenv</strong>：virtualenv 只能管理 Python 软件包的依赖关系，并且<strong>每个环境只能包含一个 Python 版本</strong>。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/" class="category-chain-item">算法 ʕ≧ᴥ≦ʔ</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/Python/" class="category-chain-item">Python</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/Python/Python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/" class="category-chain-item">Python方法和技巧</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PyCharm使用技巧!🍩</div>
+      <div>https://yangchuanzhi20.github.io/2024/01/30/算法/python/python方法和技巧/pycharm使用技巧/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>白色很哇塞</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年1月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/02/01/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="python内置函数!🍩">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">python内置函数!🍩</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/pytorch%E5%9F%BA%E7%A1%80/" title="pytorch基础!🍧">
+                        <span class="hidden-mobile">pytorch基础!🍧</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"uchVjxnRW51J2Mm7CW00jbKk-MdYXbMMI","appKey":"salCKdKKc0oJUGN300BBLXeE","path":"window.location.pathname","placeholder":"ʕ ᵔᴥᵔ ʔ","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://uchvjxnr.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/vvd_js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/gongde.js"></script>
+<script src="/js/move.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/js/duration.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

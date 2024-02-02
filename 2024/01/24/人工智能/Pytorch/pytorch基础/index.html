@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/39.jpg">
 <meta property="article:published_time" content="2024-01-24T06:34:19.000Z">
-<meta property="article:modified_time" content="2024-01-25T08:38:27.629Z">
+<meta property="article:modified_time" content="2024-02-02T07:55:17.226Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Pytorch">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.6k 字
+          13k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          48 分钟
+          109 分钟
         
       </span>
     
@@ -453,8 +453,142 @@
 <p>输出：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">t: tensor([<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>], dtype=torch.float64)<br>n: [<span class="hljs-number">2.</span> <span class="hljs-number">2.</span> <span class="hljs-number">2.</span> <span class="hljs-number">2.</span> <span class="hljs-number">2.</span>]<br></code></pre></td></tr></table></figure>
 
-<h2 id="2-Datasets-DataLoaders-数据集和数据加载器"><a href="#2-Datasets-DataLoaders-数据集和数据加载器" class="headerlink" title="2.Datasets &amp; DataLoaders 数据集和数据加载器"></a>2.<strong>Datasets &amp; DataLoaders</strong> 数据集和数据加载器</h2><p>用于处理数据样本的代码可能会变得混乱且难以维护;理想情况下，我们希望我们的数据集代码与模型训练代码解耦，以获得更好的可读性和模块化。PyTorch 提供了两个数据原语： <code>torch.utils.data.DataLoader</code>和<code>torch.utils.data.Dataset</code> 允许你使用预加载的数据集以及你自己的数据。</p>
+<h2 id="2-Datasets-DataLoaders-数据集和数据加载器"><a href="#2-Datasets-DataLoaders-数据集和数据加载器" class="headerlink" title="2.Datasets &amp; DataLoaders 数据集和数据加载器"></a>2.<strong>Datasets &amp; DataLoaders</strong> 数据集和数据加载器</h2><p>用于处理数据样本的代码可能会变得混乱且难以维护;理想情况下，我们希望我们的<strong>数据集代码与模型训练代码解耦</strong>，以获得更好的可读性和模块化。PyTorch 提供了两个数据原语： <code>torch.utils.data.DataLoader</code>和<code>torch.utils.data.Dataset</code> 允许你使用预加载的数据集以及你自己的数据。</p>
 <p>Dataset 存储样本及其相应的标签，而 DataLoader 则在 Dataset 周围封装了一个可迭代器，以方便访问样本。</p>
+<h3 id="2-1-加载数据集"><a href="#2-1-加载数据集" class="headerlink" title="2.1 加载数据集"></a>2.1 加载数据集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> Dataset<br><span class="hljs-keyword">from</span> torchvision <span class="hljs-keyword">import</span> datasets<br><span class="hljs-keyword">from</span> torchvision.transforms <span class="hljs-keyword">import</span> ToTensor<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><br>training_data = datasets.FashionMNIST(<br>    root=<span class="hljs-string">&quot;data&quot;</span>,<br>    train=<span class="hljs-literal">True</span>,<br>    download=<span class="hljs-literal">True</span>,<br>    transform=ToTensor()<br>)<br><br>test_data = datasets.FashionMNIST(<br>    root=<span class="hljs-string">&quot;data&quot;</span>,<br>    train=<span class="hljs-literal">False</span>,<br>    download=<span class="hljs-literal">True</span>,<br>    transform=ToTensor()<br>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>root</code> 是存储训练&#x2F;测试数据的路径，</li>
+<li><code>train</code> 指定训练或测试数据集，</li>
+<li><code>download=True</code> 如果数据在 上不可用 <code>root</code> ，则从 Internet 下载数据。</li>
+<li><code>transform</code> 和 <code>target_transform</code> 指定要素和标注转换</li>
+</ul>
+<h3 id="2-2-数据加载器"><a href="#2-2-数据加载器" class="headerlink" title="2.2 数据加载器"></a>2.2 数据加载器</h3><p>检索 <code>Dataset</code> 数据集的特征，并一次标记一个样本。在训练模型时，我们通常希望以“小批量”的方式传递样本，在每个时期重新洗牌数据以减少模型过拟合，并使用 Python <code>multiprocessing</code> 来加快数据检索速度。</p>
+<p><code>DataLoader</code> 是一个可迭代的对象，它通过一个简单的 API 为我们抽象了这种复杂性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader<br><br>train_dataloader = DataLoader(training_data, batch_size=<span class="hljs-number">64</span>, shuffle=<span class="hljs-literal">True</span>)<br>test_dataloader = DataLoader(test_data, batch_size=<span class="hljs-number">64</span>, shuffle=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+
+<p>我们已将该数据集加载到<code>DataLoader</code>中，并可以根据需要遍历该数据集。下面的每次迭代都会返回一批 <code>train_features</code> and <code>train_labels</code> （分别包含 <code>batch_size=64</code> 特征和标签）。因为我们指定 <code>shuffle=True</code> 了 ，在我们遍历所有批次后，数据会被洗牌。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Display image and label.</span><br>train_features, train_labels = <span class="hljs-built_in">next</span>(<span class="hljs-built_in">iter</span>(train_dataloader))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Feature batch shape: <span class="hljs-subst">&#123;train_features.size()&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Labels batch shape: <span class="hljs-subst">&#123;train_labels.size()&#125;</span>&quot;</span>)<br>img = train_features[<span class="hljs-number">0</span>].squeeze()<br>label = train_labels[<span class="hljs-number">0</span>]<br>plt.imshow(img, cmap=<span class="hljs-string">&quot;gray&quot;</span>)<br>plt.show()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Label: <span class="hljs-subst">&#123;label&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>tips：</strong>tensor.shape和tensor.size()获取到的内容相同，但一个是属性，一个是方法。可以把tensor看成是一个类。</p>
+<h2 id="3-构建神经网络"><a href="#3-构建神经网络" class="headerlink" title="3.构建神经网络"></a>3.构建神经网络</h2><p>神经网络由对数据执行操作的层&#x2F;模块组成。torch.nn 命名空间提供了构建自己的神经网络所需的所有构建块。PyTorch 中的每个模块都对 nn.模块。神经网络本身是由其他模块（层）组成的模块。这种嵌套结构允许轻松构建和管理复杂的架构。</p>
+<h3 id="3-1-获取用于训练的设备"><a href="#3-1-获取用于训练的设备" class="headerlink" title="3.1 获取用于训练的设备"></a>3.1 获取用于训练的设备</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">device = (<br>    <span class="hljs-string">&quot;cuda&quot;</span><br>    <span class="hljs-keyword">if</span> torch.cuda.is_available()<br>    <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;mps&quot;</span><br>    <span class="hljs-keyword">if</span> torch.backends.mps.is_available()<br>    <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span><br>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Using <span class="hljs-subst">&#123;device&#125;</span> device&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-2-定义类"><a href="#3-2-定义类" class="headerlink" title="3.2 定义类"></a>3.2 定义类</h3><p>我们通过子类化来定义我们的神经网络 <code>nn.Module</code> ，并在 <code>__init__</code> 中初始化神经网络层。每个 <code>nn.Module</code> 子类都实现对方法中输入数据的 <code>forward</code> 操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NeuralNetwork</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.flatten = nn.Flatten()<br>        self.linear_relu_stack = nn.Sequential(<br>            nn.Linear(<span class="hljs-number">28</span>*<span class="hljs-number">28</span>, <span class="hljs-number">512</span>),<br>            nn.ReLU(),<br>            nn.Linear(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>),<br>            nn.ReLU(),<br>            nn.Linear(<span class="hljs-number">512</span>, <span class="hljs-number">10</span>),<br>        )<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = self.flatten(x)<br>        logits = self.linear_relu_stack(x)<br>        <span class="hljs-keyword">return</span> logits<br></code></pre></td></tr></table></figure>
+
+<p>我们创建一个 <code>NeuralNetwork</code> 的实例，并将其移动到 <code>device</code> 中，并打印其结构。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">model = NeuralNetwork().to(device)<br><span class="hljs-built_in">print</span>(model)<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">NeuralNetwork(<br>  (flatten): Flatten(start_dim=<span class="hljs-number">1</span>, end_dim=-<span class="hljs-number">1</span>)<br>  (linear_relu_stack): Sequential(<br>    (<span class="hljs-number">0</span>): Linear(in_features=<span class="hljs-number">784</span>, out_features=<span class="hljs-number">512</span>, bias=<span class="hljs-literal">True</span>)<br>    (<span class="hljs-number">1</span>): ReLU()<br>    (<span class="hljs-number">2</span>): Linear(in_features=<span class="hljs-number">512</span>, out_features=<span class="hljs-number">512</span>, bias=<span class="hljs-literal">True</span>)<br>    (<span class="hljs-number">3</span>): ReLU()<br>    (<span class="hljs-number">4</span>): Linear(in_features=<span class="hljs-number">512</span>, out_features=<span class="hljs-number">10</span>, bias=<span class="hljs-literal">True</span>)<br>  )<br>)<br></code></pre></td></tr></table></figure>
+
+<p>为了使用模型，我们将输入数据传递给它。这将执行模型的 <code>forward</code> ，以及一些后台操作。不要直接调用<code>model.forward()</code> ！</p>
+<p><strong>tips：</strong></p>
+<ul>
+<li>在 PyTorch 中，实现了 <code>nn.Module</code> 的子类中的 <code>forward</code> 方法是一个特殊的约定。当您调用模型的实例（例如 <code>model</code>）时，PyTorch 会自动调用 <code>forward</code> 方法，而不需要显式地调用 <code>model.forward()</code>。</li>
+<li>这是因为<code>torch.nn.Module</code>类中已经定义了<code>__call__</code>方法，而该方法内部实际上会调用<code>forward()</code>方法。</li>
+<li>在Python中，<code>__call__</code>是一个特殊方法，允许类的实例像函数一样被调用。</li>
+</ul>
+<p>下面是一个简单的例子，演示了如何使用<code>__call__</code>方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Multiplier</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, factor</span>):<br>        self.factor = factor<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__call__</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">return</span> self.factor * x<br><br><span class="hljs-comment"># 创建一个Multiplier实例</span><br>double = Multiplier(<span class="hljs-number">2</span>)<br><br><span class="hljs-comment"># 使用__call__方法调用实例，实际上就像调用一个函数一样</span><br>result = double(<span class="hljs-number">5</span>)  <span class="hljs-comment"># 相当于调用了double.__call__(5)</span><br><span class="hljs-built_in">print</span>(result)  <span class="hljs-comment"># 输出 10</span><br></code></pre></td></tr></table></figure>
+
+<p>在输入上调用模型将返回一个二维张量，其中 dim&#x3D;0 对应于每个类的 10 个原始预测值的每个输出，dim&#x3D;1 对应于每个输出的单个值。我们通过传递模块的 <code>nn.Softmax</code> 实例来获取预测概率。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">X = torch.rand(<span class="hljs-number">1</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>, device=device)<br>logits = model(X)<br>pred_probab = nn.Softmax(dim=<span class="hljs-number">1</span>)(logits)<br>y_pred = pred_probab.argmax(<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Predicted class: <span class="hljs-subst">&#123;y_pred&#125;</span>&quot;</span>)[]()<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">Predicted <span class="hljs-keyword">class</span>: tensor([<span class="hljs-number">7</span>], device=<span class="hljs-string">&#x27;cuda:0&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>tips：</strong></p>
+<ol>
+<li><code>tensor.argmax(1)</code> 是对 PyTorch 张量进行操作，用于沿指定维度找到张量中最大值的索引。参数是0表示沿着列找最大值，1表示沿着行找最大值。</li>
+<li><code>nn.Softmax(dim=1)</code> 是PyTorch等深度学习框架中常用的函数。该函数用于沿着指定的维度计算张量的 softmax 激活。在这里，<code>dim=1</code> 表示 softmax 沿着输入张量的第二个维度（从 0 开始索引）进行操作。</li>
+</ol>
+<h3 id="3-2-模型层"><a href="#3-2-模型层" class="headerlink" title="3.2 模型层"></a>3.2 模型层</h3><h4 id="nn-Flatten"><a href="#nn-Flatten" class="headerlink" title="nn.Flatten"></a>nn.Flatten</h4><p><code>nn.Flatten</code> 是 PyTorch 中的一个层（Layer），用于将输入的多维张量（例如，具有多个轴或维度的张量）转换为一个具有单个轴的张量（通常是一维张量）。其作用是将输入的数据“展平”成一个一维向量，以便于后续的神经网络层（如全连接层）处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><br>input_tensor = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>,<span class="hljs-number">2</span>)<br><span class="hljs-built_in">print</span>(input_tensor)<br><span class="hljs-comment"># 定义一个 Flatten 层</span><br>flatten_layer = nn.Flatten()<br><br><span class="hljs-comment"># 使用 Flatten 层将输入张量展平</span><br>output = flatten_layer(input_tensor)<br><span class="hljs-built_in">print</span>(output)<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/2024/01/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/pytorch%E5%9F%BA%E7%A1%80/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>在许多情况下，当将卷积层的输出传递给全连接层时，需要使用 <code>nn.Flatten</code> 来将卷积层的输出展平为一维张量，以便于后续的全连接层处理。</p>
+<h4 id="nn-Linear"><a href="#nn-Linear" class="headerlink" title="nn.Linear"></a>nn.Linear</h4><p><code>nn.Linear</code> 是 PyTorch 中的一个线性层（Linear Layer），也称为全连接层（Fully Connected Layer）或仿射层（Affine Layer）。这个层<strong>将输入张量与权重矩阵相乘，然后加上偏置向量</strong>（可选），最后应用激活函数（也可选）。</p>
+<p>在神经网络中，全连接层通常用于将输入数据与权重相乘，并加上偏置，从而产生新的特征表示，这些特征表示被传递给下一层。全连接层的作用是将输入数据映射到输出空间中。</p>
+<p>以下是 <code>nn.Linear</code> 的基本用法示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">linear_layer = nn.Linear(<span class="hljs-number">8</span>, <span class="hljs-number">4</span>)<br>output = linear_layer(output)<br><span class="hljs-built_in">print</span>(output)<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/2024/01/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/pytorch%E5%9F%BA%E7%A1%80/2.png" srcset="/img/loading.gif" lazyload></p>
+<p>在训练神经网络时，权重矩阵和偏置向量是可学习的参数，它们会根据反向传播算法进行优化，以最小化损失函数。</p>
+<p><strong>tips：</strong></p>
+<p>权重矩阵和偏置向量是随机的。</p>
+<p>nn.ReLU</p>
+<p>非线性激活是在模型的输入和输出之间创建复杂映射的原因。它们在线性变换后应用以引入非线性，帮助神经网络学习各种现象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">output = nn.ReLU()(output)<br><span class="hljs-built_in">print</span>(output)<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/2024/01/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/pytorch%E5%9F%BA%E7%A1%80/3.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>tips：</strong></p>
+<ul>
+<li>ReLU（Rectified Linear Unit）是一种常用的非线性激活函数，被广泛应用于深度神经网络中。ReLU函数定义为：<code>f(x)=max(0,x)</code>，即，当输入 <em>x</em> 大于等于0时，ReLU函数返回输入 <em>x</em>；当输入 <em>x</em> 小于0时，ReLU函数返回0。如上图结果所示。</li>
+<li>常见的非线性激活函数包括：</li>
+</ul>
+<ol>
+<li>Sigmoid函数：将输入映射到0到1之间的连续范围，常用于输出层的二分类问题。</li>
+<li>Tanh函数：类似于Sigmoid函数，但将输入映射到-1到1之间的连续范围，也常用于隐藏层。</li>
+<li>ReLU（Rectified Linear Unit）函数：对于正数输入，输出等于输入；对于负数输入，输出为0。ReLU函数在深度学习中得到了广泛应用，因为它的计算简单且在训练过程中可以加速收敛。</li>
+<li>Leaky ReLU函数：与ReLU类似，但对负数输入有小的线性斜率，可以避免ReLU中的“死亡神经元”问题。</li>
+<li>Softmax函数：常用于多分类问题的输出层，将输入转换成一个概率分布，使得输出的所有值都在0到1之间且总和为1。</li>
+</ol>
+<h4 id="nn-Sequential"><a href="#nn-Sequential" class="headerlink" title="nn.Sequential"></a>nn.Sequential</h4><p>nn.Sequential 是模块的有序容器。数据以与定义的相同的顺序传递到所有模块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">linear_relu_stack = nn.Sequential(<br>            nn.Flatten(),<br>            nn.Linear(<span class="hljs-number">8</span>, <span class="hljs-number">4</span>),<br>            nn.ReLU(),<br>        )<br>output2 = linear_relu_stack(input_tensor)<br></code></pre></td></tr></table></figure>
+
+<p>效果与之前的定义相同。</p>
+<h4 id="nn-Softmax"><a href="#nn-Softmax" class="headerlink" title="nn.Softmax"></a>nn.Softmax</h4><p>Softmax函数是一种常用的激活函数，通常用于多分类问题的输出层，将原始的网络输出转换为表示概率分布的形式。Softmax函数将输入向量 <em>z</em> 的每个元素转换为一个介于0和1之间的实数，同时确保所有元素的总和为1，因此可以看作是对输入向量的归一化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">output = nn.Softmax(dim=<span class="hljs-number">1</span>)(output)<br><span class="hljs-built_in">print</span>(output)<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/2024/01/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/pytorch%E5%9F%BA%E7%A1%80/4.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>tips：</strong></p>
+<p>dim为1表示行的和为1，dim为0表示列的和为 1。</p>
+<h3 id="3-3-模型参数"><a href="#3-3-模型参数" class="headerlink" title="3.3 模型参数"></a>3.3 模型参数</h3><p>神经网络中的许多层都是参数化的，即具有相关的权重和偏差，这些权重和偏差在训练过程中得到优化。子类 <code>nn.Module</code> 会自动跟踪模型对象中定义的所有字段，并使所有参数都可以使用模型 <code>parameters()</code> 或 <code>named_parameters()</code> 方法访问。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">input</span> = torch.tensor([[<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>],<br>                      [<span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>]])  <span class="hljs-comment"># 2个样本，3个特征</span><br><br><span class="hljs-comment"># 定义权重矩阵和偏置向量</span><br>weight = torch.tensor([[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>],   <span class="hljs-comment"># 2个输出特征，每个特征对应3个输入特征</span><br>                       [<span class="hljs-number">0.4</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.6</span>]])<br>bias = torch.tensor([<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>])  <span class="hljs-comment"># 2个输出特征，每个特征都有一个偏置</span><br><br><span class="hljs-comment"># 执行线性变换操作</span><br>output = F.linear(<span class="hljs-built_in">input</span>, weight, bias)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Output after linear transformation:&quot;</span>)<br><span class="hljs-built_in">print</span>(output)<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/2024/01/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/pytorch%E5%9F%BA%E7%A1%80/5.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>tips：</strong></p>
+<p>偏差会加在<strong>每一行</strong>上。</p>
+<h2 id="4-torch-autograd自动微分"><a href="#4-torch-autograd自动微分" class="headerlink" title="4.torch.autograd自动微分"></a>4.torch.autograd自动微分</h2><p>在训练神经网络时，最常用的算法是反向传播。在该算法中，参数（模型权重）根据损失函数相对于给定参数的梯度进行调整。</p>
+<p>为了计算这些梯度，PyTorch 有一个内置的微分引擎，称为 <code>torch.autograd</code> 。它支持自动计算任何计算图的梯度。</p>
+<p>考虑最简单的单层神经网络，具有输入 <code>x</code> 、参数 <code>w</code> ， <code>b</code> 和一些损失函数。可以在 PyTorch 中按以下方式定义它：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br>x = torch.ones(<span class="hljs-number">5</span>)  <span class="hljs-comment"># input tensor</span><br>y = torch.zeros(<span class="hljs-number">3</span>)  <span class="hljs-comment"># expected output</span><br>w = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, requires_grad=<span class="hljs-literal">True</span>)<br>b = torch.randn(<span class="hljs-number">3</span>, requires_grad=<span class="hljs-literal">True</span>)<br>z = torch.matmul(x, w)+b<br>loss = torch.nn.functional.binary_cross_entropy_with_logits(z, y)<br></code></pre></td></tr></table></figure>
+
+<p>PyTorch中实现自动计算梯度的机制是通过<strong>动态计算图</strong>实现的。当你在PyTorch中定义张量并进行操作时，PyTorch会构建一个计算图，该计算图描述了数据流经过的操作，并且知道每个操作涉及的张量之间的依赖关系。这个计算图是动态的，因为它在每次执行时都会重新构建。</p>
+<p>此代码定义以下计算图：</p>
+<p><img src="/2024/01/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/pytorch%E5%9F%BA%E7%A1%80/6.png" srcset="/img/loading.gif" lazyload></p>
+<p>为了优化神经网络中参数的权重，我们需要计算损失函数相对于参数的导数。为了计算这些导数，我们调用 <code>loss.backward()</code> ，然后从 <code>w.grad</code> 和 <code>b.grad</code> 中检索值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">loss.backward()<br><span class="hljs-built_in">print</span>(w.grad)<br><span class="hljs-built_in">print</span>(b.grad)<br></code></pre></td></tr></table></figure>
+
+<p>简而言之，PyTorch实现自动计算梯度的主要步骤如下：</p>
+<ol>
+<li>定义张量，并在需要计算梯度的张量上设置<code>requires_grad=True</code>。</li>
+<li>执行计算操作，PyTorch会跟踪这些操作并构建计算图。</li>
+<li>当需要计算梯度时，调用<code>.backward()</code>方法。PyTorch会根据计算图自动计算梯度，并将梯度累积到相应的张量的<code>.grad</code>属性中。</li>
+</ol>
+<p><strong>tips：</strong></p>
+<p>我们只能获取计算图的叶节点的属性，这些节点的 <code>grad</code> <code>requires_grad</code> 属性设置为 <code>True</code> 。对于图中的所有其他节点，梯度将不可用。</p>
+<h2 id="5-优化模型参数"><a href="#5-优化模型参数" class="headerlink" title="5.优化模型参数"></a>5.优化模型参数</h2><p>现在我们有了模型和数据，是时候通过优化模型的参数来训练、验证和测试我们的模型了。训练模型是一个迭代过程;在每次迭代中，模型对输出进行猜测，计算其猜测中的误差（损失），收集误差相对于其参数的导数（如我们在上一节中看到的），<strong>并使用梯度下降优化这些参数</strong>。</p>
+<h3 id="5-1-超参数"><a href="#5-1-超参数" class="headerlink" title="5.1 超参数"></a>5.1 超参数</h3><p>超参数是可调整的参数，可用于控制模型优化过程。不同的超参数值会影响模型训练和收敛率</p>
+<p>我们定义以下用于训练的超参数：</p>
+<ul>
+<li><strong>Number of Epochs</strong>  - <strong>遍历数据集的次数</strong></li>
+<li><strong>Batch Size</strong> 批量大小 - 在<strong>更新参数之前</strong>通过网络传播的<strong>数据样本数</strong></li>
+<li><strong>Learning Rate</strong> 学习率 - 在每个批次&#x2F;周期<strong>更新模型参数的程度</strong>。较小的值会导致学习速度较慢，而较大的值可能会导致训练期间出现不可预测的行为。</li>
+</ul>
+<h3 id="5-2-优化循环"><a href="#5-2-优化循环" class="headerlink" title="5.2 优化循环"></a>5.2 优化循环</h3><p>一旦我们设置了超参数，我们就可以使用优化循环来训练和优化我们的模型。优化循环的每次迭代称为一个纪元。</p>
+<p>每个纪元由两个主要部分组成：</p>
+<ul>
+<li><strong>The Train Loop</strong> - iterate over the training dataset and try to converge to optimal parameters.<br>训练循环 - 遍历训练数据集并尝试收敛到最佳参数。</li>
+<li><strong>The Validation&#x2F;Test Loop</strong> - iterate over the test dataset to check if model performance is improving.<br>验证&#x2F;测试循环 - 遍历测试数据集，以检查模型性能是否正在提高。</li>
+</ul>
 
                 
               </div>
@@ -553,6 +687,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/01/30/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/pycharm%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" title="PyCharm使用技巧!🍩">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PyCharm使用技巧!🍩</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
