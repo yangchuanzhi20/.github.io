@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/39.jpg">
 <meta property="article:published_time" content="2024-01-24T06:34:19.000Z">
-<meta property="article:modified_time" content="2024-02-02T07:55:17.226Z">
+<meta property="article:modified_time" content="2024-02-03T05:17:23.470Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Pytorch">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k 字
+          17k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          109 分钟
+          138 分钟
         
       </span>
     
@@ -586,9 +586,54 @@
 <h3 id="5-2-优化循环"><a href="#5-2-优化循环" class="headerlink" title="5.2 优化循环"></a>5.2 优化循环</h3><p>一旦我们设置了超参数，我们就可以使用优化循环来训练和优化我们的模型。优化循环的每次迭代称为一个纪元。</p>
 <p>每个纪元由两个主要部分组成：</p>
 <ul>
-<li><strong>The Train Loop</strong> - iterate over the training dataset and try to converge to optimal parameters.<br>训练循环 - 遍历训练数据集并尝试收敛到最佳参数。</li>
-<li><strong>The Validation&#x2F;Test Loop</strong> - iterate over the test dataset to check if model performance is improving.<br>验证&#x2F;测试循环 - 遍历测试数据集，以检查模型性能是否正在提高。</li>
+<li><strong>The Train Loop</strong> 训练循环 - 遍历训练数据集并尝试收敛到最佳参数。</li>
+<li>**The Validation&#x2F;Test Loop **验证&#x2F;测试循环 - 遍历测试数据集，以检查模型性能是否正在提高。</li>
 </ul>
+<h3 id="5-3-损失函数"><a href="#5-3-损失函数" class="headerlink" title="5.3 损失函数"></a>5.3 损失函数</h3><p>当呈现一些训练数据时，我们未经训练的网络可能不会给出正确的答案。损失函数衡量获得的结果与目标值的差异程度，它是我们在训练过程中想要最小化的损失函数。为了计算损失，我们使用给定数据样本的输入进行预测，并将其与真实数据标签值进行比较。</p>
+<h3 id="5-4-优化"><a href="#5-4-优化" class="headerlink" title="5.4 优化"></a>5.4 优化</h3><p>优化是调整模型参数以减少每个训练步骤中的模型误差的过程。优化算法定义了此过程的执行方式。所有优化逻辑都封装在对象中 <code>optimizer</code> 。在这里，我们使用 SGD 优化器;此外，PyTorch 中还有许多不同的优化器，例如 ADAM 和 RMSProp，它们更适合不同类型的模型和数据。</p>
+<p>我们通过注册需要训练的模型参数并传入学习率超参数来初始化优化器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)<br></code></pre></td></tr></table></figure>
+
+<p>在训练循环中，优化分三个步骤进行：</p>
+<ul>
+<li>调用 <code>optimizer.zero_grad()</code> 以重置模型参数的梯度。默认情况下，渐变相加;为了防止重复计算，我们在每次迭代时都明确地将它们归零。</li>
+<li>通过调用  <code>loss.backward()</code> 反向传播预测损失。PyTorch 将损失的梯度与每个参数交汇。</li>
+<li>一旦我们有了梯度，我们就会调用 <code>optimizer.step()</code> 通过向后传递中收集的梯度来调整参数。</li>
+</ul>
+<p>举例：</p>
+<p><img src="/2024/01/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/pytorch%E5%9F%BA%E7%A1%80/7.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="5-5-全面实施"><a href="#5-5-全面实施" class="headerlink" title="5.5   全面实施"></a>5.5   全面实施</h3><p>我们在优化代码上定义 <code>train_loop</code> 循环，并 <code>test_loop</code> 根据我们的测试数据评估模型的性能。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">train_loop</span>(<span class="hljs-params">dataloader, model, loss_fn, optimizer</span>):<br>    size = <span class="hljs-built_in">len</span>(dataloader.dataset)<br>    <span class="hljs-comment"># Set the model to training mode - important for batch normalization and dropout layers</span><br>    <span class="hljs-comment"># Unnecessary in this situation but added for best practices</span><br>    model.train()<br>    <span class="hljs-keyword">for</span> batch, (X, y) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(dataloader):<br>        <span class="hljs-comment"># Compute prediction and loss</span><br>        pred = model(X)<br>        loss = loss_fn(pred, y)<br><br>        <span class="hljs-comment"># Backpropagation</span><br>        loss.backward()<br>        optimizer.step()<br>        optimizer.zero_grad()<br><br>        <span class="hljs-keyword">if</span> batch % <span class="hljs-number">100</span> == <span class="hljs-number">0</span>:<br>            loss, current = loss.item(), batch * batch_size + <span class="hljs-built_in">len</span>(X)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;loss: <span class="hljs-subst">&#123;loss:&gt;7f&#125;</span>  [<span class="hljs-subst">&#123;current:&gt;5d&#125;</span>/<span class="hljs-subst">&#123;size:&gt;5d&#125;</span>]&quot;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_loop</span>(<span class="hljs-params">dataloader, model, loss_fn</span>):<br>    <span class="hljs-comment"># Set the model to evaluation mode - important for batch normalization and dropout layers</span><br>    <span class="hljs-comment"># Unnecessary in this situation but added for best practices</span><br>    model.<span class="hljs-built_in">eval</span>()<br>    size = <span class="hljs-built_in">len</span>(dataloader.dataset)<br>    num_batches = <span class="hljs-built_in">len</span>(dataloader)<br>    test_loss, correct = <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br><br>    <span class="hljs-comment"># Evaluating the model with torch.no_grad() ensures that no gradients are computed during test mode</span><br>    <span class="hljs-comment"># also serves to reduce unnecessary gradient computations and memory usage for tensors with requires_grad=True</span><br>    <span class="hljs-keyword">with</span> torch.no_grad():<br>        <span class="hljs-keyword">for</span> X, y <span class="hljs-keyword">in</span> dataloader:<br>            pred = model(X)<br>            test_loss += loss_fn(pred, y).item()<br>            correct += (pred.argmax(<span class="hljs-number">1</span>) == y).<span class="hljs-built_in">type</span>(torch.<span class="hljs-built_in">float</span>).<span class="hljs-built_in">sum</span>().item()<br><br>    test_loss /= num_batches<br>    correct /= size<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Test Error: \n Accuracy: <span class="hljs-subst">&#123;(<span class="hljs-number">100</span>*correct):&gt;<span class="hljs-number">0.1</span>f&#125;</span>%, Avg loss: <span class="hljs-subst">&#123;test_loss:&gt;8f&#125;</span> \n&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>我们初始化损失函数和优化器，并将其传递给 <code>train_loop</code> 和 <code>test_loop</code> 。随意增加 epoch 的数量以跟踪模型的改进性能。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">loss_fn = nn.CrossEntropyLoss()<br>optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)<br><br>epochs = <span class="hljs-number">10</span><br><span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(epochs):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Epoch <span class="hljs-subst">&#123;t+<span class="hljs-number">1</span>&#125;</span>\n-------------------------------&quot;</span>)<br>    train_loop(train_dataloader, model, loss_fn, optimizer)<br>    test_loop(test_dataloader, model, loss_fn)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Done!&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>tips：</strong></p>
+<p><code>model.train()</code> 和 <code>model.eval()</code> 是 PyTorch 中用于控制模型模式的两个方法，它们的主要区别在于模型处于不同的运行模式，具体如下：</p>
+<ol>
+<li><code>model.train()</code>: 调用 <code>model.train()</code> 将模型设置为训练模式。在训练模式下，模型中的一些特定层，比如 dropout 和 batch normalization，会以不同的方式处理输入数据。例如，dropout 在训练时会随机丢弃部分节点，以防止过拟合；而 batch normalization 在训练时会根据当前 mini-batch 的统计数据来标准化输入数据。因此，在训练模式下，这些层会执行相应的训练操作。</li>
+<li><code>model.eval()</code>: 调用 <code>model.eval()</code> 将模型设置为评估模式。在评估模式下，模型的行为会发生变化。例如，dropout 层不再随机丢弃节点，而是将所有节点保留，以便获取更加稳定的预测结果；batch normalization 也会使用固定的统计数据进行标准化，而不是使用当前 mini-batch 的统计数据。评估模式下，模型的行为更接近于实际使用场景。</li>
+</ol>
+<p>总的来说，<code>model.train()</code> 将模型设置为训练模式，用于训练过程中；<code>model.eval()</code> 将模型设置为评估模式，用于测试、验证或推断过程中，以获得更稳定和可靠的输出结果。</p>
+<h3 id="5-6-保存并加载模型"><a href="#5-6-保存并加载模型" class="headerlink" title="5.6  保存并加载模型"></a>5.6  保存并加载模型</h3><p>在本节中，我们将了解如何通过保存、加载和运行模型预测来持久化模型状态。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models<br></code></pre></td></tr></table></figure>
+
+<p><strong>保存和加载模型权重</strong></p>
+<p>PyTorch 模型将学习到的参数存储在名为 <code>state_dict</code> 的内部状态字典中。这些可以通过以下 <code>torch.save</code> 方法持久化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">model = models.vgg16(weights=<span class="hljs-string">&#x27;IMAGENET1K_V1&#x27;</span>)<br>torch.save(model.state_dict(), <span class="hljs-string">&#x27;model_weights.pth&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>要加载模型权重，您需要先创建同一模型的实例，然后使用 <code>load_state_dict()</code> method 加载参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">model = models.vgg16() <span class="hljs-comment"># we do not specify ``weights``, i.e. create untrained model</span><br>model.load_state_dict(torch.load(<span class="hljs-string">&#x27;model_weights.pth&#x27;</span>))<br>model.<span class="hljs-built_in">eval</span>()<br></code></pre></td></tr></table></figure>
+
+<p><strong>tips：</strong></p>
+<p>请务必在推理前调用 <code>model.eval()</code> 方法，将 dropout 和 Batch 归一化层设置为评估模式。如果不这样做，将产生不一致的推理结果。</p>
+<p><strong>Saving and Loading Models with Shapes</strong></p>
+<p>在加载模型权重时，我们需要先实例化模型类，因为该类定义了网络的结构。我们可能希望将此类的结构与模型一起保存，在这种情况下，我们可以传递<code>model</code>（而不是 <code>model.state_dict()</code> ）到保存函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">torch.save(model, <span class="hljs-string">&#x27;model.pth&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>然后，我们可以像这样加载模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">model = torch.load(<span class="hljs-string">&#x27;model.pth&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>

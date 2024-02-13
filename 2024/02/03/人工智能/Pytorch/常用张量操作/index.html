@@ -16,27 +16,27 @@
   <meta name="author" content="白色很哇塞">
   <meta name="keywords" content="发疯，生活">
   
-    <meta name="description" content="python内置函数使用🍩">
+    <meta name="description" content="常用张量操作🍧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python内置函数!🍩">
-<meta property="og:url" content="https://yangchuanzhi20.github.io/2024/02/01/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="常用张量操作！🍧">
+<meta property="og:url" content="https://yangchuanzhi20.github.io/2024/02/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E5%B8%B8%E7%94%A8%E5%BC%A0%E9%87%8F%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
-<meta property="og:description" content="python内置函数使用🍩">
+<meta property="og:description" content="常用张量操作🍧">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://yangchuanzhi20.github.io/img/36.jpg">
-<meta property="article:published_time" content="2024-02-01T03:50:14.000Z">
-<meta property="article:modified_time" content="2024-02-03T05:56:16.034Z">
+<meta property="og:image" content="https://yangchuanzhi20.github.io/img/46.jpg">
+<meta property="article:published_time" content="2024-02-03T06:20:41.000Z">
+<meta property="article:modified_time" content="2024-02-03T07:09:04.272Z">
 <meta property="article:author" content="白色很哇塞">
-<meta property="article:tag" content="算法">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Pytorch">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/36.jpg">
+<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/46.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>python内置函数!🍩 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+  <title>常用张量操作！🍧 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -208,13 +208,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/36.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/46.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">python内置函数!🍩</span>
+            <span id="subtitle">常用张量操作！🍧</span>
           
         </div>
 
@@ -225,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-01 11:50" pubdate>
-          2024年2月1日 中午
+        <time datetime="2024-02-03 14:20" pubdate>
+          2024年2月3日 下午
         </time>
       </span>
     
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          1.2k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          18 分钟
+          11 分钟
         
       </span>
     
@@ -289,55 +289,45 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">python内置函数!🍩</h1>
+            <h1 id="seo-header">常用张量操作！🍧</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="python内置函数"><a href="#python内置函数" class="headerlink" title="python内置函数"></a>python内置函数</h1><h2 id="1-all"><a href="#1-all" class="headerlink" title="1.all"></a>1.all</h2><p>all() 函数用于判断给定的可迭代参数 iterable 中的所有元素是否都为 TRUE，如果是返回 True，否则返回 False。</p>
-<p>元素除了是 0、空、None、False 外都算 True。</p>
-<p>它的语法如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">all</span>(iterable)<br></code></pre></td></tr></table></figure>
+                <h1 id="常用张量操作"><a href="#常用张量操作" class="headerlink" title="常用张量操作"></a>常用张量操作</h1><h2 id="1-Tensor-topk"><a href="#1-Tensor-topk" class="headerlink" title="1.Tensor.topk"></a>1.Tensor.topk</h2><p><code>Tensor.topk</code> 是 PyTorch 中的一个函数，用于在张量（Tensor）中获取前 k 个最大值或最小值及其对应的索引。</p>
+<p>具体而言，<code>Tensor.topk</code> 函数返回的是给定张量中的前 k 个最大值（或最小值）以及它们在张量中的位置索引。函数的签名通常如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">values, indices = torch.topk(<span class="hljs-built_in">input</span>, k, dim=<span class="hljs-literal">None</span>, largest=<span class="hljs-literal">True</span>, <span class="hljs-built_in">sorted</span>=<span class="hljs-literal">True</span>, out=<span class="hljs-literal">None</span>)<br></code></pre></td></tr></table></figure>
 
-<p>其中，<code>iterable</code> 是一个可迭代对象，例如列表、元组、集合等。</p>
-<p><code>all()</code> 函数返回一个布尔值：</p>
+<p>其中：</p>
 <ul>
-<li>如果可迭代对象中的所有元素都为真，返回 <code>True</code>。</li>
-<li>如果可迭代对象中有至少一个元素为假，返回 <code>False</code>。</li>
+<li><code>input</code> 是输入的张量。</li>
+<li><code>k</code> 是要获取的最大值或最小值的个数。</li>
+<li><code>dim</code> 是在哪个维度上进行检索。如果不指定，则默认为整个张量。</li>
+<li><code>largest</code> 是一个布尔值，用于指定是否获取最大值。如果为 True，则返回前 k 个最大值；如果为 False，则返回前 k 个最小值。</li>
+<li><code>sorted</code> 也是一个布尔值，用于指定返回的结果是否按照大小顺序排列。</li>
+<li><code>out</code> 是一个可选的输出张量。</li>
 </ul>
-<h2 id="2-any"><a href="#2-any" class="headerlink" title="2.any"></a>2.any</h2><p>any() 函数用于判断给定的可迭代参数 iterable 是否全部为 False，则返回 False，如果有一个为 True，则返回 True。</p>
-<p>元素除了是 0、空、FALSE 外都算 TRUE。语法同<code>all</code>。</p>
-<h2 id="3-getattr"><a href="#3-getattr" class="headerlink" title="3.getattr"></a>3.getattr</h2><p><code>getattr</code> 是一个内建函数，用于获取对象的属性值。其基本语法如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">getattr</span>(<span class="hljs-built_in">object</span>, name[, default])<br></code></pre></td></tr></table></figure>
+<p>以下是一个示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 创建一个示例张量</span><br>tensor = torch.tensor([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>])<br><br><span class="hljs-comment"># 获取前3个最大值及其索引</span><br>top_values, top_indices = tensor.topk(<span class="hljs-number">3</span>)<br><span class="hljs-built_in">print</span>(top_values)    <span class="hljs-comment"># 输出: tensor([5, 4, 3])</span><br><span class="hljs-built_in">print</span>(top_indices)   <span class="hljs-comment"># 输出: tensor([3, 4, 1])</span><br></code></pre></td></tr></table></figure>
 
+<p>在这个示例中，<code>top_values</code> 包含了输入张量中的前 3 个最大值 <code>[5, 4, 3]</code>，而 <code>top_indices</code> 包含了这些值在原始张量中的索引 <code>[3, 4, 1]</code>。</p>
+<h2 id="2-Tensor-cat"><a href="#2-Tensor-cat" class="headerlink" title="2.Tensor.cat"></a>2.Tensor.cat</h2><p><code>Tensor.cat</code> 是 PyTorch 中的一个函数，用于沿指定的维度拼接（连接）多个张量。</p>
+<p>具体而言，<code>Tensor.cat</code> 函数将多个张量沿着指定的维度连接在一起，形成一个新的张量。连接的维度称为“拼接维度”。函数的签名通常如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">output_tensor = torch.cat(tensors, dim=<span class="hljs-number">0</span>, out=<span class="hljs-literal">None</span>)<br></code></pre></td></tr></table></figure>
+
+<p>其中：</p>
 <ul>
-<li><code>object</code>: 要获取属性的对象。</li>
-<li><code>name</code>: 属性的名称。</li>
-<li><code>default</code> (可选): 如果属性不存在，返回的默认值。</li>
+<li><code>tensors</code> 是一个张量列表，包含了要连接的张量。</li>
+<li><code>dim</code> 是一个整数，表示沿着哪个维度进行连接。默认为 0。</li>
+<li><code>out</code> 是一个可选的输出张量。</li>
 </ul>
-<p>下面是一个简单的示例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, name, age</span>):<br>        self.name = name<br>        self.age = age<br><br><span class="hljs-comment"># 创建一个 Person 对象</span><br>person = Person(<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-number">25</span>)<br><br><span class="hljs-comment"># 使用 getattr 获取属性值</span><br>name_value = <span class="hljs-built_in">getattr</span>(person, <span class="hljs-string">&#x27;name&#x27;</span>)<br>age_value = <span class="hljs-built_in">getattr</span>(person, <span class="hljs-string">&#x27;age&#x27;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Name: <span class="hljs-subst">&#123;name_value&#125;</span>, Age: <span class="hljs-subst">&#123;age_value&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
-
-<p>在这个例子中，<code>getattr</code> 被用来获取 <code>person</code> 对象的 <code>name</code> 和 <code>age</code> 属性的值。当然，这只是一个简单的演示。在实际应用中，<code>getattr</code> 可能会更有用，例如，当你需要根据动态的属性名称来访问对象的属性时。</p>
-<p>如果属性不存在，你可以提供一个默认值作为 <code>default</code> 参数。例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">gender_value = <span class="hljs-built_in">getattr</span>(person, <span class="hljs-string">&#x27;gender&#x27;</span>, <span class="hljs-string">&#x27;Unknown&#x27;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Gender: <span class="hljs-subst">&#123;gender_value&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
-
-<p>在这里，如果 <code>gender</code> 属性不存在，就会返回默认值 <code>&#39;Unknown&#39;</code>。</p>
-<p>总的来说，<code>getattr</code> 是一个灵活的工具，特别适用于需要动态访问对象属性的情况。</p>
-<p><code>getattr</code> 函数可用于获取对象的属性，并且可以结合括号 <code>()</code> 调用属性值，前提是该属性是可调用的（即是一个方法）。这样的使用情况通常在需要动态调用对象的方法时会比较有用。</p>
-<p>下面是一个示例，假设 <code>state</code> 是一个对象，而 <code>st_k</code> 是该对象的一个方法的名称，你可以使用 <code>getattr(state, st_k)</code> 获取该方法，并通过 <code>()</code> 调用它：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">State</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">method1</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;This is method 1&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">method2</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;This is method 2&quot;</span><br><br><span class="hljs-comment"># 创建一个 State 对象</span><br>state = State()<br><br><span class="hljs-comment"># st_k 是一个方法的名称，例如 &#x27;method1&#x27; 或 &#x27;method2&#x27;</span><br>st_k = <span class="hljs-string">&#x27;method1&#x27;</span><br><br><span class="hljs-comment"># 使用 getattr 获取对象的方法，并调用它</span><br>result = <span class="hljs-built_in">getattr</span>(state, st_k)()<br><br><span class="hljs-comment"># 打印方法的返回值</span><br><span class="hljs-built_in">print</span>(result)<br></code></pre></td></tr></table></figure>
-
-<p>在这个例子中，<code>st_k</code> 是一个方法的名称，<code>getattr(state, st_k)</code> 获取对象 <code>state</code> 中名为 <code>st_k</code> 的方法，然后通过 <code>()</code> 调用它。这种做法可以使代码更加灵活，允许在运行时选择要调用的方法。</p>
-<h2 id="4-enumerate"><a href="#4-enumerate" class="headerlink" title="4.enumerate"></a>4.enumerate</h2><p>在Python中，<code>enumerate()</code> 函数用于将可迭代对象的每个元素和其对应的索引组合成一个元组，然后返回一个包含这些元组的迭代器。这个函数常用于循环遍历列表时同时获取元素和索引。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 基本用法</span><br>my_list = [<span class="hljs-string">&#x27;apple&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;orange&#x27;</span>]<br><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(my_list):<br>    <span class="hljs-built_in">print</span>(index, value)<br></code></pre></td></tr></table></figure>
+<p>以下是一个示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 创建两个示例张量</span><br>tensor1 = torch.tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])<br>tensor2 = torch.tensor([[<span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>]])<br><br><span class="hljs-comment"># 在第0维度上拼接这两个张量</span><br>concatenated_tensor = torch.cat((tensor1, tensor2), dim=<span class="hljs-number">0</span>)<br><span class="hljs-built_in">print</span>(concatenated_tensor)<br></code></pre></td></tr></table></figure>
 
 <p>结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-number">0</span> apple<br><span class="hljs-number">1</span> banana<br><span class="hljs-number">2</span> orange<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>        [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>],<br>        [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>],<br>        [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>]])<br></code></pre></td></tr></table></figure>
 
-<p>除了基本用法外，<code>enumerate()</code> 函数还可以接受一个可选参数 <code>start</code>，用于指定起始的索引值。默认情况下，起始索引值为 0。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 指定起始索引值</span><br>my_list = [<span class="hljs-string">&#x27;apple&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;orange&#x27;</span>]<br><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(my_list, start=<span class="hljs-number">1</span>):<br>    <span class="hljs-built_in">print</span>(index, value)<br></code></pre></td></tr></table></figure>
-
+<p>在这个示例中，我们沿着第0维度拼接了两个二维张量，因此第一个张量的两行与第二个张量的两行按顺序连接在一起，形成了一个新的张量。</p>
 
                 
               </div>
@@ -356,20 +346,13 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/" class="category-chain-item">算法 ʕ≧ᴥ≦ʔ</a>
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/" class="category-chain-item">AI ʢᵕᴗᵕʡ</a>
   
   
     <span>></span>
     
-  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/Python/" class="category-chain-item">Python</a>
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/Pytorch/" class="category-chain-item">Pytorch</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/Python/Python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/" class="category-chain-item">Python方法和技巧</a>
-  
-  
-
   
 
   
@@ -385,9 +368,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
       
-        <a href="/tags/Python/" class="print-no-link">#Python</a>
+        <a href="/tags/Pytorch/" class="print-no-link">#Pytorch</a>
       
     </div>
   
@@ -399,8 +382,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>python内置函数!🍩</div>
-      <div>https://yangchuanzhi20.github.io/2024/02/01/算法/python/python方法和技巧/python内置函数/</div>
+      <div>常用张量操作！🍧</div>
+      <div>https://yangchuanzhi20.github.io/2024/02/03/人工智能/Pytorch/常用张量操作/</div>
     </div>
     <div class="license-meta">
       
@@ -412,7 +395,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年2月1日</div>
+          <div>2024年2月3日</div>
         </div>
       
       
@@ -444,9 +427,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/01/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/python%E5%8C%85%E7%AE%A1%E7%90%86/" title="python包管理！🍩">
+                      <a href="/2024/02/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/RNN%E5%88%86%E7%B1%BB/" title="字符级RNN分类！🍧">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">python包管理！🍩</span>
+                        <span class="hidden-mobile">字符级RNN分类！🍧</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -454,8 +437,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/30/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/pycharm%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" title="PyCharm使用技巧!🍩">
-                        <span class="hidden-mobile">PyCharm使用技巧!🍩</span>
+                      <a href="/2024/02/01/%E7%AE%97%E6%B3%95/python/python%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7/python%E4%B8%8D%E5%90%8C%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="python不同文件格式!🍩">
+                        <span class="hidden-mobile">python不同文件格式!🍩</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
