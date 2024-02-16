@@ -1,0 +1,770 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="白色很哇塞">
+  <meta name="keywords" content="发疯，生活">
+  
+    <meta name="description" content="使用字符级RNN生成名称🌞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符级RNN生成名称！🌞">
+<meta property="og:url" content="https://yangchuanzhi20.github.io/2024/02/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/%E5%AD%97%E7%AC%A6%E7%BA%A7RNN%E7%94%9F%E6%88%90%E5%90%8D%E7%A7%B0/index.html">
+<meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
+<meta property="og:description" content="使用字符级RNN生成名称🌞">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yangchuanzhi20.github.io/img/54.jpg">
+<meta property="article:published_time" content="2024-02-16T07:48:15.000Z">
+<meta property="article:modified_time" content="2024-02-16T08:45:48.595Z">
+<meta property="article:author" content="白色很哇塞">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Pytorch">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/54.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>字符级RNN生成名称！🌞 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yangchuanzhi20.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"♡","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>白色很哇塞ฅ՞•ﻌ•՞ฅ</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/game/">
+                <i class="iconfont icon-switch-fill"></i>
+                <span>游戏</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/54.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">字符级RNN生成名称！🌞</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-16 15:48" pubdate>
+          2024年2月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          60 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">字符级RNN生成名称！🌞</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="字符级RNN生成名称"><a href="#字符级RNN生成名称" class="headerlink" title="字符级RNN生成名称"></a>字符级RNN生成名称</h1><h2 id="1-准备数据"><a href="#1-准备数据" class="headerlink" title="1.准备数据"></a>1.准备数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> io <span class="hljs-keyword">import</span> <span class="hljs-built_in">open</span><br><span class="hljs-keyword">import</span> glob<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> unicodedata<br><span class="hljs-keyword">import</span> string<br><br>all_letters = string.ascii_letters + <span class="hljs-string">&quot; .,;&#x27;-&quot;</span><br>n_letters = <span class="hljs-built_in">len</span>(all_letters) + <span class="hljs-number">1</span> <span class="hljs-comment"># Plus EOS marker</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">findFiles</span>(<span class="hljs-params">path</span>): <span class="hljs-keyword">return</span> glob.glob(path)<br><br><span class="hljs-comment"># Turn a Unicode string to plain ASCII, thanks to https://stackoverflow.com/a/518232/2809427</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">unicodeToAscii</span>(<span class="hljs-params">s</span>):<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(<br>        c <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> unicodedata.normalize(<span class="hljs-string">&#x27;NFD&#x27;</span>, s)<br>        <span class="hljs-keyword">if</span> unicodedata.category(c) != <span class="hljs-string">&#x27;Mn&#x27;</span><br>        <span class="hljs-keyword">and</span> c <span class="hljs-keyword">in</span> all_letters<br>    )<br><br><span class="hljs-comment"># Read a file and split into lines</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">readLines</span>(<span class="hljs-params">filename</span>):<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(filename, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> some_file:<br>        <span class="hljs-keyword">return</span> [unicodeToAscii(line.strip()) <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> some_file]<br><br><span class="hljs-comment"># Build the category_lines dictionary, a list of lines per category</span><br>category_lines = &#123;&#125;<br>all_categories = []<br><span class="hljs-keyword">for</span> filename <span class="hljs-keyword">in</span> findFiles(<span class="hljs-string">&#x27;data/names/*.txt&#x27;</span>):<br>    category = os.path.splitext(os.path.basename(filename))[<span class="hljs-number">0</span>]<br>    all_categories.append(category)<br>    lines = readLines(filename)<br>    category_lines[category] = lines<br><br>n_categories = <span class="hljs-built_in">len</span>(all_categories)<br><br><span class="hljs-keyword">if</span> n_categories == <span class="hljs-number">0</span>:<br>    <span class="hljs-keyword">raise</span> RuntimeError(<span class="hljs-string">&#x27;Data not found. Make sure that you downloaded data &#x27;</span><br>        <span class="hljs-string">&#x27;from https://download.pytorch.org/tutorial/data.zip and extract it to &#x27;</span><br>        <span class="hljs-string">&#x27;the current directory.&#x27;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;# categories:&#x27;</span>, n_categories, all_categories)<br><span class="hljs-built_in">print</span>(unicodeToAscii(<span class="hljs-string">&quot;O&#x27;Néàl&quot;</span>))<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-创建网络"><a href="#2-创建网络" class="headerlink" title="2.创建网络"></a>2.创建网络</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RNN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, input_size, hidden_size, output_size</span>):<br>        <span class="hljs-built_in">super</span>(RNN, self).__init__()<br>        self.hidden_size = hidden_size<br><br>        self.i2h = nn.Linear(n_categories + input_size + hidden_size, hidden_size)<br>        self.i2o = nn.Linear(n_categories + input_size + hidden_size, output_size)<br>        self.o2o = nn.Linear(hidden_size + output_size, output_size)<br>        self.dropout = nn.Dropout(<span class="hljs-number">0.1</span>)<br>        self.softmax = nn.LogSoftmax(dim=<span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, category, <span class="hljs-built_in">input</span>, hidden</span>):<br>        input_combined = torch.cat((category, <span class="hljs-built_in">input</span>, hidden), <span class="hljs-number">1</span>)<br>        hidden = self.i2h(input_combined)<br>        output = self.i2o(input_combined)<br>        output_combined = torch.cat((hidden, output), <span class="hljs-number">1</span>)<br>        output = self.o2o(output_combined)<br>        output = self.dropout(output)<br>        output = self.softmax(output)<br>        <span class="hljs-keyword">return</span> output, hidden<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">initHidden</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> torch.zeros(<span class="hljs-number">1</span>, self.hidden_size)<br></code></pre></td></tr></table></figure>
+
+<p><strong>tIps：</strong></p>
+<p>该网络与之前的实战网络有一定区别。</p>
+<h2 id="3-训练"><a href="#3-训练" class="headerlink" title="3.训练"></a>3.训练</h2><p>首先，帮助函数获取随机对（类别，行）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> random<br><br><span class="hljs-comment"># Random item from a list</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">randomChoice</span>(<span class="hljs-params">l</span>):<br>    <span class="hljs-keyword">return</span> l[random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(l) - <span class="hljs-number">1</span>)]<br><br><span class="hljs-comment"># Get a random category and random line from that category</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">randomTrainingPair</span>():<br>    category = randomChoice(all_categories)<br>    line = randomChoice(category_lines[category])<br>    <span class="hljs-keyword">return</span> category, line<br></code></pre></td></tr></table></figure>
+
+<p>对于每个时间步（即，对于训练词中的每个字母），网络的输入将是<code>(category, current letter, hidden state)</code>,输出将是<code>(next letter, next hidden state)</code> 。</p>
+<p><img src="/2024/02/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/%E5%AD%97%E7%AC%A6%E7%BA%A7RNN%E7%94%9F%E6%88%90%E5%90%8D%E7%A7%B0/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>类别张量是大小 <code>&lt;1 x n_categories&gt;</code> 为 的单热张量。在训练时，我们会在每个时间步将其馈送到网络 - 这是一种设计选择，它可以作为初始隐藏状态或其他策略的一部分包含在内。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># One-hot vector for category</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">categoryTensor</span>(<span class="hljs-params">category</span>):<br>    li = all_categories.index(category)<br>    tensor = torch.zeros(<span class="hljs-number">1</span>, n_categories)<br>    tensor[<span class="hljs-number">0</span>][li] = <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> tensor<br><br><span class="hljs-comment"># One-hot matrix of first to last letters (not including EOS) for input</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">inputTensor</span>(<span class="hljs-params">line</span>):<br>    tensor = torch.zeros(<span class="hljs-built_in">len</span>(line), <span class="hljs-number">1</span>, n_letters)<br>    <span class="hljs-keyword">for</span> li <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(line)):<br>        letter = line[li]<br>        tensor[li][<span class="hljs-number">0</span>][all_letters.find(letter)] = <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> tensor<br><br><span class="hljs-comment"># ``LongTensor`` of second letter to end (EOS) for target</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">targetTensor</span>(<span class="hljs-params">line</span>):<br>    letter_indexes = [all_letters.find(line[li]) <span class="hljs-keyword">for</span> li <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(line))]<br>    letter_indexes.append(n_letters - <span class="hljs-number">1</span>) <span class="hljs-comment"># EOS</span><br>    <span class="hljs-keyword">return</span> torch.LongTensor(letter_indexes)<br></code></pre></td></tr></table></figure>
+
+<p>为了方便起见，在训练过程中，我们将创建一个 <code>randomTrainingExample</code> 函数来获取随机（类别、行）对并将它们转换为所需的（类别、输入、目标）张量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Make category, input, and target tensors from a random category, line pair</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">randomTrainingExample</span>():<br>    category, line = randomTrainingPair()<br>    category_tensor = categoryTensor(category)<br>    input_line_tensor = inputTensor(line)<br>    target_line_tensor = targetTensor(line)<br>    <span class="hljs-keyword">return</span> category_tensor, input_line_tensor, target_line_tensor<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-训练网络"><a href="#4-训练网络" class="headerlink" title="4.训练网络"></a>4.训练网络</h2><p>与仅使用最后一个输出的分类相反，我们在每一步都进行预测，因此我们正在计算每一步的损失。</p>
+<p><strong>autograd 的魔力允许您简单地将每一步的这些损失相加，并在最后向后调用。</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python">criterion = nn.NLLLoss()<br><br>learning_rate = <span class="hljs-number">0.0005</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">train</span>(<span class="hljs-params">category_tensor, input_line_tensor, target_line_tensor</span>):<br>    target_line_tensor.unsqueeze_(-<span class="hljs-number">1</span>)<br>    hidden = rnn.initHidden()<br><br>    rnn.zero_grad()<br><br>    loss = torch.Tensor([<span class="hljs-number">0</span>]) <span class="hljs-comment"># you can also just simply use ``loss = 0``</span><br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(input_line_tensor.size(<span class="hljs-number">0</span>)):<br>        output, hidden = rnn(category_tensor, input_line_tensor[i], hidden)<br>        l = criterion(output, target_line_tensor[i])<br>        loss += l<br><br>    loss.backward()<br><br>    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> rnn.parameters():<br>        p.data.add_(p.grad.data, alpha=-learning_rate)<br><br>    <span class="hljs-keyword">return</span> output, loss.item() / input_line_tensor.size(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>tips:</strong></p>
+<p>在PyTorch中，要实现将多个损失函数相加然后一起向后传播，你可以简单地将这些损失函数的结果相加，然后调用<code>backward()</code>函数来进行反向传播。下面是一个示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim<br><br><span class="hljs-comment"># 假设有两个损失函数</span><br>criterion1 = nn.CrossEntropyLoss()<br>criterion2 = nn.MSELoss()<br><br><span class="hljs-comment"># 模拟输入数据和目标数据</span><br>inputs = torch.randn(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>)  <span class="hljs-comment"># 示例输入数据，假设有10个样本，每个样本有5个特征</span><br>targets1 = torch.empty(<span class="hljs-number">10</span>, dtype=torch.long).random_(<span class="hljs-number">5</span>)  <span class="hljs-comment"># 示例目标数据1</span><br>targets2 = torch.randn(<span class="hljs-number">10</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># 示例目标数据2</span><br><br><span class="hljs-comment"># 假设有一个模型</span><br>model = nn.Linear(<span class="hljs-number">5</span>, <span class="hljs-number">2</span>)  <span class="hljs-comment"># 示例模型，输入维度为5，输出维度为2</span><br><br><span class="hljs-comment"># 假设有一个优化器</span><br>optimizer = optim.SGD(model.parameters(), lr=<span class="hljs-number">0.01</span>)<br><br><span class="hljs-comment"># 前向传播</span><br>outputs = model(inputs)<br><br><span class="hljs-comment"># 计算损失</span><br>loss1 = criterion1(outputs, targets1)<br>loss2 = criterion2(outputs, targets2)<br><br><span class="hljs-comment"># 将损失相加</span><br>total_loss = loss1 + loss2<br><br><span class="hljs-comment"># 反向传播</span><br>optimizer.zero_grad()<br>total_loss.backward()<br><br><span class="hljs-comment"># 更新参数</span><br>optimizer.step()<br></code></pre></td></tr></table></figure>
+
+<p>在这种情况下，将两个损失函数相加然后一起进行反向传播和分别计算每个损失函数然后分开进行反向传播是不完全一样的。</p>
+<ol>
+<li><strong>将两个损失函数相加然后一起进行反向传播</strong>：这种方法会将两个损失函数的梯度相加，然后一次性更新模型参数。这意味着模型的参数在一次优化步骤中同时考虑了两个损失函数的信息。</li>
+<li><strong>分别计算每个损失函数然后分开进行反向传播</strong>：这种方法会分别计算每个损失函数的梯度，并分别调用<code>backward()</code>函数进行反向传播，然后根据每个损失函数的梯度更新模型参数。这意味着模型的参数在每个优化步骤中分别考虑每个损失函数的信息。</li>
+</ol>
+<p>通常情况下，这两种方法可能会得到不同的结果，尤其是在存在参数共享或者不同损失函数的梯度具有不同的量级时。在某些情况下，将两个损失函数相加然后一起进行反向传播可能会更加稳定和有效。但在其他情况下，分别计算每个损失函数然后分开进行反向传播可能更合适。要选择合适的方法，需要根据具体情况进行实验和评估。</p>
+<h2 id="5-开始训练"><a href="#5-开始训练" class="headerlink" title="5.开始训练"></a>5.开始训练</h2><p>训练像往常一样 - 调用训练多次并等待几分钟，打印每个 <code>print_every</code> 示例的当前时间和损失，并存储每个 <code>plot_every</code> 示例的平均损失 <code>all_losses</code> 以备后用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> math<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">timeSince</span>(<span class="hljs-params">since</span>):<br>    now = time.time()<br>    s = now - since<br>    m = math.floor(s / <span class="hljs-number">60</span>)<br>    s -= m * <span class="hljs-number">60</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;%dm %ds&#x27;</span> % (m, s)<br>    <br>rnn = RNN(n_letters, <span class="hljs-number">128</span>, n_letters)<br><br>n_iters = <span class="hljs-number">100000</span><br>print_every = <span class="hljs-number">5000</span><br>plot_every = <span class="hljs-number">500</span><br>all_losses = []<br>total_loss = <span class="hljs-number">0</span> <span class="hljs-comment"># Reset every ``plot_every`` ``iters``</span><br><br>start = time.time()<br><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">iter</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n_iters + <span class="hljs-number">1</span>):<br>    output, loss = train(*randomTrainingExample())<br>    total_loss += loss<br><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">iter</span> % print_every == <span class="hljs-number">0</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;%s (%d %d%%) %.4f&#x27;</span> % (timeSince(start), <span class="hljs-built_in">iter</span>, <span class="hljs-built_in">iter</span> / n_iters * <span class="hljs-number">100</span>, loss))<br><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">iter</span> % plot_every == <span class="hljs-number">0</span>:<br>        all_losses.append(total_loss / plot_every)<br>        total_loss = <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-对网络进行采样"><a href="#6-对网络进行采样" class="headerlink" title="6.对网络进行采样"></a>6.对网络进行采样</h2><p>为了取样，我们给网络一个字母，并询问下一个字母是什么，将其作为下一个字母输入，然后重复直到EOS令牌。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python">max_length = <span class="hljs-number">20</span><br><br><span class="hljs-comment"># Sample from a category and starting letter</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">sample</span>(<span class="hljs-params">category, start_letter=<span class="hljs-string">&#x27;A&#x27;</span></span>):<br>    <span class="hljs-keyword">with</span> torch.no_grad():  <span class="hljs-comment"># no need to track history in sampling</span><br>        category_tensor = categoryTensor(category)<br>        <span class="hljs-built_in">input</span> = inputTensor(start_letter)<br>        hidden = rnn.initHidden()<br><br>        output_name = start_letter<br><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(max_length):<br>            output, hidden = rnn(category_tensor, <span class="hljs-built_in">input</span>[<span class="hljs-number">0</span>], hidden)<br>            topv, topi = output.topk(<span class="hljs-number">1</span>)<br>            topi = topi[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]<br>            <span class="hljs-keyword">if</span> topi == n_letters - <span class="hljs-number">1</span>:<br>                <span class="hljs-keyword">break</span><br>            <span class="hljs-keyword">else</span>:<br>                letter = all_letters[topi]<br>                output_name += letter<br>            <span class="hljs-built_in">input</span> = inputTensor(letter)<br><br>        <span class="hljs-keyword">return</span> output_name<br><br><span class="hljs-comment"># Get multiple samples from one category and multiple starting letters</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">samples</span>(<span class="hljs-params">category, start_letters=<span class="hljs-string">&#x27;ABC&#x27;</span></span>):<br>    <span class="hljs-keyword">for</span> start_letter <span class="hljs-keyword">in</span> start_letters:<br>        <span class="hljs-built_in">print</span>(sample(category, start_letter))<br><br>samples(<span class="hljs-string">&#x27;Russian&#x27;</span>, <span class="hljs-string">&#x27;RUS&#x27;</span>)<br><br>samples(<span class="hljs-string">&#x27;German&#x27;</span>, <span class="hljs-string">&#x27;GER&#x27;</span>)<br><br>samples(<span class="hljs-string">&#x27;Spanish&#x27;</span>, <span class="hljs-string">&#x27;SPA&#x27;</span>)<br><br>samples(<span class="hljs-string">&#x27;Chinese&#x27;</span>, <span class="hljs-string">&#x27;CHI&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>tips：</strong></p>
+<p>另一种策略是，在训练中加入一个“字符串开头”标记，并让网络选择自己的起始字母，而不是给它一个起始字母。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/" class="category-chain-item">AI ʢᵕᴗᵕʡ</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/Pytorch/" class="category-chain-item">Pytorch</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/Pytorch/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" class="category-chain-item">项目实战</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/Pytorch/" class="print-no-link">#Pytorch</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>字符级RNN生成名称！🌞</div>
+      <div>https://yangchuanzhi20.github.io/2024/02/16/人工智能/Pytorch/项目实战/字符级RNN生成名称/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>白色很哇塞</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年2月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/02/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/seq2seq%E5%92%8C%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E7%9A%84%E7%BF%BB%E8%AF%91/" title="seq2seq和注意力机制的翻译">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">seq2seq和注意力机制的翻译</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/16/%E7%AE%97%E6%B3%95/python/python%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/python%E4%B8%ADrandom%E5%BA%93/" title="random库的使用！☃️">
+                        <span class="hidden-mobile">random库的使用！☃️</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"uchVjxnRW51J2Mm7CW00jbKk-MdYXbMMI","appKey":"salCKdKKc0oJUGN300BBLXeE","path":"window.location.pathname","placeholder":"ʕ ᵔᴥᵔ ʔ","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://uchvjxnr.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/vvd_js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/gongde.js"></script>
+<script src="/js/move.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/js/duration.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
