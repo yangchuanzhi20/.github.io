@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/59.jpg">
 <meta property="article:published_time" content="2024-02-21T06:40:55.000Z">
-<meta property="article:modified_time" content="2024-02-21T07:00:51.268Z">
+<meta property="article:modified_time" content="2024-02-21T08:00:57.350Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Pytorch">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.9k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          17 分钟
+          24 分钟
         
       </span>
     
@@ -334,6 +334,40 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">tensor([[[ <span class="hljs-number">28</span>,  <span class="hljs-number">34</span>],<br>         [ <span class="hljs-number">64</span>,  <span class="hljs-number">79</span>]],<br><br>        [[ <span class="hljs-number">76</span>, <span class="hljs-number">100</span>],<br>         [<span class="hljs-number">103</span>, <span class="hljs-number">136</span>]]])<br></code></pre></td></tr></table></figure>
 
 <p>即让每个批次的张量相乘。</p>
+<h2 id="5-torch-randn"><a href="#5-torch-randn" class="headerlink" title="5.torch.randn"></a>5.torch.randn</h2><p><code>torch.randn()</code> 是 PyTorch 中的一个函数，用于生成具有标准正态分布（均值为0，标准差为1）的随机张量。其语法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">torch.randn(*size, dtype=<span class="hljs-literal">None</span>, device=<span class="hljs-literal">None</span>, requires_grad=<span class="hljs-literal">False</span>)<br></code></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><code>*size</code>：生成张量的形状，可以是一个整数或者元组。</li>
+<li><code>dtype</code>（可选）：生成张量的数据类型，默认为 <code>torch.float32</code>。</li>
+<li><code>device</code>（可选）：生成张量所在的设备，默认为 <code>None</code>，表示使用当前的默认设备。</li>
+<li><code>requires_grad</code>（可选）：指定是否需要计算梯度，默认为 <code>False</code>。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 生成一个形状为 (3, 3) 的随机张量，满足标准正态分布</span><br>x = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)<br><span class="hljs-built_in">print</span>(x)<br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">tensor([[-<span class="hljs-number">0.6848</span>, -<span class="hljs-number">0.3440</span>,  <span class="hljs-number">1.1301</span>],<br>        [-<span class="hljs-number">0.1869</span>,  <span class="hljs-number">1.0607</span>, -<span class="hljs-number">1.0181</span>],<br>        [ <span class="hljs-number">0.5477</span>, -<span class="hljs-number">0.1585</span>, -<span class="hljs-number">0.3474</span>]])<br></code></pre></td></tr></table></figure>
+
+<h2 id="6-torch-randint"><a href="#6-torch-randint" class="headerlink" title="6.torch.randint"></a>6.torch.randint</h2><p><code>torch.randint()</code> 是 PyTorch 中的一个函数，用于生成具有离散均匀分布的随机整数张量。其语法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">torch.randint(low, high, size, dtype=<span class="hljs-literal">None</span>, device=<span class="hljs-literal">None</span>, requires_grad=<span class="hljs-literal">False</span>)<br></code></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><code>low</code>：生成随机整数的下界（闭区间）。</li>
+<li><code>high</code>：生成随机整数的上界（开区间）。</li>
+<li><code>size</code>：生成张量的形状，可以是一个整数或者元组。</li>
+<li><code>dtype</code>（可选）：生成张量的数据类型，默认为 <code>torch.int64</code>。</li>
+<li><code>device</code>（可选）：生成张量所在的设备，默认为 <code>None</code>，表示使用当前的默认设备。</li>
+<li><code>requires_grad</code>（可选）：指定是否需要计算梯度，默认为 <code>False</code>。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 生成一个形状为 (3, 3) 的随机整数张量，范围在 [0, 10) 内</span><br>x = torch.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, (<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))<br><span class="hljs-built_in">print</span>(x)<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">tensor([[<span class="hljs-number">7</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>],<br>        [<span class="hljs-number">9</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>],<br>        [<span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">2</span>]])<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -439,6 +473,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/02/21/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/pytorch%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8A%A0%E8%BD%BD/" title="pytorch中数据的加载!🍧">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">pytorch中数据的加载!🍧</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

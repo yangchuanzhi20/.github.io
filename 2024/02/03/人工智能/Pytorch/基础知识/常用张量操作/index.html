@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/46.jpg">
 <meta property="article:published_time" content="2024-02-03T06:20:41.000Z">
-<meta property="article:modified_time" content="2024-02-21T07:03:58.297Z">
+<meta property="article:modified_time" content="2024-02-21T07:19:35.742Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Pytorch">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          5k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          25 分钟
+          42 分钟
         
       </span>
     
@@ -358,7 +358,46 @@
 <p>结果：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">Original Tensor:<br>tensor([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],<br>        [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])<br><br>Tensor after fill_ <span class="hljs-keyword">with</span> <span class="hljs-number">5</span>:<br>tensor([[<span class="hljs-number">5.</span>, <span class="hljs-number">5.</span>, <span class="hljs-number">5.</span>],<br>        [<span class="hljs-number">5.</span>, <span class="hljs-number">5.</span>, <span class="hljs-number">5.</span>]])<br></code></pre></td></tr></table></figure>
 
-<h2 id="7-Tensor-permute"><a href="#7-Tensor-permute" class="headerlink" title="7.Tensor.permute"></a>7.Tensor.permute</h2>
+<h2 id="7-Tensor-permute"><a href="#7-Tensor-permute" class="headerlink" title="7.Tensor.permute"></a>7.Tensor.permute</h2><p><code>permute</code> 是 PyTorch 中用于维度置换（dimension permutation）的函数。它可以重新排列张量的维度。假设你有一个张量 <code>tensor</code>，你可以使用 <code>permute</code> 函数来重新排列其维度，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 创建一个示例张量</span><br>tensor = torch.randn(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)  <span class="hljs-comment"># 形状为 (2, 3, 4)</span><br><br><span class="hljs-comment"># 使用 permute 函数重新排列维度</span><br>permuted_tensor = tensor.permute(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>)  <span class="hljs-comment"># 将第一个维度移到最后，形状变为 (3, 4, 2)</span><br><br><span class="hljs-built_in">print</span>(permuted_tensor.shape)<br></code></pre></td></tr></table></figure>
+
+<p>在这个示例中，原始张量的形状是 <code>(2, 3, 4)</code>，使用 <code>permute(1, 2, 0)</code> 将第一个维度移到最后，新的张量形状变为 <code>(3, 4, 2)</code>。</p>
+<p><code>permute</code> 函数接受一个整数参数序列作为输入，表示重新排列后的维度顺序。</p>
+<h2 id="8-Tensor-view"><a href="#8-Tensor-view" class="headerlink" title="8.Tensor.view"></a>8.Tensor.view</h2><p>在PyTorch中，<code>tensor.view()</code>是一个函数，用于调整张量的形状，但是不改变其数据。它可以用于在不复制数据的情况下改变张量的形状，这在深度学习中非常有用。</p>
+<p>该函数的语法是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">new_tensor = tensor.view(*shape)<br></code></pre></td></tr></table></figure>
+
+<p>其中<code>tensor</code>是原始的张量，<code>shape</code>是一个元组，指定了新张量的形状。<code>*shape</code>的意思是将<code>shape</code>元组中的元素解包，作为独立的参数传递给<code>view()</code>函数。</p>
+<p>值得注意的是，<code>tensor.view()</code>返回的新张量与原始张量共享数据存储空间，因此在某些情况下，修改新张量可能会影响原始张量，反之亦然。如果想要确保新张量和原始张量完全独立，可以使用<code>tensor.clone().view()</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 创建一个4x4的张量</span><br>x = torch.arange(<span class="hljs-number">16</span>).reshape(<span class="hljs-number">4</span>, <span class="hljs-number">4</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;原始张量：&quot;</span>, x)<br><br><span class="hljs-comment"># 改变形状为2x8</span><br>x_view = x.view(<span class="hljs-number">2</span>, <span class="hljs-number">8</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;改变形状后的张量：&quot;</span>, x_view)<br><br><span class="hljs-comment"># 改变形状为2x2x4</span><br>x_view = x.view(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;改变形状后的张量：&quot;</span>, x_view)<br></code></pre></td></tr></table></figure>
+
+<p><strong>tips:</strong></p>
+<p><code>tensor.view()</code>和<code>reshape()</code>在功能上非常相似，都可以用于改变张量的形状，但它们在实现方式和一些细节上有所不同。</p>
+<p><code>tensor.view()</code>和<code>reshape()</code>在功能上非常相似，都可以用于改变张量的形状，但它们在实现方式和一些细节上有所不同。</p>
+<ol>
+<li><strong>共享内存 vs 复制内存</strong>：<ul>
+<li><code>tensor.view()</code>: 返回的新张量与原始张量共享相同的数据存储空间，因此在内存上没有额外的开销。但是需要确保新形状的元素数量与原张量相同，否则会报错。</li>
+<li><code>reshape()</code>: 返回一个具有指定形状的新张量，如果新形状与原张量的元素数量相同，那么不会进行数据复制，否则会复制数据到一个新的内存空间中。</li>
+</ul>
+</li>
+<li><strong>灵活性</strong>：<ul>
+<li><code>tensor.view()</code>: 由于共享内存，对原始张量的修改可能会影响到新张量，反之亦然。</li>
+<li><code>reshape()</code>: 返回一个新的张量，与原始张量完全独立，因此对新张量的修改不会影响原始张量，反之亦然。</li>
+</ul>
+</li>
+<li><strong>适用范围</strong>：<ul>
+<li><code>tensor.view()</code>: 通常用于在不改变数据的情况下改变张量的形状，例如在神经网络中进行形状变换。</li>
+<li><code>reshape()</code>: 除了可以改变形状外，还可以用于在不同的内存布局之间转换张量，例如将行优先的张量转换为列优先的张量。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 创建一个4x4的张量</span><br>x = torch.arange(<span class="hljs-number">16</span>)<br><br><span class="hljs-comment"># 使用view改变形状</span><br>x_view = x.view(<span class="hljs-number">2</span>, <span class="hljs-number">8</span>)<br><br><span class="hljs-comment"># 使用reshape改变形状</span><br>x_reshape = x.reshape(<span class="hljs-number">2</span>, <span class="hljs-number">8</span>)<br><br><span class="hljs-comment"># 修改原始张量的一个元素</span><br>x[<span class="hljs-number">0</span>] = <span class="hljs-number">100</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;使用view改变形状后的张量：&quot;</span>, x_view)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;使用reshape改变形状后的张量：&quot;</span>, x_reshape)<br></code></pre></td></tr></table></figure>
+
+<p>在上面的示例中，因为<code>view()</code>返回的张量与原始张量共享内存，所以对原始张量的修改会影响到<code>x_view</code>，而<code>reshape()</code>返回的是一个新的张量，因此<code>x_reshape</code>不受影响。</p>
+<p>在PyTorch中，<code>.view(1, -1)</code>用于将张量重塑为具有1行的二维张量，并且该张量的列数由参数<code>-1</code>确定。这里的<code>-1</code>表示在给定的维度上由系统<strong>自动推断其大小</strong>，以确保原始张量中的元素数量与重塑后的张量中的元素数量保持一致。</p>
+<p>例如，如果有一个形状为<code>(4, 4)</code>的张量，使用<code>.view(1, -1)</code>将会把它重塑为一个形状为<code>(1, 16)</code>的张量，其中有1行，列数由系统自动计算，即16列。这样做的效果是将原始张量中的所有元素都放入新的一行中。</p>
+<p>这种操作通常在深度学习中用于将具有多个轴的张量（如多通道图像）转换为二维张量以便进行某些操作，比如全连接层的输入。</p>
+
                 
               </div>
             
