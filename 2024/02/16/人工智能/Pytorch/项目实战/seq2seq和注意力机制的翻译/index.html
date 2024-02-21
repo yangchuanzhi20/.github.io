@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/56.jpg">
 <meta property="article:published_time" content="2024-02-16T09:25:35.000Z">
-<meta property="article:modified_time" content="2024-02-20T10:34:33.849Z">
+<meta property="article:modified_time" content="2024-02-21T07:03:04.442Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Pytorch">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.2k 字
+          10k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          77 分钟
+          88 分钟
         
       </span>
     
@@ -347,6 +347,9 @@
 <li><strong>为什么不直接将query和key相加进行变换再梯度优化</strong>：通过将查询向量和键向量分别通过线性变换映射到一个共享的注意力空间，可以<strong>增加模型的表达能力</strong>，使其能够更好地捕捉到它们之间的相关性，且<strong>学习到的注意力权重更具灵活性</strong>。</li>
 <li><strong>为什么注意力分数不能直接作为上下文向量</strong>：因为注意力分数通常是一个标量值，它仅仅反映了查询向量与单个键向量之间的相似性，而无法反映与其他键向量的关系。因此，使用注意力分数作为上下文向量可能会丢失其他键向量的信息，导致模型无法充分利用所有键向量的信息。</li>
 </ul>
+<h2 id="3-训练"><a href="#3-训练" class="headerlink" title="3.训练"></a>3.训练</h2><h3 id="3-1-准备训练数据"><a href="#3-1-准备训练数据" class="headerlink" title="3.1 准备训练数据"></a>3.1 准备训练数据</h3><p>为了训练，对于每一对，我们需要一个输入张量（输入句子中<strong>单词的索引</strong>）和目标张量（目标句子中<strong>单词的索引</strong>）。在创建这些向量时，我们将EOS令牌附加到两个序列中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">indexesFromSentence</span>(<span class="hljs-params">lang, sentence</span>):<br>    <span class="hljs-keyword">return</span> [lang.word2index[word] <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> sentence.split(<span class="hljs-string">&#x27; &#x27;</span>)]<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">tensorFromSentence</span>(<span class="hljs-params">lang, sentence</span>):<br>    indexes = indexesFromSentence(lang, sentence)<br>    indexes.append(EOS_token)<br>    <span class="hljs-keyword">return</span> torch.tensor(indexes, dtype=torch.long, device=device).view(<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">tensorsFromPair</span>(<span class="hljs-params">pair</span>):<br>    input_tensor = tensorFromSentence(input_lang, pair[<span class="hljs-number">0</span>])<br>    target_tensor = tensorFromSentence(output_lang, pair[<span class="hljs-number">1</span>])<br>    <span class="hljs-keyword">return</span> (input_tensor, target_tensor)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_dataloader</span>(<span class="hljs-params">batch_size</span>):<br>    input_lang, output_lang, pairs = prepareData(<span class="hljs-string">&#x27;eng&#x27;</span>, <span class="hljs-string">&#x27;fra&#x27;</span>, <span class="hljs-literal">True</span>)<br><br>    n = <span class="hljs-built_in">len</span>(pairs)<br>    input_ids = np.zeros((n, MAX_LENGTH), dtype=np.int32)<br>    target_ids = np.zeros((n, MAX_LENGTH), dtype=np.int32)<br><br>    <span class="hljs-keyword">for</span> idx, (inp, tgt) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(pairs):<br>        inp_ids = indexesFromSentence(input_lang, inp)<br>        tgt_ids = indexesFromSentence(output_lang, tgt)<br>        inp_ids.append(EOS_token)<br>        tgt_ids.append(EOS_token)<br>        input_ids[idx, :<span class="hljs-built_in">len</span>(inp_ids)] = inp_ids<br>        target_ids[idx, :<span class="hljs-built_in">len</span>(tgt_ids)] = tgt_ids<br><br>    train_data = TensorDataset(torch.LongTensor(input_ids).to(device),<br>                               torch.LongTensor(target_ids).to(device))<br><br>    train_sampler = RandomSampler(train_data)<br>    train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)<br>    <span class="hljs-keyword">return</span> input_lang, output_lang, train_dataloader<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>

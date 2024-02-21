@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/57.jpg">
 <meta property="article:published_time" content="2024-02-20T10:43:46.000Z">
-<meta property="article:modified_time" content="2024-02-20T12:36:34.267Z">
+<meta property="article:modified_time" content="2024-02-20T13:15:46.923Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="NLP">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.5k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          1 分钟
+          13 分钟
         
       </span>
     
@@ -294,7 +294,28 @@
             
               <div class="markdown-body">
                 
-                
+                <h1 id="attention介绍"><a href="#attention介绍" class="headerlink" title="attention介绍"></a>attention介绍</h1><p>如果仅在编码器和解码器之间传递上下文向量，则该单个向量承担对整个句子进行编码的负担。注意力允许解码器网络“聚焦”在编码器输出的不同部分，用于解码器自身输出的每一步。</p>
+<h2 id="1-soft-attention"><a href="#1-soft-attention" class="headerlink" title="1.soft attention"></a>1.soft attention</h2><p>**query:**解码器中对下一个预测目标作为输入的hidden值。</p>
+<p>**key:**编码器的输出值。</p>
+<p>具体为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BahdanauAttention</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_size</span>):<br>        <span class="hljs-built_in">super</span>(BahdanauAttention, self).__init__()<br>        self.Wa = nn.Linear(hidden_size, hidden_size)<br>        self.Ua = nn.Linear(hidden_size, hidden_size)<br>        self.Va = nn.Linear(hidden_size, <span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, query, keys</span>):<br>        scores = self.Va(torch.tanh(self.Wa(query) + self.Ua(keys)))<br>        scores = scores.squeeze(<span class="hljs-number">2</span>).unsqueeze(<span class="hljs-number">1</span>)<br><br>        weights = F.softmax(scores, dim=-<span class="hljs-number">1</span>)<br>        context = torch.bmm(weights, keys)<br><br>        <span class="hljs-keyword">return</span> context, weights<br></code></pre></td></tr></table></figure>
+
+<p>注意力机制是将注意力上下文与decoder的输入值进行结合，加上前一个解码目标输出的隐藏值作为新的解码目标的输入。在解码器中具体应用在：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">forward_step</span>(<span class="hljs-params">self, <span class="hljs-built_in">input</span>, hidden, encoder_outputs</span>):<br>        embedded =  self.dropout(self.embedding(<span class="hljs-built_in">input</span>))<br><br>        query = hidden.permute(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>)<br>        context, attn_weights = self.attention(query, encoder_outputs)<br>        input_gru = torch.cat((embedded, context), dim=<span class="hljs-number">2</span>)<br><br>        output, hidden = self.gru(input_gru, hidden)<br>        output = self.out(output)<br><br>        <span class="hljs-keyword">return</span> output, hidden, attn_weights<br></code></pre></td></tr></table></figure>
+
+<p>因为是求一个解码目标的注意力上下文，所以该上下文一定是和前一个解码目标相关且有一个独立的权重来和编码内容进行加权。</p>
+<p>因此注意力网络需要将query和key作为输入，产生权重值之后进行梯度优化。</p>
+<p>Wa，Ua，Va的初始值也是随机的，在训练过程中不断进行梯度优化，得到合适的权重值。</p>
+<p><strong>tips：</strong></p>
+<p>为什么需要单独对query和key都进行注意力空间的映射？如果不映射的话，那么从key*Va这一部分的值就是固定的，无法获取好的特征。</p>
+<h2 id="2-self-attention"><a href="#2-self-attention" class="headerlink" title="2.self attention"></a>2.self attention</h2><p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/attention/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>如图所示，每一个输入值都会映射到三个空间Q,K,V</p>
+<p><strong>Q的作用：</strong>和soft attention中的query一样，用作指定解码目标的参数，在自注意力机制中，因为每一个解码目标的特异性参数是自己本身，所以需要一个Q的映射。</p>
+<p><strong>K的作用：</strong>和soft attention中的key一样，用来获取每一个词对自身的影响。</p>
+<p><strong>V的作用：</strong>和soft attention中求加权值时和权重相乘的值一样，只不过在soft attention中值是原来的encoder_output，而在自注意力机制中中需要多映射到一个值空间中去。</p>
+<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/attention/2.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/attention/3.png" srcset="/img/loading.gif" lazyload></p>
+
                 
               </div>
             
@@ -392,6 +413,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/02/21/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B8%B8%E7%94%A8torch%E6%96%B9%E6%B3%95/" title="常用torch方法！🍧">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">常用torch方法！🍧</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
