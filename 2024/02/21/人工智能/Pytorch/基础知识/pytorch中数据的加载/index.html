@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/60.jpg">
 <meta property="article:published_time" content="2024-02-21T07:51:03.000Z">
-<meta property="article:modified_time" content="2024-02-21T07:57:37.052Z">
+<meta property="article:modified_time" content="2024-02-21T09:34:23.324Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Pytorch">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          3.4k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          10 分钟
+          29 分钟
         
       </span>
     
@@ -303,6 +303,45 @@
 <p>结果：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">Batch Features: torch.Size([<span class="hljs-number">32</span>, <span class="hljs-number">5</span>])<br>Batch Labels: torch.Size([<span class="hljs-number">32</span>])<br>Batch Features: torch.Size([<span class="hljs-number">32</span>, <span class="hljs-number">5</span>])<br>Batch Labels: torch.Size([<span class="hljs-number">32</span>])<br>Batch Features: torch.Size([<span class="hljs-number">32</span>, <span class="hljs-number">5</span>])<br>Batch Labels: torch.Size([<span class="hljs-number">32</span>])<br>Batch Features: torch.Size([<span class="hljs-number">4</span>, <span class="hljs-number">5</span>])<br>Batch Labels: torch.Size([<span class="hljs-number">4</span>])<br></code></pre></td></tr></table></figure>
 
+<h2 id="2-RandomSampler"><a href="#2-RandomSampler" class="headerlink" title="2.RandomSampler"></a>2.RandomSampler</h2><p>RandomSampler是PyTorch中的一个采样器（Sampler），用于在数据集中进行随机采样。在PyTorch中，它通常与DataLoader一起使用，用于生成mini-batches，以便进行训练或评估。</p>
+<p>RandomSampler的工作原理如下：</p>
+<ol>
+<li>初始化时，RandomSampler接收一个数据集（如PyTorch的Dataset对象）作为参数，并确定要采样的数据集大小（即数据集的长度）。</li>
+<li>在每个epoch开始时，RandomSampler会随机打乱数据集的索引。</li>
+<li>在训练或评估过程中，当DataLoader从数据集中获取mini-batch时，它会使用RandomSampler生成的随机索引来选择数据样本。这样可以确保每个epoch中的mini-batches都是随机的，从而增加模型的泛化能力和训练的多样性。</li>
+</ol>
+<p>总之，RandomSampler通过在每个epoch开始时重新打乱数据集索引，以确保每个mini-batch的样本是随机选择的，从而帮助模型更好地学习数据的分布特征。</p>
+<p>具体用法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">train_data = TensorDataset(torch.LongTensor(input_ids).to(device),<br>                               torch.LongTensor(target_ids).to(device))<br><br>    train_sampler = RandomSampler(train_data)<br>    train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)<br>    <span class="hljs-keyword">return</span> input_lang, output_lang, train_dataloader<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-DataLoader"><a href="#3-DataLoader" class="headerlink" title="3.DataLoader"></a>3.DataLoader</h2><p>在 PyTorch 中，DataLoader 是一个用于加载数据的实用工具，通常用于训练神经网络模型时。它可以自动批处理、并行加载数据以及数据打乱，提高了数据加载的效率。下面是一个简单的示例，演示如何使用 DataLoader：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader, Dataset<br><br><span class="hljs-comment"># 假设你有一个自定义的数据集类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomDataset</span>(<span class="hljs-title class_ inherited__">Dataset</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, data</span>):<br>        self.data = data<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__len__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(self.data)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__getitem__</span>(<span class="hljs-params">self, index</span>):<br>        <span class="hljs-keyword">return</span> self.data[index]<br><br><span class="hljs-comment"># 创建一个示例数据集</span><br>data = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">100</span>)]<br><br><span class="hljs-comment"># 创建数据集实例</span><br>dataset = CustomDataset(data)<br><br><span class="hljs-comment"># 定义 DataLoader 参数</span><br>batch_size = <span class="hljs-number">10</span><br>shuffle = <span class="hljs-literal">True</span><br><br><span class="hljs-comment"># 创建 DataLoader 实例</span><br>dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=shuffle)<br><br><span class="hljs-comment"># 遍历 DataLoader 获取数据批次</span><br><span class="hljs-keyword">for</span> batch <span class="hljs-keyword">in</span> dataloader:<br>    <span class="hljs-built_in">print</span>(batch)<br></code></pre></td></tr></table></figure>
+
+<p>在这个示例中：</p>
+<ul>
+<li>首先定义了一个 <code>CustomDataset</code> 类，该类继承自 <code>torch.utils.data.Dataset</code>，并实现了 <code>__len__</code> 和 <code>__getitem__</code> 方法，其中 <code>__len__</code> 返回数据集的大小，<code>__getitem__</code> 根据给定索引返回对应的数据样本。</li>
+<li>创建了一个示例数据集 <code>data</code>，并使用 <code>CustomDataset</code> 类创建了一个数据集实例 <code>dataset</code>。</li>
+<li>定义了 <code>DataLoader</code> 的参数，包括 <code>batch_size</code>（批量大小）和 <code>shuffle</code>（是否在每个 epoch 中打乱数据）。</li>
+<li>使用 <code>DataLoader</code> 类创建了一个数据加载器实例 <code>dataloader</code>。</li>
+<li>最后，通过遍历 <code>dataloader</code>，可以逐批获取数据。</li>
+</ul>
+<p><strong>tips：</strong></p>
+<p>在 PyTorch 中，<code>sampler</code> 和 <code>shuffle</code> 是 DataLoader 的两个重要参数，它们在控制数据加载时起着不同的作用。</p>
+<ol>
+<li><strong>shuffle</strong>：<ul>
+<li><code>shuffle</code> 参数是一个布尔值，用于指定是否在每个 epoch 中对数据进行随机打乱。</li>
+<li>当 <code>shuffle=True</code> 时，数据会在每个 epoch 开始时被随机打乱，这有助于模型更好地学习数据的分布，防止模型对数据的顺序产生依赖。</li>
+<li>如果 <code>shuffle=False</code>，则数据不会被打乱，按照原始顺序被加载。</li>
+</ul>
+</li>
+<li><strong>sampler</strong>：<ul>
+<li><code>sampler</code> 参数用于指定数据采样器对象，允许用户自定义数据的采样方式。</li>
+<li>默认情况下，当没有指定 <code>sampler</code> 参数时，DataLoader 会使用 <code>SequentialSampler</code>，它按顺序返回数据样本的索引。</li>
+<li>另一方面，如果你想要自定义采样逻辑，比如实现自己的采样器对象或者使用带权重的采样方式，你可以通过指定 <code>sampler</code> 参数来实现这一目的。</li>
+</ul>
+</li>
+</ol>
+<p>在实践中，通常情况下会将 <code>shuffle=True</code> 以打乱数据顺序，从而增加模型的泛化能力，特别是在训练深度学习模型时。而 <code>sampler</code> 参数则允许更进一步的自定义数据加载方式，比如处理不均衡的数据集或者实现特殊的采样逻辑。</p>
 
                 
               </div>
