@@ -16,27 +16,27 @@
   <meta name="author" content="白色很哇塞">
   <meta name="keywords" content="发疯，生活">
   
-    <meta name="description" content="对attention进行全面详细的介绍💐">
+    <meta name="description" content="对RNN进行全面详细的介绍💐">
 <meta property="og:type" content="article">
-<meta property="og:title" content="attention介绍！💐">
-<meta property="og:url" content="https://yangchuanzhi20.github.io/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/attention/index.html">
+<meta property="og:title" content="RNN介绍！💐">
+<meta property="og:url" content="https://yangchuanzhi20.github.io/2024/02/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/RNN/index.html">
 <meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
-<meta property="og:description" content="对attention进行全面详细的介绍💐">
+<meta property="og:description" content="对RNN进行全面详细的介绍💐">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://yangchuanzhi20.github.io/img/57.jpg">
-<meta property="article:published_time" content="2024-02-20T10:43:46.000Z">
-<meta property="article:modified_time" content="2024-02-20T13:15:46.923Z">
+<meta property="og:image" content="https://yangchuanzhi20.github.io/img/48.jpg">
+<meta property="article:published_time" content="2024-02-13T07:36:22.000Z">
+<meta property="article:modified_time" content="2024-02-25T08:12:36.680Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="NLP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/57.jpg">
+<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/48.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>attention介绍！💐 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+  <title>RNN介绍！💐 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -208,13 +208,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/57.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/48.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">attention介绍！💐</span>
+            <span id="subtitle">RNN介绍！💐</span>
           
         </div>
 
@@ -225,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-20 18:43" pubdate>
-          2024年2月20日 晚上
+        <time datetime="2024-02-13 15:36" pubdate>
+          2024年2月13日 下午
         </time>
       </span>
     
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.2k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          13 分钟
+          19 分钟
         
       </span>
     
@@ -289,32 +289,30 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">attention介绍！💐</h1>
+            <h1 id="seo-header">RNN介绍！💐</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="attention介绍"><a href="#attention介绍" class="headerlink" title="attention介绍"></a>attention介绍</h1><p>如果仅在编码器和解码器之间传递上下文向量，则该单个向量承担对整个句子进行编码的负担。注意力允许解码器网络“聚焦”在编码器输出的不同部分，用于解码器自身输出的每一步。</p>
-<h2 id="1-soft-attention"><a href="#1-soft-attention" class="headerlink" title="1.soft attention"></a>1.soft attention</h2><p>**query:**解码器中对下一个预测目标作为输入的hidden值。</p>
-<p>**key:**编码器的输出值。</p>
-<p>具体为：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BahdanauAttention</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_size</span>):<br>        <span class="hljs-built_in">super</span>(BahdanauAttention, self).__init__()<br>        self.Wa = nn.Linear(hidden_size, hidden_size)<br>        self.Ua = nn.Linear(hidden_size, hidden_size)<br>        self.Va = nn.Linear(hidden_size, <span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, query, keys</span>):<br>        scores = self.Va(torch.tanh(self.Wa(query) + self.Ua(keys)))<br>        scores = scores.squeeze(<span class="hljs-number">2</span>).unsqueeze(<span class="hljs-number">1</span>)<br><br>        weights = F.softmax(scores, dim=-<span class="hljs-number">1</span>)<br>        context = torch.bmm(weights, keys)<br><br>        <span class="hljs-keyword">return</span> context, weights<br></code></pre></td></tr></table></figure>
+                <h1 id="RNN介绍"><a href="#RNN介绍" class="headerlink" title="RNN介绍"></a>RNN介绍</h1><h2 id="1-图示"><a href="#1-图示" class="headerlink" title="1.图示"></a>1.图示</h2><p>对于字符级分类RNN：</p>
+<p><img src="/2024/02/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/RNN/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>对于字符级生成RNN：</p>
+<p><img src="/2024/02/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/RNN/3.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-具体代码"><a href="#2-具体代码" class="headerlink" title="2.具体代码"></a>2.具体代码</h2><p><strong>对于字符级分类RNN</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">RNN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, input_size, hidden_size, output_size</span>):<br>        <span class="hljs-built_in">super</span>(RNN, self).__init__()<br><br>        self.hidden_size = hidden_size<br><br>        self.i2h = nn.Linear(input_size + hidden_size, hidden_size)<br>        self.h2o = nn.Linear(hidden_size, output_size)<br>        self.softmax = nn.LogSoftmax(dim=<span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, <span class="hljs-built_in">input</span>, hidden</span>):<br>        combined = torch.cat((<span class="hljs-built_in">input</span>, hidden), <span class="hljs-number">1</span>)<br>        hidden = self.i2h(combined)<br>        output = self.h2o(hidden)<br>        output = self.softmax(output)<br>        <span class="hljs-keyword">return</span> output, hidden<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">initHidden</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> torch.zeros(<span class="hljs-number">1</span>, self.hidden_size)<br></code></pre></td></tr></table></figure>
 
-<p>注意力机制是将注意力上下文与decoder的输入值进行结合，加上前一个解码目标输出的隐藏值作为新的解码目标的输入。在解码器中具体应用在：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">forward_step</span>(<span class="hljs-params">self, <span class="hljs-built_in">input</span>, hidden, encoder_outputs</span>):<br>        embedded =  self.dropout(self.embedding(<span class="hljs-built_in">input</span>))<br><br>        query = hidden.permute(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>)<br>        context, attn_weights = self.attention(query, encoder_outputs)<br>        input_gru = torch.cat((embedded, context), dim=<span class="hljs-number">2</span>)<br><br>        output, hidden = self.gru(input_gru, hidden)<br>        output = self.out(output)<br><br>        <span class="hljs-keyword">return</span> output, hidden, attn_weights<br></code></pre></td></tr></table></figure>
+<p>上面为基本网络。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">train</span>(<span class="hljs-params">category_tensor, line_tensor</span>):<br>    hidden = rnn.initHidden()<br><br>    rnn.zero_grad()<br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(line_tensor.size()[<span class="hljs-number">0</span>]):<br>        output, hidden = rnn(line_tensor[i], hidden)<br><br>    loss = criterion(output, category_tensor)<br>    loss.backward()<br><br>    <span class="hljs-comment"># Add parameters&#x27; gradients to their values, multiplied by learning rate</span><br>    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> rnn.parameters():<br>        p.data.add_(p.grad.data, alpha=-learning_rate)<br></code></pre></td></tr></table></figure>
 
-<p>因为是求一个解码目标的注意力上下文，所以该上下文一定是和前一个解码目标相关且有一个独立的权重来和编码内容进行加权。</p>
-<p>因此注意力网络需要将query和key作为输入，产生权重值之后进行梯度优化。</p>
-<p>Wa，Ua，Va的初始值也是随机的，在训练过程中不断进行梯度优化，得到合适的权重值。</p>
-<p><strong>tips：</strong></p>
-<p>为什么需要单独对query和key都进行注意力空间的映射？如果不映射的话，那么从key*Va这一部分的值就是固定的，无法获取好的特征。</p>
-<h2 id="2-self-attention"><a href="#2-self-attention" class="headerlink" title="2.self attention"></a>2.self attention</h2><p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/attention/1.png" srcset="/img/loading.gif" lazyload></p>
-<p>如图所示，每一个输入值都会映射到三个空间Q,K,V</p>
-<p><strong>Q的作用：</strong>和soft attention中的query一样，用作指定解码目标的参数，在自注意力机制中，因为每一个解码目标的特异性参数是自己本身，所以需要一个Q的映射。</p>
-<p><strong>K的作用：</strong>和soft attention中的key一样，用来获取每一个词对自身的影响。</p>
-<p><strong>V的作用：</strong>和soft attention中求加权值时和权重相乘的值一样，只不过在soft attention中值是原来的encoder_output，而在自注意力机制中中需要多映射到一个值空间中去。</p>
-<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/attention/2.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/attention/3.png" srcset="/img/loading.gif" lazyload></p>
+<p>上面为具体训练步骤。</p>
+<p>其中，<img src="/2024/02/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/RNN/1.png" srcset="/img/loading.gif" lazyload>是RNN核心步骤。</p>
+<p><strong>对于字符级生成RNN</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">RNN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, input_size, hidden_size, output_size</span>):<br>        <span class="hljs-built_in">super</span>(RNN, self).__init__()<br>        self.hidden_size = hidden_size<br><br>        self.i2h = nn.Linear(n_categories + input_size + hidden_size, hidden_size)<br>        self.i2o = nn.Linear(n_categories + input_size + hidden_size, output_size)<br>        self.o2o = nn.Linear(hidden_size + output_size, output_size)<br>        self.dropout = nn.Dropout(<span class="hljs-number">0.1</span>)<br>        self.softmax = nn.LogSoftmax(dim=<span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, category, <span class="hljs-built_in">input</span>, hidden</span>):<br>        input_combined = torch.cat((category, <span class="hljs-built_in">input</span>, hidden), <span class="hljs-number">1</span>)<br>        hidden = self.i2h(input_combined)<br>        output = self.i2o(input_combined)<br>        output_combined = torch.cat((hidden, output), <span class="hljs-number">1</span>)<br>        output = self.o2o(output_combined)<br>        output = self.dropout(output)<br>        output = self.softmax(output)<br>        <span class="hljs-keyword">return</span> output, hidden<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">initHidden</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> torch.zeros(<span class="hljs-number">1</span>, self.hidden_size)<br></code></pre></td></tr></table></figure>
+
+<p>上面为具体网络。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">train</span>(<span class="hljs-params">category_tensor, input_line_tensor, target_line_tensor</span>):<br>    target_line_tensor.unsqueeze_(-<span class="hljs-number">1</span>)<br>    hidden = rnn.initHidden()<br><br>    rnn.zero_grad()<br><br>    loss = torch.Tensor([<span class="hljs-number">0</span>]) <span class="hljs-comment"># you can also just simply use ``loss = 0``</span><br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(input_line_tensor.size(<span class="hljs-number">0</span>)):<br>        output, hidden = rnn(category_tensor, input_line_tensor[i], hidden)<br>        l = criterion(output, target_line_tensor[i])<br>        loss += l<br><br>    loss.backward()<br><br>    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> rnn.parameters():<br>        p.data.add_(p.grad.data, alpha=-learning_rate)<br></code></pre></td></tr></table></figure>
+
+<p>上面为具体训练步骤。</p>
 
                 
               </div>
@@ -340,6 +338,13 @@
     
   <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/NLP/" class="category-chain-item">NLP</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/NLP/NLP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="category-chain-item">NLP基础知识</a>
+  
+  
+
   
 
   
@@ -369,8 +374,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>attention介绍！💐</div>
-      <div>https://yangchuanzhi20.github.io/2024/02/20/人工智能/NLP/attention/</div>
+      <div>RNN介绍！💐</div>
+      <div>https://yangchuanzhi20.github.io/2024/02/13/人工智能/NLP/基础知识/RNN/</div>
     </div>
     <div class="license-meta">
       
@@ -382,7 +387,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年2月20日</div>
+          <div>2024年2月13日</div>
         </div>
       
       
@@ -414,9 +419,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/21/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B8%B8%E7%94%A8torch%E6%96%B9%E6%B3%95/" title="常用torch方法！🍧">
+                      <a href="/2024/02/13/%E7%AE%97%E6%B3%95/python/python%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/python%E4%B8%ADglob%E5%BA%93/" title="glob库的使用！☃️">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">常用torch方法！🍧</span>
+                        <span class="hidden-mobile">glob库的使用！☃️</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -424,8 +429,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/seq2seq/" title="seq2seq介绍！💐">
-                        <span class="hidden-mobile">seq2seq介绍！💐</span>
+                      <a href="/2024/02/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/RNN%E5%88%86%E7%B1%BB/" title="字符级RNN分类！🌞">
+                        <span class="hidden-mobile">字符级RNN分类！🌞</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
