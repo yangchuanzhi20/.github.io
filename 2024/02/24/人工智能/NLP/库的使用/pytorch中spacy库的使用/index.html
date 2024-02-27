@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/62.jpg">
 <meta property="article:published_time" content="2024-02-24T10:40:46.000Z">
-<meta property="article:modified_time" content="2024-02-25T08:15:41.393Z">
+<meta property="article:modified_time" content="2024-02-25T11:04:04.024Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="NLP">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9 字
+          693 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          1 分钟
+          6 分钟
         
       </span>
     
@@ -294,7 +294,12 @@
             
               <div class="markdown-body">
                 
-                <h1 id="spacy库的使用"><a href="#spacy库的使用" class="headerlink" title="spacy库的使用"></a>spacy库的使用</h1>
+                <h1 id="spacy库的使用"><a href="#spacy库的使用" class="headerlink" title="spacy库的使用"></a>spacy库的使用</h1><h2 id="1-下载模型"><a href="#1-下载模型" class="headerlink" title="1.下载模型"></a>1.下载模型</h2><p>下载对应的github地址为<a target="_blank" rel="noopener" href="https://blog.51cto.com/transfer?https://github.com/explosion/spacy-models/tags">https://blog.51cto.com/transfer?https://github.com/explosion/spacy-models/tags</a></p>
+<h2 id="2-加载模型"><a href="#2-加载模型" class="headerlink" title="2.加载模型"></a>2.加载模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">eng = spacy.load(<span class="hljs-string">&quot;en_core_web_md-3.7.1&quot;</span>)  <span class="hljs-comment"># Load the English model to tokenize English text</span><br>zh = spacy.load(<span class="hljs-string">&quot;zh_core_web_md-3.7.0&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-使用模型"><a href="#3-使用模型" class="headerlink" title="3.使用模型"></a>3.使用模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">engTokenize</span>(<span class="hljs-params">text</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Tokenize an English text and return a list of tokens</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    engTokenList = [token.text <span class="hljs-keyword">for</span> token <span class="hljs-keyword">in</span> eng.tokenizer(text)]<br>    <span class="hljs-keyword">return</span> engTokenList<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">zhTokenize</span>(<span class="hljs-params">text</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Tokenize a German text and return a list of tokens</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">return</span> [token.text <span class="hljs-keyword">for</span> token <span class="hljs-keyword">in</span> zh.tokenizer(text)]<br><br><br><span class="hljs-built_in">print</span>(engTokenize(<span class="hljs-string">&quot;Have a good day!!!&quot;</span>))<br><span class="hljs-built_in">print</span>(zhTokenize(<span class="hljs-string">&quot;我今天过的很开心，谭国军去哪玩 !!!&quot;</span>))<br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             

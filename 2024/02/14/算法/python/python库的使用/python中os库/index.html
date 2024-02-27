@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/52.jpg">
 <meta property="article:published_time" content="2024-02-14T09:23:46.000Z">
-<meta property="article:modified_time" content="2024-02-14T10:00:09.663Z">
+<meta property="article:modified_time" content="2024-02-27T06:33:43.231Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Python">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          944 字
+          2.4k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          8 分钟
+          21 分钟
         
       </span>
     
@@ -294,7 +294,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="os库的使用"><a href="#os库的使用" class="headerlink" title="os库的使用"></a>os库的使用</h1><h2 id="1-os-path"><a href="#1-os-path" class="headerlink" title="1.os.path"></a>1.os.path</h2><h2 id="1-1-splitext"><a href="#1-1-splitext" class="headerlink" title="1.1 splitext"></a>1.1 splitext</h2><p><code>os.path.splitext()</code> 是 <code>os.path</code> 模块中的一个函数，用于分离文件名中的文件名和扩展名。具体用法如下：</p>
+                <h1 id="os库的使用"><a href="#os库的使用" class="headerlink" title="os库的使用"></a>os库的使用</h1><h2 id="1-os-path"><a href="#1-os-path" class="headerlink" title="1.os.path"></a>1.os.path</h2><h3 id="1-1-splitext"><a href="#1-1-splitext" class="headerlink" title="1.1 splitext"></a>1.1 splitext</h3><p><code>os.path.splitext()</code> 是 <code>os.path</code> 模块中的一个函数，用于分离文件名中的文件名和扩展名。具体用法如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">os.path.splitext(path)<br></code></pre></td></tr></table></figure>
 
 <p>其中，<code>path</code> 是文件路径字符串。</p>
@@ -302,7 +302,7 @@
 <p>下面是一个示例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br>path1 = <span class="hljs-string">&quot;/path/to/file.txt&quot;</span><br>path2 = <span class="hljs-string">&quot;/path/to/another_file&quot;</span><br><br><span class="hljs-comment"># 分离文件名和扩展名</span><br>name1, ext1 = os.path.splitext(path1)<br>name2, ext2 = os.path.splitext(path2)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;File 1:&quot;</span>, name1)  <span class="hljs-comment"># 输出 /path/to/file</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Extension 1:&quot;</span>, ext1)  <span class="hljs-comment"># 输出 .txt</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;File 2:&quot;</span>, name2)  <span class="hljs-comment"># 输出 /path/to/another_file</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Extension 2:&quot;</span>, ext2)  <span class="hljs-comment"># 输出 空字符串</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="1-2-basename"><a href="#1-2-basename" class="headerlink" title="1.2 basename"></a>1.2 basename</h2><p><code>os.path.basename()</code> 是 <code>os.path</code> 模块中的一个函数，用于返回路径中的最后一个组成部分，即基本文件名部分。具体用法如下：</p>
+<h3 id="1-2-basename"><a href="#1-2-basename" class="headerlink" title="1.2 basename"></a>1.2 basename</h3><p><code>os.path.basename()</code> 是 <code>os.path</code> 模块中的一个函数，用于返回路径中的最后一个组成部分，即基本文件名部分。具体用法如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">os.path.basename(path)<br></code></pre></td></tr></table></figure>
 
 <p>其中，<code>path</code> 是一个字符串，表示文件路径。</p>
@@ -310,6 +310,39 @@
 <p>下面是一个示例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br>path1 = <span class="hljs-string">&quot;/path/to/file.txt&quot;</span><br>path2 = <span class="hljs-string">&quot;/path/to/directory/&quot;</span><br><br><span class="hljs-comment"># 获取文件名或目录名</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Path 1 basename:&quot;</span>, os.path.basename(path1))  <span class="hljs-comment"># 输出 file.txt</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Path 2 basename:&quot;</span>, os.path.basename(path2))  <span class="hljs-comment"># 输出 directory</span><br></code></pre></td></tr></table></figure>
 
+<h3 id="1-3-realpath"><a href="#1-3-realpath" class="headerlink" title="1.3 realpath"></a>1.3 realpath</h3><p><code>os.path.relpath</code> 是 Python 中用于计算相对路径的函数，它有两个参数：</p>
+<ol>
+<li><code>path</code>：要计算相对路径的目标路径。</li>
+<li><code>start</code>：相对路径的起始点（可选参数）。如果指定了 <code>start</code>，则 <code>path</code> 将相对于 <code>start</code> 计算相对路径；如果未指定 <code>start</code>，则相对路径将相对于当前工作目录计算。</li>
+</ol>
+<p>示例用法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br><span class="hljs-comment"># 目标路径</span><br>path = <span class="hljs-string">&#x27;/Users/example/folder/file.txt&#x27;</span><br><br><span class="hljs-comment"># 起始点（可选）</span><br>start = <span class="hljs-string">&#x27;/Users/example/&#x27;</span><br><br><span class="hljs-comment"># 计算相对路径</span><br>relative_path = os.path.relpath(path, start)<br><span class="hljs-built_in">print</span>(relative_path)<br></code></pre></td></tr></table></figure>
+
+<p>在这个示例中，<code>relative_path</code> 将是 <code>&#39;folder/file.txt&#39;</code>，因为文件 <code>&#39;file.txt&#39;</code> 相对于起始点 <code>&#39;/Users/example/&#39;</code> 是位于 <code>&#39;folder/&#39;</code> 目录下的。</p>
+<h3 id="1-4-dirname"><a href="#1-4-dirname" class="headerlink" title="1.4 dirname"></a>1.4 dirname</h3><p><code>os.path.dirname()</code>: 这是 <code>os.path</code> 模块中的一个函数，用于获取指定路径的目录名部分。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-built_in">print</span>(os.path.realpath(__file__))<br><span class="hljs-built_in">print</span>(os.path.dirname(os.path.realpath(__file__)))<br></code></pre></td></tr></table></figure>
+
+<p>对比输出为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">D:\Python\try_pytorch\try_file.py<br>D:\Python\try_pytorch<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-5-join"><a href="#1-5-join" class="headerlink" title="1.5 join"></a>1.5 join</h3><p>举例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">model_config_file = os.path.join(<span class="hljs-built_in">dir</span>, <span class="hljs-string">&quot;../properties/model/&#123;&#125;.json&quot;</span>.<span class="hljs-built_in">format</span>(model_name))<br></code></pre></td></tr></table></figure>
+
+<p>将dir和后面的字符串结合起来，其中<code>..</code>表示<strong>上一级目录</strong>。</p>
+<h3 id="1-6-isabs"><a href="#1-6-isabs" class="headerlink" title="1.6 isabs"></a>1.6 isabs</h3><p><code>os.path.isabs()</code> 是 Python 中 <code>os.path</code> 模块提供的一个函数，用于检查给定的路径是否是绝对路径。</p>
+<ul>
+<li>如果路径是绝对路径，则返回 <code>True</code>。</li>
+<li>如果路径是相对路径，则返回 <code>False</code>。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br>path1 = <span class="hljs-string">&#x27;/usr/local/bin/python&#x27;</span><br>path2 = <span class="hljs-string">&#x27;scripts/my_script.py&#x27;</span><br><br><span class="hljs-built_in">print</span>(os.path.isabs(path1))  <span class="hljs-comment"># 输出 True，因为 &#x27;/usr/local/bin/python&#x27; 是绝对路径</span><br><span class="hljs-built_in">print</span>(os.path.isabs(path2))  <span class="hljs-comment"># 输出 False，因为 &#x27;scripts/my_script.py&#x27; 是相对路径</span><br></code></pre></td></tr></table></figure>
+
+<p><code>os.path.isabs()</code> 函数对于确定给定路径是相对路径还是绝对路径很有用，这在处理文件路径时经常会用到。</p>
+<h2 id="2-getcwd"><a href="#2-getcwd" class="headerlink" title="2.getcwd"></a>2.getcwd</h2><p><code>os.getcwd()</code>是Python中<code>os</code>模块提供的函数，用于获取当前工作目录（Current Working Directory）。在Python程序中调用<code>os.getcwd()</code>将返回一个字符串，表示当前Python程序所处的工作目录的路径。</p>
+<p>例如，在Python中可以这样使用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br>current_directory = os.getcwd()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Current working directory:&quot;</span>, current_directory)<br></code></pre></td></tr></table></figure>
+
+<p>这将输出当前Python程序所在的工作目录的路径。</p>
 
                 
               </div>
