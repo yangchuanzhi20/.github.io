@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/63.jpg">
 <meta property="article:published_time" content="2024-02-25T08:24:30.000Z">
-<meta property="article:modified_time" content="2024-02-25T09:04:33.235Z">
+<meta property="article:modified_time" content="2024-03-12T14:15:24.283Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Pytorch">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2.3k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          17 分钟
+          20 分钟
         
       </span>
     
@@ -294,21 +294,31 @@
             
               <div class="markdown-body">
                 
-                <h1 id="torchdata库的使用"><a href="#torchdata库的使用" class="headerlink" title="torchdata库的使用"></a>torchdata库的使用</h1><h2 id="1-datapipes"><a href="#1-datapipes" class="headerlink" title="1.datapipes"></a>1.datapipes</h2><h3 id="1-1-datapipes-iter-IterableWrapper"><a href="#1-1-datapipes-iter-IterableWrapper" class="headerlink" title="1.1 datapipes.iter.IterableWrapper"></a>1.1 datapipes.iter.IterableWrapper</h3><p>在 TorchData 中，<code>torchdata.datapipes.iter.IterableWrapper</code> 是一个用于封装迭代器的类。它允许你将普通的 Python 迭代器包装成一个 TorchData 可用的数据管道（DataPipe），以便进行更加灵活的数据处理和转换。</p>
+                <h1 id="torchdata库的使用"><a href="#torchdata库的使用" class="headerlink" title="torchdata库的使用"></a>torchdata库的使用</h1><h2 id="1-datapipes"><a href="#1-datapipes" class="headerlink" title="1.datapipes"></a>1.datapipes</h2><h3 id="1-1-iter"><a href="#1-1-iter" class="headerlink" title="1.1 iter"></a>1.1 iter</h3><h4 id="1-1-1-IterableWrapper"><a href="#1-1-1-IterableWrapper" class="headerlink" title="1.1.1 IterableWrapper"></a>1.1.1 IterableWrapper</h4><p>在 TorchData 中，<code>torchdata.datapipes.iter.IterableWrapper</code> 是一个用于封装迭代器的类。它允许你将普通的 Python 迭代器包装成一个 TorchData 可用的数据管道（DataPipe），以便进行更加灵活的数据处理和转换。</p>
 <p><code>IterableWrapper</code> 方法的主要作用是将 Python 中的迭代器包装为 TorchData 中的数据管道，使其可以在 TorchData 的数据处理流程中被使用。这个方法接受一个迭代器作为参数，并返回一个实现了 TorchData 数据管道接口的对象，使得你可以在 TorchData 的管道中应用各种数据转换和操作。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">FILE_PATH = <span class="hljs-string">&#x27;cmn.txt&#x27;</span><br>data_pipe = dp.<span class="hljs-built_in">iter</span>.IterableWrapper([FILE_PATH])<br></code></pre></td></tr></table></figure>
 
 <p>总的来说，<code>IterableWrapper</code> 方法为 TorchData 提供了一种便捷的方式来将普通的 Python 迭代器转换为可以在 TorchData 数据处理流程中使用的数据管道。</p>
-<h3 id="1-2-datapipes-iter-FileOpener"><a href="#1-2-datapipes-iter-FileOpener" class="headerlink" title="1.2 datapipes.iter.FileOpener"></a>1.2 datapipes.iter.FileOpener</h3><p>在 TorchData 中，<code>torchdata.datapipes.iter.FileOpener</code> 是用于打开文件并生成可迭代对象的类。它可以将文件操作转换为 TorchData 中的数据管道，使得可以轻松地在数据处理流程中使用文件数据。</p>
+<h4 id="1-1-2-FileOpener"><a href="#1-1-2-FileOpener" class="headerlink" title="1.1.2 FileOpener"></a>1.1.2 FileOpener</h4><p>在 TorchData 中，<code>torchdata.datapipes.iter.FileOpener</code> 是用于打开文件并生成可迭代对象的类。它可以将文件操作转换为 TorchData 中的数据管道，使得可以轻松地在数据处理流程中使用文件数据。</p>
 <p><code>FileOpener</code> 主要用于处理文件数据，例如读取文本文件、图像文件等等。它接受文件路径作为参数，并返回一个实现了 TorchData 数据管道接口的对象，使得可以在 TorchData 的管道中对文件数据进行各种操作和转换。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">data_pipe = dp.<span class="hljs-built_in">iter</span>.FileOpener(data_pipe, mode=<span class="hljs-string">&#x27;rb&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-3-datapipes-iter-CSVParser"><a href="#1-3-datapipes-iter-CSVParser" class="headerlink" title="1.3 datapipes.iter.CSVParser"></a>1.3 datapipes.iter.CSVParser</h3><p>接受由文件名和 CSV 数据流组成的 DataPipe，一次读取并返回 CSV 文件中的内容。</p>
+<h4 id="1-1-3-CSVParser"><a href="#1-1-3-CSVParser" class="headerlink" title="1.1.3 CSVParser"></a>1.1.3 CSVParser</h4><p>接受由文件名和 CSV 数据流组成的 DataPipe，一次读取并返回 CSV 文件中的内容。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> torchdata.datapipes.<span class="hljs-built_in">iter</span> <span class="hljs-keyword">import</span> IterableWrapper, FileOpener<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_name</span>(<span class="hljs-params">path_and_stream</span>):<br>    <span class="hljs-keyword">return</span> os.path.basename(path_and_stream[<span class="hljs-number">0</span>]), path_and_stream[<span class="hljs-number">1</span>]<br>datapipe1 = IterableWrapper([<span class="hljs-string">&quot;1.csv&quot;</span>, <span class="hljs-string">&quot;empty.csv&quot;</span>, <span class="hljs-string">&quot;empty2.csv&quot;</span>])<br>datapipe2 = FileOpener(datapipe1, mode=<span class="hljs-string">&quot;b&quot;</span>)<br>datapipe3 = datapipe2.<span class="hljs-built_in">map</span>(get_name)<br>csv_parser_dp = datapipe3.parse_csv()<br><span class="hljs-built_in">list</span>(csv_parser_dp)<br><br><span class="hljs-comment"># 输出</span><br>[[<span class="hljs-string">&#x27;key&#x27;</span>, <span class="hljs-string">&#x27;item&#x27;</span>], [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;1&#x27;</span>], [<span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>], []]<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-4-datapipes-map-MapDataPipe"><a href="#1-4-datapipes-map-MapDataPipe" class="headerlink" title="1.4 datapipes.map.MapDataPipe"></a>1.4 datapipes.map.MapDataPipe</h3><p>Map 样式的 DataPipe 是实现 <code>__getitem__()</code> and <code>__len__()</code> 协议的 DataPipe，它表示从（可能是非整型）索引&#x2F;键到数据样本的映射。这与 PyTorch 核心库中的 <code>Dataset</code> 类似。</p>
+<h3 id="1-2-map"><a href="#1-2-map" class="headerlink" title="1.2 map"></a>1.2 map</h3><h4 id="1-2-1-MapDataPipe"><a href="#1-2-1-MapDataPipe" class="headerlink" title="1.2.1 MapDataPipe"></a>1.2.1 MapDataPipe</h4><p>Map 样式的 DataPipe 是实现 <code>__getitem__()</code> and <code>__len__()</code> 协议的 DataPipe，它表示从（可能是非整型）索引&#x2F;键到数据样本的映射。这与 PyTorch 核心库中的 <code>Dataset</code> 类似。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># xdoctest: +SKIP</span><br><span class="hljs-keyword">from</span> torchdata.datapipes.<span class="hljs-built_in">map</span> <span class="hljs-keyword">import</span> SequenceWrapper, Mapper<br>dp = SequenceWrapper(<span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>))<br>map_dp_1 = dp.<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x: x + <span class="hljs-number">1</span>)  <span class="hljs-comment"># Using functional form (recommended)</span><br><span class="hljs-built_in">list</span>(map_dp_1)<br><br><span class="hljs-comment"># 输出</span><br>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>]<br>map_dp_2 = Mapper(dp, <span class="hljs-keyword">lambda</span> x: x + <span class="hljs-number">1</span>)  <span class="hljs-comment"># Using class constructor</span><br><span class="hljs-built_in">list</span>(map_dp_2)<br><br><span class="hljs-comment"># 输出</span><br>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>]<br>batch_dp = map_dp_1.batch(batch_size=<span class="hljs-number">2</span>)<br><span class="hljs-built_in">list</span>(batch_dp)<br><br><span class="hljs-comment"># 输出</span><br>[[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>], [<span class="hljs-number">9</span>, <span class="hljs-number">10</span>]]<br></code></pre></td></tr></table></figure>
 
+<h3 id="1-3-bucketbatch"><a href="#1-3-bucketbatch" class="headerlink" title="1.3 bucketbatch"></a>1.3 bucketbatch</h3><p><code>bucketbatch</code> 是 TorchText 中用于将数据集分组成桶（buckets）并生成批次数据的函数。这个函数通常在数据处理和准备阶段使用，特别是在序列到序列（sequence-to-sequence）模型中。</p>
+<p><code>bucketbatch</code> 的作用是将具有相似长度的样本分组到同一个桶中，并且可以选择是否对这些桶进行随机化。随后，对每个桶中的样本进行排序，以便能够产生长度相似的序列，并且可以有效地利用填充（padding）以提高批次处理效率。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">data_pipe = data_pipe.bucketbatch(<br>    batch_size = <span class="hljs-number">4</span>, batch_num=<span class="hljs-number">5</span>,  bucket_num=<span class="hljs-number">1</span>,<br>    use_in_batch_shuffle=<span class="hljs-literal">False</span>, sort_key=sortBucket<br>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>我们保持批量大小 &#x3D; 4。</li>
+<li>batch_num 是要保留在存储桶中的批次数</li>
+<li>bucket_num 是池中用于洗牌的存储桶数</li>
+<li>sort_key指定获取存储桶并对其进行排序的函数</li>
+</ul>
 
                 
               </div>
