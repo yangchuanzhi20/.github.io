@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/57.jpg">
 <meta property="article:published_time" content="2024-02-20T10:43:46.000Z">
-<meta property="article:modified_time" content="2024-02-25T08:12:43.299Z">
+<meta property="article:modified_time" content="2024-03-13T13:41:59.632Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="NLP">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.4k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          13 分钟
+          20 分钟
         
       </span>
     
@@ -315,6 +315,26 @@
 <p><strong>V的作用：</strong>和soft attention中求加权值时和权重相乘的值一样，只不过在soft attention中值是原来的encoder_output，而在自注意力机制中中需要多映射到一个值空间中去。</p>
 <p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/attention/2.png" srcset="/img/loading.gif" lazyload></p>
 <p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/attention/3.png" srcset="/img/loading.gif" lazyload></p>
+<p>具体流程:</p>
+<h3 id="2-1-Q-K-V-的计算"><a href="#2-1-Q-K-V-的计算" class="headerlink" title="2.1 Q, K, V 的计算"></a>2.1 Q, K, V 的计算</h3><p>Self-Attention 的输入用矩阵X进行表示，则可以使用线性变阵矩阵<strong>WQ,WK,WV</strong>计算得到<strong>Q,K,V</strong>。计算如下图所示，<strong>注意 X, Q, K, V 的每一行都表示一个单词。</strong></p>
+<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/attention/4.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-2-Self-Attention-的输出"><a href="#2-2-Self-Attention-的输出" class="headerlink" title="2.2 Self-Attention 的输出"></a>2.2 Self-Attention 的输出</h3><p>得到矩阵 Q, K, V之后就可以计算出 Self-Attention 的输出了，计算的公式如下：</p>
+<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/attention/5.png" srcset="/img/loading.gif" lazyload></p>
+<p>公式中计算矩阵<strong>Q</strong>和<strong>K</strong>每一行向量的内积，为了防止内积过大，因此除以 dk 的平方根。<strong>Q</strong>乘以<strong>K</strong>的转置后，得到的矩阵行列数都为 n，n 为句子单词数，这个矩阵可以表示单词之间的 attention 强度。下图为<strong>Q</strong>乘以KT ，1234 表示的是句子中的单词。</p>
+<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/attention/6.png" srcset="/img/loading.gif" lazyload></p>
+<p>得到QKT 之后，使用 Softmax 计算每一个单词对于其他单词的 attention 系数，公式中的 Softmax 是对矩阵的每一行进行 Softmax，即每一行的和都变为 1.</p>
+<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/attention/7.png" srcset="/img/loading.gif" lazyload></p>
+<p>得到 Softmax 矩阵之后可以和<strong>V</strong>相乘，得到最终的输出<strong>Z</strong>。</p>
+<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/attention/8.png" srcset="/img/loading.gif" lazyload></p>
+<p>上图中 Softmax 矩阵的第 1 行表示单词 1 与其他所有单词的 attention 系数，最终单词 1 的输出 �1 等于所有单词 i 的值 �� 根据 attention 系数的比例加在一起得到，如下图所示：</p>
+<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/attention/9.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-Multi-Head-Attention"><a href="#3-Multi-Head-Attention" class="headerlink" title="3.Multi-Head Attention"></a>3.Multi-Head Attention</h2><p>在上一步，我们已经知道怎么通过 Self-Attention 计算得到输出矩阵 Z，而 Multi-Head Attention 是由多个 Self-Attention 组合形成的，下图是论文中 Multi-Head Attention 的结构图。</p>
+<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/attention/10.png" srcset="/img/loading.gif" lazyload></p>
+<p>从上图可以看到 Multi-Head Attention 包含多个 Self-Attention 层，首先将输入<strong>X</strong>分别传递到 h 个不同的 Self-Attention 中，计算得到 h 个输出矩阵<strong>Z</strong>。下图是 h&#x3D;8 时候的情况，此时会得到 8 个输出矩阵<strong>Z</strong>。</p>
+<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/attention/11.png" srcset="/img/loading.gif" lazyload></p>
+<p>得到 8 个输出矩阵 Z1 到 Z8 之后，Multi-Head Attention 将它们拼接在一起 <strong>(Concat)<strong>，然后传入一个</strong>Linear</strong>层，得到 Multi-Head Attention 最终的输出<strong>Z</strong>。</p>
+<p><img src="/2024/02/20/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/attention/12.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以看到 Multi-Head Attention 输出的矩阵<strong>Z</strong>与其输入的矩阵<strong>X</strong>的维度是一样的。</p>
 
                 
               </div>
