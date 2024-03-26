@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/64.jpg">
 <meta property="article:published_time" content="2024-02-25T08:24:52.000Z">
-<meta property="article:modified_time" content="2024-03-13T11:42:27.393Z">
+<meta property="article:modified_time" content="2024-03-19T03:11:02.539Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Pytorch">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          4.3k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          30 分钟
+          37 分钟
         
       </span>
     
@@ -321,6 +321,9 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">[<span class="hljs-string">&#x27;&lt;pad&gt;&#x27;</span>, <span class="hljs-string">&#x27;&lt;sos&gt;&#x27;</span>, <span class="hljs-string">&#x27;&lt;eos&gt;&#x27;</span>, <span class="hljs-string">&#x27;&lt;unk&gt;&#x27;</span>, <span class="hljs-string">&#x27;.&#x27;</span>, <span class="hljs-string">&#x27;I&#x27;</span>, <span class="hljs-string">&#x27;Tom&#x27;</span>, <span class="hljs-string">&#x27;to&#x27;</span>, <span class="hljs-string">&#x27;you&#x27;</span>]<br></code></pre></td></tr></table></figure>
 
 <p>在构建词汇表时，首先会对训练数据进行分析，统计每个单词在数据集中出现的次数，然后按照单词出现的频率进行排序，出现频率较高的单词将排在词汇表中的靠前位置。</p>
+<h3 id="1-4-get-stoi"><a href="#1-4-get-stoi" class="headerlink" title="1.4 get_stoi"></a>1.4 get_stoi</h3><p><code>source_vocab.get_stoi()</code> 是一个方法调用，用于获取源语言词汇表（source vocabulary）中词语到索引的映射。在机器翻译任务中，通常会构建源语言和目标语言的词汇表，以便将单词转换为对应的索引，便于在模型中进行处理。</p>
+<p>这个方法返回一个字典，其中键是词语（或者说是单词），值是该词语在词汇表中对应的索引号。例如，如果源语言词汇表中包含单词 “hello”，并且它在词汇表中的索引号为 5，那么调用 <code>source_vocab.get_stoi()</code> 方法后会得到一个字典，其中包含键值对 <code>&#123;&#39;hello&#39;: 5&#125;</code>。</p>
+<p>这个方法的调用是用于在源语言词汇表中查询单词对应的索引号，以便在训练或推断时将单词转换为索引号进行处理。</p>
 <h2 id="2-transforms"><a href="#2-transforms" class="headerlink" title="2.transforms"></a>2.transforms</h2><p><code>torchtext.transforms</code>模块提供了一系列用于数据转换和处理的类和函数，它们可用于预处理文本数据或应用特定的转换。这些转换包括文本标记化、转换为小写、去除特定字符、截断或填充文本序列等。</p>
 <h3 id="2-1-AddToken"><a href="#2-1-AddToken" class="headerlink" title="2.1 AddToken"></a>2.1 AddToken</h3><p>具体用法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torchtext.transforms <span class="hljs-keyword">as</span> T<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">getTransform</span>(<span class="hljs-params">vocab</span>):<br>    text_tranform = T.Sequential(<br>        T.VocabTransform(vocab=vocab),<br>        T.AddToken(<span class="hljs-number">1</span>, begin=<span class="hljs-literal">True</span>),<br>        T.AddToken(<span class="hljs-number">2</span>, begin=<span class="hljs-literal">False</span>)<br>    )<br>    <span class="hljs-keyword">return</span> text_tranform<br><br>transformed_sentence = getTransform(source_vocab)(engTokenize(some_sentence))<br></code></pre></td></tr></table></figure>
@@ -342,6 +345,14 @@
 <p>输出：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">(tensor([[   <span class="hljs-number">1</span>,    <span class="hljs-number">3</span>,  <span class="hljs-number">126</span>,    <span class="hljs-number">2</span>,    <span class="hljs-number">1</span> <span class="hljs-comment">#这里是1],</span><br><br>如果是T.ToTensor(<span class="hljs-number">0</span>)<br>tensor([[   <span class="hljs-number">1</span>, <span class="hljs-number">4020</span>,    <span class="hljs-number">4</span>,    <span class="hljs-number">2</span>,    <span class="hljs-number">0</span> <span class="hljs-comment">#这里会用0来填充]</span><br></code></pre></td></tr></table></figure>
 
+<h2 id="3-data"><a href="#3-data" class="headerlink" title="3.data"></a>3.data</h2><h3 id="3-1-utils"><a href="#3-1-utils" class="headerlink" title="3.1 utils"></a>3.1 utils</h3><h4 id="3-1-1-get-tokenizer"><a href="#3-1-1-get-tokenizer" class="headerlink" title="3.1.1 get_tokenizer"></a>3.1.1 get_tokenizer</h4><p><code>get_tokenizer</code> 函数是 TorchText 库中的一个函数，用于将文本数据进行分词，通常用于自然语言处理任务。然而，需要注意的是 TorchText 是一个与 PyTorch 结合使用的库，主要用于处理自然语言处理任务。</p>
+<p>在 TorchText 中，以下是一些常用的分词器模型：</p>
+<ol>
+<li><code>&#39;basic_english&#39;</code>：基本英文分词器，适用于英文文本数据的简单分词。</li>
+<li><code>&#39;spacy&#39;</code>：SpaCy 分词器，通过 SpaCy 库提供的分词功能进行分词。需要安装 SpaCy 库以及相应的语言模型。</li>
+<li><code>&#39;moses&#39;</code>：Moses 分词器，使用 Moses 工具包提供的分词功能进行分词。</li>
+<li><code>&#39;bert-base-uncased&#39;</code>：BERT 分词器，使用 BERT 模型进行分词。需要安装 Transformers 库。</li>
+</ol>
 
                 
               </div>

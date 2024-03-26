@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/52.jpg">
 <meta property="article:published_time" content="2024-02-14T10:35:30.000Z">
-<meta property="article:modified_time" content="2024-02-25T08:13:21.742Z">
+<meta property="article:modified_time" content="2024-03-19T10:12:06.523Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Pytorch">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.9k 字
+          6.6k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          50 分钟
+          55 分钟
         
       </span>
     
@@ -294,7 +294,24 @@
             
               <div class="markdown-body">
                 
-                <h1 id="pytorch中nn模块"><a href="#pytorch中nn模块" class="headerlink" title="pytorch中nn模块"></a>pytorch中nn模块</h1><h2 id="1-nn-LogSoftmax"><a href="#1-nn-LogSoftmax" class="headerlink" title="1.nn.LogSoftmax"></a>1.nn.LogSoftmax</h2><p>在PyTorch中，<code>nn.LogSoftmax</code>是一个用于计算对数softmax的模块。softmax函数用于将一个向量变换成概率分布，而log softmax函数则是在softmax的基础上取对数。log softmax函数的输出通常用作神经网络输出层的激活函数，特别是在多类别分类任务中。</p>
+                <h1 id="pytorch中nn模块"><a href="#pytorch中nn模块" class="headerlink" title="pytorch中nn模块"></a>pytorch中nn模块</h1><h2 id="0-nn-Module"><a href="#0-nn-Module" class="headerlink" title="0.nn.Module"></a>0.nn.Module</h2><h3 id="0-1-register-buffer"><a href="#0-1-register-buffer" class="headerlink" title="0.1 register_buffer"></a>0.1 register_buffer</h3><p><code>register_buffer</code> 是 PyTorch 中 <code>Module</code> 类的方法之一，用于向模型注册持久性缓冲区。持久性缓冲区是一种特殊的张量，其数值在<strong>训练过程中不会更新</strong>，但会被<strong>保存到模型的状态字典中</strong>（state_dict），从而可以被保存和加载。</p>
+<p>具体语法为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">register_buffer(name, tensor)<br></code></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><code>name</code>：缓冲区的名称，用于在模型中标识缓冲区。</li>
+<li><code>tensor</code>：要注册为缓冲区的张量。</li>
+</ul>
+<p>以下是一个示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyModel</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(MyModel, self).__init__()<br>        <br>        self.register_buffer(<span class="hljs-string">&#x27;my_buffer&#x27;</span>, torch.zeros(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))<br><br>model = MyModel()<br><span class="hljs-built_in">print</span>(model.state_dict())<br></code></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">OrderedDict([(<span class="hljs-string">&#x27;my_buffer&#x27;</span>, tensor([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],<br>                                   [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],<br>                                   [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]]))])<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，在模型中注册了一个名称为 <code>&#39;my_buffer&#39;</code> 的缓冲区，并且初始值为全零张量。注册的缓冲区会出现在模型的状态字典中，因此在保存和加载模型时会被自动处理。</p>
+<p><code>register_buffer</code> 方法通常用于将模型中需要持久存储的固定参数（如平均值、标准差等）注册为缓冲区。</p>
+<h2 id="1-nn-LogSoftmax"><a href="#1-nn-LogSoftmax" class="headerlink" title="1.nn.LogSoftmax"></a>1.nn.LogSoftmax</h2><p>在PyTorch中，<code>nn.LogSoftmax</code>是一个用于计算对数softmax的模块。softmax函数用于将一个向量变换成概率分布，而log softmax函数则是在softmax的基础上取对数。log softmax函数的输出通常用作神经网络输出层的激活函数，特别是在多类别分类任务中。</p>
 <p><code>nn.LogSoftmax</code>模块的输入是一个张量，通常是网络的原始输出（未经softmax处理），输出是一个张量，其中包含对数softmax的结果。</p>
 <p>下面是一个简单的示例，演示如何使用<code>nn.LogSoftmax</code>模块：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><br><span class="hljs-comment"># 假设原始输出为 raw_output，形状为 (batch_size, num_classes)</span><br>raw_output = torch.randn(<span class="hljs-number">32</span>, <span class="hljs-number">10</span>)  <span class="hljs-comment"># 假设批量大小为32，类别数为10</span><br><br><span class="hljs-comment"># 创建 LogSoftmax 模块</span><br>log_softmax = nn.LogSoftmax(dim=<span class="hljs-number">1</span>)<br><br><span class="hljs-comment"># 对原始输出进行对数softmax计算</span><br>log_probs = log_softmax(raw_output)<br><br><span class="hljs-comment"># 输出结果</span><br><span class="hljs-built_in">print</span>(log_probs)<br></code></pre></td></tr></table></figure>
