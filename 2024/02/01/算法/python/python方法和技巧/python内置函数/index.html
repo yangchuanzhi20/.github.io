@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/36.jpg">
 <meta property="article:published_time" content="2024-02-01T03:50:14.000Z">
-<meta property="article:modified_time" content="2024-03-13T11:51:34.787Z">
+<meta property="article:modified_time" content="2024-03-27T07:17:08.861Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Python">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.5k 字
+          5.1k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          38 分钟
+          43 分钟
         
       </span>
     
@@ -404,6 +404,25 @@
 <p>4.控制浮点数的小数位数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">name = <span class="hljs-string">&quot;Alice&quot;</span><br>age = <span class="hljs-number">30.12345</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;My name is <span class="hljs-subst">&#123;name&#125;</span> and I am <span class="hljs-subst">&#123;age:<span class="hljs-number">.2</span>f&#125;</span> years old.&quot;</span>)<br><br>输出：<br>My name <span class="hljs-keyword">is</span> Alice <span class="hljs-keyword">and</span> I am <span class="hljs-number">30.12</span> years old.<br></code></pre></td></tr></table></figure>
 
+<h2 id="9-set"><a href="#9-set" class="headerlink" title="9.set"></a>9.set</h2><p>Python中的<code>set</code>是一种<strong>无序且不重复的集合</strong>数据类型，它是由不同元素组成的集合，每个元素在集合中只能出现一次。<code>set</code>可以用于执行集合操作，如交集、并集、差集等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">set</span>(<span class="hljs-string">&quot; &quot;</span>.join(sentences).split()) <span class="hljs-comment"># 创建无重复的数据类型</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="10-round"><a href="#10-round" class="headerlink" title="10.round"></a>10.round</h2><p><code>round()</code> 是 Python 中的一个内置函数，用于对浮点数进行四舍五入操作。它的语法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">round</span>(number[, ndigits])<br></code></pre></td></tr></table></figure>
+
+<p><code>round()</code> 是 Python 中的一个内置函数，用于对浮点数进行四舍五入操作。它的语法如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">pythonCopy <span class="hljs-selector-tag">code</span><br><span class="hljs-function"><span class="hljs-title">round</span><span class="hljs-params">(number[, ndigits])</span></span><br></code></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><code>number</code> 是要进行四舍五入的浮点数；</li>
+<li><code>ndigits</code> 是可选参数，表示要保留的小数位数。如果省略 <code>ndigits</code>，则默认为 0，即对 <code>number</code> 进行到最近的整数的四舍五入。</li>
+</ul>
+<p><code>round()</code> 函数返回一个浮点数，表示四舍五入后的结果。</p>
+<p>以下是 <code>round()</code> 函数的一些示例用法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 四舍五入到整数</span><br>result1 = <span class="hljs-built_in">round</span>(<span class="hljs-number">3.6</span>)<br><span class="hljs-built_in">print</span>(result1)  <span class="hljs-comment"># 输出: 4</span><br><br><span class="hljs-comment"># 四舍五入到指定小数位数</span><br>result2 = <span class="hljs-built_in">round</span>(<span class="hljs-number">3.1415926</span>, <span class="hljs-number">2</span>)<br><span class="hljs-built_in">print</span>(result2)  <span class="hljs-comment"># 输出: 3.14</span><br></code></pre></td></tr></table></figure>
+
+<p>在第一个示例中，<code>round(3.6)</code> 将 3.6 四舍五入到最近的整数，结果是 4。在第二个示例中，<code>round(3.1415926, 2)</code> 将 3.1415926 四舍五入到两位小数，结果是 3.14。</p>
 
                 
               </div>

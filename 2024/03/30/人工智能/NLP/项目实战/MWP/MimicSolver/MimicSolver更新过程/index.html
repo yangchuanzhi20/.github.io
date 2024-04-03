@@ -1,0 +1,766 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="白色很哇塞">
+  <meta name="keywords" content="发疯，生活">
+  
+    <meta name="description" content="对MimicSolver的更新过程进行整理🐡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MimicSolver更新过程!🐡">
+<meta property="og:url" content="https://yangchuanzhi20.github.io/2024/03/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/MimicSolver/MimicSolver%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B/index.html">
+<meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
+<meta property="og:description" content="对MimicSolver的更新过程进行整理🐡">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yangchuanzhi20.github.io/img/76.jpg">
+<meta property="article:published_time" content="2024-03-30T13:51:49.000Z">
+<meta property="article:modified_time" content="2024-03-30T14:13:28.912Z">
+<meta property="article:author" content="白色很哇塞">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/76.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>MimicSolver更新过程!🐡 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yangchuanzhi20.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"♡","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>白色很哇塞ฅ՞•ﻌ•՞ฅ</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/game/">
+                <i class="iconfont icon-switch-fill"></i>
+                <span>游戏</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/76.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">MimicSolver更新过程!🐡</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-30 21:51" pubdate>
+          2024年3月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MimicSolver更新过程!🐡</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="MimicSolver更新过程"><a href="#MimicSolver更新过程" class="headerlink" title="MimicSolver更新过程"></a>MimicSolver更新过程</h1><h2 id="1-修改json文件"><a href="#1-修改json文件" class="headerlink" title="1.修改json文件"></a>1.修改json文件</h2><p>以SceneCombination为例，分别修改：</p>
+<p><img src="/2024/03/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/MimicSolver/MimicSolver%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B/1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/03/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/MimicSolver/MimicSolver%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B/2.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/03/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/MimicSolver/MimicSolver%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B/3.png" srcset="/img/loading.gif" lazyload></p>
+<p>该例为新增路径：APText—-SceneCombination—-OutputSolution</p>
+<h2 id="2-修改主函数"><a href="#2-修改主函数" class="headerlink" title="2.修改主函数"></a>2.修改主函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> mimic <span class="hljs-keyword">import</span> UserConfig, SolvingEngine, MimicConfig<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br><br>    start_path = <span class="hljs-string">&quot;D:/Python/MimicSolver/tests/usage/start.yaml&quot;</span><br>    user_cfg = UserConfig(start_path)<br><br>    mimicConfig = MimicConfig()  <br><br>    solving_engine = SolvingEngine(mimicConfig)<br><br>    feed_input_ap = &#123;<br>        <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;有一堆黄沙，先运走18吨，剩下的用7辆车运完，每车运6吨，这堆黄沙共有多少吨？&quot;</span>,<br>        <span class="hljs-string">&quot;expression&quot;</span>: <span class="hljs-string">&quot;x=18+6*7&quot;</span><br>    &#125;<br><br>    solving_engine.run(feed_input_ap)<br><br>    <span class="hljs-comment"># 深拷贝来解决获取对象参数改变，列表内容同时改变的情况</span><br>    result = solving_engine.get_solving_result()<br>    <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> result.items():<br>        <span class="hljs-keyword">if</span> value != [] <span class="hljs-keyword">and</span> value != <span class="hljs-string">&quot;&quot;</span> <span class="hljs-keyword">and</span> value != &#123;&#125;:<br>            <span class="hljs-built_in">print</span>(key, value)<br><br></code></pre></td></tr></table></figure>
+
+<p>1.重点修改<code>feed_input_ap</code>。且<strong>字典的key值应在SharedStateData的属性中</strong>。</p>
+<h2 id="3-修改MimicConfig"><a href="#3-修改MimicConfig" class="headerlink" title="3.修改MimicConfig"></a>3.修改MimicConfig</h2><p><img src="/2024/03/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/MimicSolver/MimicSolver%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B/4.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-新增state"><a href="#4-新增state" class="headerlink" title="4.新增state"></a>4.新增state</h2><p><img src="/2024/03/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/MimicSolver/MimicSolver%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B/5.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="5-修改其他state的decide"><a href="#5-修改其他state的decide" class="headerlink" title="5.修改其他state的decide"></a>5.修改其他state的decide</h2><p><img src="/2024/03/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/MimicSolver/MimicSolver%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B/6.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="6-修改state-init-py"><a href="#6-修改state-init-py" class="headerlink" title="6.修改state&#x2F;init.py"></a>6.修改state&#x2F;init.py</h2><p><img src="/2024/03/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/MimicSolver/MimicSolver%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B/7.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="7-新增transit"><a href="#7-新增transit" class="headerlink" title="7.新增transit"></a>7.新增transit</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">APTextToSceneCombination</span>(<span class="hljs-title class_ inherited__">Transit</span>):<br>    transit_name: <span class="hljs-built_in">str</span> = <span class="hljs-string">&quot;APTextToSceneCombination&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_check</span>(<span class="hljs-params">self, transitors: <span class="hljs-type">List</span>[<span class="hljs-built_in">str</span>]</span>) -&gt; <span class="hljs-literal">None</span>:<br>        <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        Executes the transit check, checking whether all transitors have been defined.</span><br><span class="hljs-string">        :param transitors:</span><br><span class="hljs-string">        :raises AssertionError: If operation has no predecessors.</span><br><span class="hljs-string">        &quot;&quot;&quot;</span><br>        functions = [<br>            fn_name<br>            <span class="hljs-keyword">for</span> fn_name, _ <span class="hljs-keyword">in</span> inspect.getmembers(<br>                APTextToSceneCombination, predicate=inspect.isfunction<br>            )<br>        ]<br>        <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> transitors:<br>            <span class="hljs-keyword">if</span> t <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> functions:<br>                <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;transitors %s has not defined&quot;</span>.<span class="hljs-built_in">format</span>(t))<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">scene_reasoning</span>(<span class="hljs-params">self, shared_state_data: SharedStateData</span>):<br>        sentence= shared_state_data.text<br>        model_path1 = <span class="hljs-string">&#x27;D:/Python/MimicSolver/dl_model/trained_model/scene_trm/best_model1.pth&#x27;</span><br>        model_path2 = <span class="hljs-string">&#x27;D:/Python/MimicSolver/dl_model/trained_model/scene_trm/best_model2.pth&#x27;</span><br><br>        result1 = predict_scene_trm1(sentence, model_path1)<br>        result2 = predict_scene_trm2(sentence, model_path2)<br><br>        <span class="hljs-built_in">print</span>(result1,result2)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SceneCombinationToOutputSolution</span>(<span class="hljs-title class_ inherited__">Transit</span>):<br>    transit_name: <span class="hljs-built_in">str</span> = <span class="hljs-string">&quot;SceneCombinationToOutputSolution&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_check</span>(<span class="hljs-params">self, transitors: <span class="hljs-type">List</span>[<span class="hljs-built_in">str</span>]</span>) -&gt; <span class="hljs-literal">None</span>:<br>        <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        Executes the transit check, checking whether all transitors have been defined.</span><br><span class="hljs-string">        :param transitors:</span><br><span class="hljs-string">        :raises AssertionError: If operation has no predecessors.</span><br><span class="hljs-string">        &quot;&quot;&quot;</span><br>        functions = [<br>            fn_name<br>            <span class="hljs-keyword">for</span> fn_name, _ <span class="hljs-keyword">in</span> inspect.getmembers(<br>                SceneCombinationToOutputSolution, predicate=inspect.isfunction<br>            )<br>        ]<br>        <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> transitors:<br>            <span class="hljs-keyword">if</span> t <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> functions:<br>                <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;transitors %s has not defined&quot;</span>.<span class="hljs-built_in">format</span>(t))<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">scene_compute</span>(<span class="hljs-params">self, shared_state_data: SharedStateData</span>):<br><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;scene_compute&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>1.修改check</p>
+<p>2.修改transit类中的具体执行函数，改成对应的的transit名字</p>
+<h2 id="8-修改transit-init-py"><a href="#8-修改transit-init-py" class="headerlink" title="8.修改transit&#x2F;init.py"></a>8.修改transit&#x2F;init.py</h2><p><img src="/2024/03/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/MimicSolver/MimicSolver%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B/8.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="9-修改core-init-py"><a href="#9-修改core-init-py" class="headerlink" title="9.修改core&#x2F;init.py"></a>9.修改core&#x2F;init.py</h2><p><img src="/2024/03/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/MimicSolver/MimicSolver%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B/9.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="10-修改ShareStateData"><a href="#10-修改ShareStateData" class="headerlink" title="10.修改ShareStateData"></a>10.修改ShareStateData</h2><p>如需新增状态，则修改</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/" class="category-chain-item">AI ʢᵕᴗᵕʡ</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/NLP/" class="category-chain-item">NLP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/NLP/NLP%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" class="category-chain-item">NLP项目实战</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/NLP/NLP%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/" class="category-chain-item">MWP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/NLP/NLP%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/MWP/MimicSolver/" class="category-chain-item">MimicSolver</a>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/NLP/" class="print-no-link">#NLP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MimicSolver更新过程!🐡</div>
+      <div>https://yangchuanzhi20.github.io/2024/03/30/人工智能/NLP/项目实战/MWP/MimicSolver/MimicSolver更新过程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>白色很哇塞</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E4%BB%BB%E5%8A%A1/%E8%AF%AD%E4%B9%89%E8%A7%92%E8%89%B2%E6%A0%87%E6%B3%A8/" title="语义角色标注">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">语义角色标注</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/Bert%E9%A2%84%E8%AE%AD%E7%BB%83/" title="Bert预训练!🌞">
+                        <span class="hidden-mobile">Bert预训练!🌞</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"uchVjxnRW51J2Mm7CW00jbKk-MdYXbMMI","appKey":"salCKdKKc0oJUGN300BBLXeE","path":"window.location.pathname","placeholder":"ʕ ᵔᴥᵔ ʔ","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://uchvjxnr.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/vvd_js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/gongde.js"></script>
+<script src="/js/move.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/js/duration.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

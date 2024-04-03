@@ -18,14 +18,14 @@
   
     <meta name="description" content="常用张量方法🍧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用张量方法！🍧">
+<meta property="og:title" content="常用Tensor方法！🍧">
 <meta property="og:url" content="https://yangchuanzhi20.github.io/2024/02/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B8%B8%E7%94%A8%E5%BC%A0%E9%87%8F%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
 <meta property="og:description" content="常用张量方法🍧">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/46.jpg">
 <meta property="article:published_time" content="2024-02-03T06:20:41.000Z">
-<meta property="article:modified_time" content="2024-03-23T05:39:30.996Z">
+<meta property="article:modified_time" content="2024-03-27T08:17:32.437Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Pytorch">
@@ -36,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>常用张量方法！🍧 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+  <title>常用Tensor方法！🍧 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">常用张量方法！🍧</span>
+            <span id="subtitle">常用Tensor方法！🍧</span>
           
         </div>
 
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.4k 字
+          6.9k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          54 分钟
+          58 分钟
         
       </span>
     
@@ -289,12 +289,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">常用张量方法！🍧</h1>
+            <h1 id="seo-header">常用Tensor方法！🍧</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="常用张量方法"><a href="#常用张量方法" class="headerlink" title="常用张量方法"></a>常用张量方法</h1><h2 id="1-topk"><a href="#1-topk" class="headerlink" title="1.topk"></a>1.topk</h2><p><code>Tensor.topk</code> 是 PyTorch 中的一个函数，用于在张量（Tensor）中获取前 k 个最大值或最小值及其对应的索引。</p>
+                <h1 id="常用Tensor方法"><a href="#常用Tensor方法" class="headerlink" title="常用Tensor方法"></a>常用Tensor方法</h1><h2 id="1-topk"><a href="#1-topk" class="headerlink" title="1.topk"></a>1.topk</h2><p><code>Tensor.topk</code> 是 PyTorch 中的一个函数，用于在张量（Tensor）中获取前 k 个最大值或最小值及其对应的索引。</p>
 <p>具体而言，<code>Tensor.topk</code> 函数返回的是给定张量中的前 k 个最大值（或最小值）以及它们在张量中的位置索引。函数的签名通常如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">values, indices = torch.topk(<span class="hljs-built_in">input</span>, k, dim=<span class="hljs-literal">None</span>, largest=<span class="hljs-literal">True</span>, <span class="hljs-built_in">sorted</span>=<span class="hljs-literal">True</span>, out=<span class="hljs-literal">None</span>)<br></code></pre></td></tr></table></figure>
 
@@ -418,6 +418,9 @@
 <h2 id="11-masked-fill"><a href="#11-masked-fill" class="headerlink" title="11.masked_fill"></a>11.masked_fill</h2><p><code>masked_fill</code> 是 PyTorch 中张量的一个方法，用于根据掩码（mask）替换张量中的元素。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 创建一个原始张量</span><br>tensor = torch.tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],<br>                       [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])<br><br><span class="hljs-comment"># 创建一个掩码张量</span><br>mask = torch.tensor([[<span class="hljs-literal">True</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">True</span>],<br>                     [<span class="hljs-literal">False</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">False</span>]])<br><br><span class="hljs-comment"># 将原始张量中掩码为 True 的位置替换为 0</span><br>result = tensor.masked_fill(mask, <span class="hljs-number">0</span>)<br><br><span class="hljs-built_in">print</span>(result)<br><br>输出：<br>tensor([[<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>],<br>        [<span class="hljs-number">4</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>]])<br></code></pre></td></tr></table></figure>
 
+<h2 id="12-expand-as"><a href="#12-expand-as" class="headerlink" title="12.expand_as"></a>12.expand_as</h2><p><code>expand_as</code> 是 PyTorch 中的一个方法，用于将一个张量扩展成与另一个张量具有相同大小的形状。具体来说，<code>expand_as</code> 方法会返回一个新的张量，该张量与指定的张量具有相同的形状，但是复制了当前张量的内容，以填充新张量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 创建两个张量</span><br>tensor1 = torch.tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>                        [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])<br>tensor2 = torch.tensor([[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>]])<br><br><span class="hljs-comment"># 使用 expand_as 方法将 tensor2 扩展成与 tensor1 相同的形状</span><br>expanded_tensor2 = tensor2.expand_as(tensor1)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;原始张量 tensor2:&quot;</span>)<br><span class="hljs-built_in">print</span>(tensor2)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;扩展后的张量 expanded_tensor2:&quot;</span>)<br><span class="hljs-built_in">print</span>(expanded_tensor2)<br><br><span class="hljs-comment"># 输出</span><br>原始张量 tensor2:<br>tensor([[<span class="hljs-number">0.1000</span>, <span class="hljs-number">0.2000</span>]])<br><br>扩展后的张量 expanded_tensor2:<br>tensor([[<span class="hljs-number">0.1000</span>, <span class="hljs-number">0.2000</span>],<br>        [<span class="hljs-number">0.1000</span>, <span class="hljs-number">0.2000</span>]])<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -479,7 +482,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>常用张量方法！🍧</div>
+      <div>常用Tensor方法！🍧</div>
       <div>https://yangchuanzhi20.github.io/2024/02/03/人工智能/Pytorch/基础知识/常用张量操作/</div>
     </div>
     <div class="license-meta">
