@@ -4,11 +4,44 @@
   
   
   <entry>
+    <title>语义依存分析任务！🐯</title>
+    <link href="/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E4%BB%BB%E5%8A%A1/%E8%AF%AD%E4%B9%89%E4%BE%9D%E5%AD%98%E5%88%86%E6%9E%90%E4%BB%BB%E5%8A%A1/"/>
+    <url>/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E4%BB%BB%E5%8A%A1/%E8%AF%AD%E4%B9%89%E4%BE%9D%E5%AD%98%E5%88%86%E6%9E%90%E4%BB%BB%E5%8A%A1/</url>
+    
+    <content type="html"><![CDATA[<h1 id="语义依存分析任务"><a href="#语义依存分析任务" class="headerlink" title="语义依存分析任务"></a>语义依存分析任务</h1><p>让机器能够理解自然语言，需要对原始文本自底向上进行分词、词性标注、命名实体识别和句法分析，若想要机器更智能，像人一样理解和运用语言，还需要对句子进行更深一层的分析，即句子级语义分析。</p><p>语义依存分析将会是通往语义深层理解的一条蹊径。语义依存分析是指在句子结构中分析实词和实词之间的语义关系，这种关系是一种事实上或逻辑上的关系，且只有当词语进入到句子时才会存在。语义依存分析的目的即回答句子的”Who did what to whom when and where”的问题。例如句子“张三昨天告诉李四一个秘密”，语义依存分析可以回答四个问题，即谁告诉了李四一个秘密，张三告诉谁一个秘密，张三什么时候告诉李四一个秘密，张三告诉李四什么。</p><p>举例：</p><p><strong>奥巴马昨晚在白宫发表了演说。</strong></p><p>结果：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">[&#123;<span class="hljs-string">&#x27;head&#x27;</span>: [<span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>], <span class="hljs-string">&#x27;label&#x27;</span>: [<span class="hljs-string">&#x27;AGT&#x27;</span>, <span class="hljs-string">&#x27;TIME&#x27;</span>, <span class="hljs-string">&#x27;mRELA&#x27;</span>, <span class="hljs-string">&#x27;LOC&#x27;</span>, <span class="hljs-string">&#x27;Root&#x27;</span>, <span class="hljs-string">&#x27;mDEPD&#x27;</span>, <span class="hljs-string">&#x27;CONT&#x27;</span>, <span class="hljs-string">&#x27;mPUNC&#x27;</span>]&#125;]<br></code></pre></td></tr></table></figure><p>图示：</p><p><img src="/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E4%BB%BB%E5%8A%A1/%E8%AF%AD%E4%B9%89%E4%BE%9D%E5%AD%98%E5%88%86%E6%9E%90%E4%BB%BB%E5%8A%A1/1.png"></p><p>具体标注：</p><p><img src="/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E4%BB%BB%E5%8A%A1/%E8%AF%AD%E4%B9%89%E4%BE%9D%E5%AD%98%E5%88%86%E6%9E%90%E4%BB%BB%E5%8A%A1/2.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI ʢᵕᴗᵕʡ</category>
+      
+      <category>NLP</category>
+      
+      <category>NLP基础知识</category>
+      
+      <category>NLP任务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>NLP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LTP库的使用！🐈</title>
     <link href="/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/LTP%E5%BA%93/"/>
     <url>/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/LTP%E5%BA%93/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="LTP库的使用"><a href="#LTP库的使用" class="headerlink" title="LTP库的使用"></a>LTP库的使用</h1><h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pip install -U ltp ltp-core ltp-extension -i https://pypi.org/simple<br></code></pre></td></tr></table></figure><h2 id="2-本地模型调用"><a href="#2-本地模型调用" class="headerlink" title="2.本地模型调用"></a>2.本地模型调用</h2><p>从huggingface下载模型后保存在本地。用下述代码进行本地调用。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">ltp = LTP(<span class="hljs-string">&quot;D:/Python/MimicSolver/conf/model/LTP_Base1&quot;</span>)<br></code></pre></td></tr></table></figure><h2 id="3-应用举例"><a href="#3-应用举例" class="headerlink" title="3.应用举例"></a>3.应用举例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> ltp <span class="hljs-keyword">import</span> LTP<br><br>ltp = LTP(<span class="hljs-string">&quot;LTP/small&quot;</span>)  <span class="hljs-comment"># 默认加载 Small 模型</span><br><br><span class="hljs-comment"># 将模型移动到 GPU 上</span><br><span class="hljs-keyword">if</span> torch.cuda.is_available():<br>    <span class="hljs-comment"># ltp.cuda()</span><br>    ltp.to(<span class="hljs-string">&quot;cuda&quot;</span>)<br><br>output = ltp.pipeline([<span class="hljs-string">&quot;他叫汤姆去拿外衣。&quot;</span>], tasks=[<span class="hljs-string">&quot;cws&quot;</span>, <span class="hljs-string">&quot;pos&quot;</span>, <span class="hljs-string">&quot;ner&quot;</span>, <span class="hljs-string">&quot;srl&quot;</span>, <span class="hljs-string">&quot;dep&quot;</span>, <span class="hljs-string">&quot;sdp&quot;</span>])<br><span class="hljs-comment"># 使用字典格式作为返回结果</span><br><span class="hljs-built_in">print</span>(output.cws) <span class="hljs-comment"># print(output[0]) / print(output[&#x27;cws&#x27;]) # 也可以使用下标访问</span><br><span class="hljs-built_in">print</span>(output.pos)<br><span class="hljs-built_in">print</span>(output.sdp)<br><span class="hljs-built_in">print</span>(output.ner)<br><br><span class="hljs-comment"># 使用感知机算法实现的分词、词性和命名实体识别，速度比较快，但是精度略低</span><br>ltp = LTP(<span class="hljs-string">&quot;LTP/legacy&quot;</span>)<br><span class="hljs-comment"># cws, pos, ner = ltp.pipeline([&quot;他叫汤姆去拿外衣。&quot;], tasks=[&quot;cws&quot;, &quot;ner&quot;]).to_tuple() # error: NER 需要 词性标注任务的结果</span><br>cws, pos, ner = ltp.pipeline([<span class="hljs-string">&quot;他叫汤姆去拿外衣。&quot;</span>], tasks=[<span class="hljs-string">&quot;cws&quot;</span>, <span class="hljs-string">&quot;pos&quot;</span>, <span class="hljs-string">&quot;ner&quot;</span>]).to_tuple() <span class="hljs-comment"># to tuple 可以自动转换为元组格式</span><br><span class="hljs-comment"># 使用元组格式作为返回结果</span><br><span class="hljs-built_in">print</span>(cws, pos, ner)<br></code></pre></td></tr></table></figure><p><strong>tips:</strong></p><p>分词 <code>cws</code>、词性 <code>pos</code>、命名实体标注 <code>ner</code>、语义角色标注 <code>srl</code>、依存句法分析 <code>dep</code>、语义依存分析树 <code>sdp</code>、语义依存分析图 <code>sdpg</code>。</p><p>输出结果：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">[[<span class="hljs-string">&#x27;他&#x27;</span>, <span class="hljs-string">&#x27;叫&#x27;</span>, <span class="hljs-string">&#x27;汤姆&#x27;</span>, <span class="hljs-string">&#x27;去&#x27;</span>, <span class="hljs-string">&#x27;拿&#x27;</span>, <span class="hljs-string">&#x27;外衣&#x27;</span>, <span class="hljs-string">&#x27;。&#x27;</span>]]<br>[[<span class="hljs-string">&#x27;r&#x27;</span>, <span class="hljs-string">&#x27;v&#x27;</span>, <span class="hljs-string">&#x27;nh&#x27;</span>, <span class="hljs-string">&#x27;v&#x27;</span>, <span class="hljs-string">&#x27;v&#x27;</span>, <span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;wp&#x27;</span>]]<br>[&#123;<span class="hljs-string">&#x27;head&#x27;</span>: [<span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>], <span class="hljs-string">&#x27;label&#x27;</span>: [<span class="hljs-string">&#x27;AGT&#x27;</span>, <span class="hljs-string">&#x27;Root&#x27;</span>, <span class="hljs-string">&#x27;DATV&#x27;</span>, <span class="hljs-string">&#x27;eSUCC&#x27;</span>, <span class="hljs-string">&#x27;eSUCC&#x27;</span>, <span class="hljs-string">&#x27;PAT&#x27;</span>, <span class="hljs-string">&#x27;mPUNC&#x27;</span>]&#125;]<br>[[(<span class="hljs-string">&#x27;Nh&#x27;</span>, <span class="hljs-string">&#x27;汤姆&#x27;</span>)]]<br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
@@ -35,13 +68,33 @@
   
   
   <entry>
-    <title>语义角色标注</title>
+    <title>语义角色标注任务！🐯</title>
     <link href="/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E4%BB%BB%E5%8A%A1/%E8%AF%AD%E4%B9%89%E8%A7%92%E8%89%B2%E6%A0%87%E6%B3%A8/"/>
     <url>/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E4%BB%BB%E5%8A%A1/%E8%AF%AD%E4%B9%89%E8%A7%92%E8%89%B2%E6%A0%87%E6%B3%A8/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="语义角色标注任务"><a href="#语义角色标注任务" class="headerlink" title="语义角色标注任务"></a>语义角色标注任务</h1><p>语义角色标注是一种浅层语义分析技术，以句子为单位，分析句子的<strong>谓词-论元</strong>结构，其理论基础来源于Fillmore(1968)年提出的格语法，不对句子所包含的语义信息进行深入分析。具体来说，语义角色标注的任务就是以句子的谓词为中心，研究句子中各成分与谓词之间的关系，并且用语义角色来描述他们之间的关系。例如如下所示</p><p><img src="/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E4%BB%BB%E5%8A%A1/%E8%AF%AD%E4%B9%89%E8%A7%92%E8%89%B2%E6%A0%87%E6%B3%A8/1.png"></p><p>这个句子中包括：</p><ol><li>谓词 “发表”</li><li>施事 “奥巴马”</li><li>受事 “演说”</li><li>时间 “昨晚”</li><li>地点 “在白宫”</li></ol><p>语义角色标注就是要针对句子中的（核心）谓词来确定其他论元以及其他论元的角色。</p><p>举例：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># LTP输出结果</span><br>[[&#123;<span class="hljs-string">&#x27;predicate&#x27;</span>: <span class="hljs-string">&#x27;发表&#x27;</span>, <span class="hljs-string">&#x27;arguments&#x27;</span>: [(<span class="hljs-string">&#x27;A0&#x27;</span>, <span class="hljs-string">&#x27;奥巴马&#x27;</span>), (<span class="hljs-string">&#x27;ARGM-TMP&#x27;</span>, <span class="hljs-string">&#x27;昨晚&#x27;</span>), (<span class="hljs-string">&#x27;ARGM-LOC&#x27;</span>, <span class="hljs-string">&#x27;在白宫&#x27;</span>), (<span class="hljs-string">&#x27;A1&#x27;</span>, <span class="hljs-string">&#x27;演说&#x27;</span>)]&#125;]]<br></code></pre></td></tr></table></figure><p>标签：</p><p>A0：施事</p><p>A1：受事</p><p>ARGM-TMP：时间</p><p>ARGM-LOC：地点</p><p>更具体的标签：</p><p><img src="/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E4%BB%BB%E5%8A%A1/%E8%AF%AD%E4%B9%89%E8%A7%92%E8%89%B2%E6%A0%87%E6%B3%A8/2.png"></p>]]></content>
     
     
+    <categories>
+      
+      <category>AI ʢᵕᴗᵕʡ</category>
+      
+      <category>NLP</category>
+      
+      <category>NLP基础知识</category>
+      
+      <category>NLP任务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>NLP</tag>
+      
+    </tags>
     
   </entry>
   
@@ -182,7 +235,7 @@
     <link href="/2024/03/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/gensim%E5%BA%93/"/>
     <url>/2024/03/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/gensim%E5%BA%93/</url>
     
-    <content type="html"><![CDATA[<h1 id="gensim库的使用"><a href="#gensim库的使用" class="headerlink" title="gensim库的使用"></a>gensim库的使用</h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="gensim库的使用"><a href="#gensim库的使用" class="headerlink" title="gensim库的使用"></a>gensim库的使用</h1><h2 id="1-文本相似度"><a href="#1-文本相似度" class="headerlink" title="1.文本相似度"></a>1.文本相似度</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> KeyedVectors<br><span class="hljs-keyword">import</span> jieba<br><br><span class="hljs-comment"># 加载预训练的 Word2Vec 模型</span><br>word2vec_model_path = <span class="hljs-string">&#x27;path_to_pretrained_word2vec_model.bin&#x27;</span>  <span class="hljs-comment"># 替换为你的预训练模型路径</span><br>word2vec_model = KeyedVectors.load_word2vec_format(word2vec_model_path, binary=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># 分词函数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">tokenize</span>(<span class="hljs-params">text</span>):<br>    <span class="hljs-keyword">return</span> [word <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> jieba.cut(text)]<br><br><span class="hljs-comment"># 计算两个句子的相似度</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">sentence_similarity</span>(<span class="hljs-params">sentence1, sentence2</span>):<br>    <span class="hljs-comment"># 分词</span><br>    tokens1 = tokenize(sentence1)<br>    tokens2 = tokenize(sentence2)<br><br>    <span class="hljs-comment"># 移除停用词</span><br>    tokens1 = [word <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> tokens1 <span class="hljs-keyword">if</span> word <span class="hljs-keyword">in</span> word2vec_model.vocab]<br>    tokens2 = [word <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> tokens2 <span class="hljs-keyword">if</span> word <span class="hljs-keyword">in</span> word2vec_model.vocab]<br><br>    <span class="hljs-comment"># 计算句子的向量表示</span><br>    vector1 = word2vec_model[tokens1].mean(axis=<span class="hljs-number">0</span>)<br>    vector2 = word2vec_model[tokens2].mean(axis=<span class="hljs-number">0</span>)<br><br>    <span class="hljs-comment"># 计算余弦相似度</span><br>    similarity = word2vec_model.similarity(<span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>)<br><br>    <span class="hljs-keyword">return</span> similarity<br><br><span class="hljs-comment"># 测试句子相似度</span><br>sentence1 = <span class="hljs-string">&#x27;我喜欢吃水果&#x27;</span><br>sentence2 = <span class="hljs-string">&#x27;水果是我喜欢吃的&#x27;</span><br>similarity_score = sentence_similarity(sentence1, sentence2)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;两个句子的相似度：&quot;</span>, similarity_score)<br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
