@@ -1,0 +1,778 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="白色很哇塞">
+  <meta name="keywords" content="发疯，生活">
+  
+    <meta name="description" content="python中matplotlib库的使用☃️">
+<meta property="og:type" content="article">
+<meta property="og:title" content="matplotlib库的使用!☃️">
+<meta property="og:url" content="https://yangchuanzhi20.github.io/2024/04/11/%E7%AE%97%E6%B3%95/python/python%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/python%E4%B8%ADmatplotlib%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
+<meta property="og:description" content="python中matplotlib库的使用☃️">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yangchuanzhi20.github.io/img/82.jpg">
+<meta property="article:published_time" content="2024-04-11T01:08:28.000Z">
+<meta property="article:modified_time" content="2024-04-11T01:49:14.319Z">
+<meta property="article:author" content="白色很哇塞">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/82.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>matplotlib库的使用!☃️ ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yangchuanzhi20.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"♡","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>白色很哇塞ฅ՞•ﻌ•՞ฅ</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/game/">
+                <i class="iconfont icon-switch-fill"></i>
+                <span>游戏</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/82.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">matplotlib库的使用!☃️</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-11 09:08" pubdate>
+          2024年4月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">matplotlib库的使用!☃️</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="matplotlib库的使用"><a href="#matplotlib库的使用" class="headerlink" title="matplotlib库的使用"></a>matplotlib库的使用</h1><h2 id="1-导入"><a href="#1-导入" class="headerlink" title="1.导入"></a>1.导入</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-启用"><a href="#2-启用" class="headerlink" title="2.启用"></a>2.启用</h2><p>在matplotlib中，<code>plt.ion()</code>是一个函数调用，用于启用交互式模式（interactive mode）。交互式模式允许在图形窗口打开时动态更新和修改图形，而不需要重新绘制整个图形。这对于实时数据可视化和动画非常有用。</p>
+<p>在调用<code>plt.ion()</code>之后，使用<code>plt.plot()</code>或其他绘图函数创建的图形将在窗口中立即显示，而不需要等到整个图形创建完成。此外，可以通过修改已创建的图形对象的属性或添加新的绘图元素来动态更新图形，而不必重新绘制整个图形。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-comment"># 启用交互式模式</span><br>plt.ion()<br><br><span class="hljs-comment"># 创建一个空图形窗口</span><br>plt.figure()<br><br><span class="hljs-comment"># 添加一些数据点并实时更新</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):<br>    plt.plot([i], [i], <span class="hljs-string">&#x27;ro&#x27;</span>)  <span class="hljs-comment"># 添加一个红色的点</span><br>    plt.pause(<span class="hljs-number">0.5</span>)  <span class="hljs-comment"># 暂停0.5秒，允许图形更新</span><br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>plt.ion()</code>使得每次调用<code>plt.plot()</code>都会立即更新图形窗口，而不必等到所有点都添加完成。</p>
+<h2 id="3-窗口"><a href="#3-窗口" class="headerlink" title="3.窗口"></a>3.窗口</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">fig = plt.figure(<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<p>这行代码创建了一个新的图形窗口，并将其存储在变量 <code>fig</code> 中。在这个例子中，数字参数 <code>1</code> 是一个可选的参数，表示创建的图形的标识符或编号。如果没有提供这个参数，matplotlib会自动为图形分配一个编号。</p>
+<p>这行代码的效果类似于在交互式模式下调用 <code>plt.figure()</code> 函数来创建一个新的图形窗口，但是它将返回的图形对象存储在变量 <code>fig</code> 中，以便之后可以方便地引用和操作它。</p>
+<p>在创建图形之后，你可以使用 <code>fig</code> 对象进行各种操作，例如添加子图、设置图形属性、保存图形等。示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-comment"># 创建一个新的图形窗口</span><br>fig = plt.figure(<span class="hljs-number">1</span>)<br><br><span class="hljs-comment"># 添加一个子图</span><br>ax = fig.add_subplot(<span class="hljs-number">111</span>)<br>ax.plot([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>])<br><br><span class="hljs-comment"># 设置图形标题</span><br>fig.suptitle(<span class="hljs-string">&#x27;My First Figure&#x27;</span>)<br><br><span class="hljs-comment"># 显示图形</span><br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<p>在这个示例中，<code>fig</code> 对象用于添加子图、设置标题，并最后显示图形。</p>
+<h2 id="4-窗口方法"><a href="#4-窗口方法" class="headerlink" title="4.窗口方法"></a>4.窗口方法</h2><h3 id="1-add-subplot"><a href="#1-add-subplot" class="headerlink" title="1.add_subplot()"></a>1.add_subplot()</h3><p>具体来说，<code>add_subplot()</code> 方法接受三个参数：行数、列数和子图编号。</p>
+<p>例如:参数<code>(223)</code>表示图形窗口将被分割成一个 2x2 的网格，并且当前子图是这个网格中的第三个子图。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">mport matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">from</span> mpl_toolkits.mplot3d <span class="hljs-keyword">import</span> Axes3D<br><br><span class="hljs-comment"># 创建一个新的图形窗口</span><br>fig = plt.figure()<br><br><span class="hljs-comment"># 添加两个 3D 投影的子图</span><br>ax = fig.add_subplot(<span class="hljs-number">223</span>, projection=<span class="hljs-string">&#x27;3d&#x27;</span>)<br>ax1 = fig.add_subplot(<span class="hljs-number">222</span>, projection=<span class="hljs-string">&#x27;3d&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>效果:</p>
+<p><img src="/2024/04/11/%E7%AE%97%E6%B3%95/python/python%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/python%E4%B8%ADmatplotlib%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/1.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-scatter"><a href="#2-scatter" class="headerlink" title="2.scatter()"></a>2.scatter()</h3><p>窗口使用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-comment"># 创建一个新的图形窗口</span><br>plt.figure()<br><br><span class="hljs-comment"># 创建一些数据</span><br>x = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br>y = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>]<br><br><span class="hljs-comment"># 绘制二维散点图</span><br>plt.scatter(x, y)<br></code></pre></td></tr></table></figure>
+
+<p>子图使用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">from</span> mpl_toolkits.mplot3d <span class="hljs-keyword">import</span> Axes3D<br><br><span class="hljs-comment"># 创建一个新的图形窗口</span><br>fig = plt.figure()<br><br><span class="hljs-comment"># 添加一个 3D 投影的子图</span><br>ax = fig.add_subplot(<span class="hljs-number">223</span>, projection=<span class="hljs-string">&#x27;3d&#x27;</span>)<br>ax1 = fig.add_subplot(<span class="hljs-number">222</span>, projection=<span class="hljs-string">&#x27;3d&#x27;</span>)<br><br><span class="hljs-comment"># 绘制三维散点图</span><br>x = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br>y = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>]<br>z = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br>ax.scatter(x, y, z)<br></code></pre></td></tr></table></figure>
+
+<p>效果:</p>
+<p><img src="/2024/04/11/%E7%AE%97%E6%B3%95/python/python%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/python%E4%B8%ADmatplotlib%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/2.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-plot"><a href="#3-plot" class="headerlink" title="3.plot()"></a>3.plot()</h3><p><code>plot</code> 函数用于绘制线图，它可以在二维或三维空间中显示数据点之间的连接关系。线图通常用于显示数据随某个变量（通常是 x 轴变量）的变化情况，例如时间序列数据或者变量之间的函数关系。</p>
+<p>窗口使用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-comment"># 创建一个新的图形窗口</span><br>plt.figure()<br><br><span class="hljs-comment"># 创建一些数据</span><br>x = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br>y = [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>, <span class="hljs-number">16</span>, <span class="hljs-number">25</span>]<br><br><span class="hljs-comment"># 绘制二维线图</span><br>plt.plot(x, y)<br><br><span class="hljs-comment"># 设置图形标题和坐标轴标签</span><br>plt.title(<span class="hljs-string">&#x27;2D Line Plot&#x27;</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;X&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;Y&#x27;</span>)<br><br><span class="hljs-comment"># 显示图形</span><br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<p>子图使用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">from</span> mpl_toolkits.mplot3d <span class="hljs-keyword">import</span> Axes3D<br><br><span class="hljs-comment"># 创建一个新的图形窗口</span><br>fig = plt.figure()<br><br><span class="hljs-comment"># 添加一个 3D 投影的子图</span><br>ax = fig.add_subplot(<span class="hljs-number">111</span>, projection=<span class="hljs-string">&#x27;3d&#x27;</span>)<br><br><span class="hljs-comment"># 绘制三维散点图</span><br>x = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br>y = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>]<br>z = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br>ax.plot(x, y, z)<br><br><span class="hljs-comment"># 设置图形标题和坐标轴标签</span><br>ax.set_title(<span class="hljs-string">&#x27;3D Scatter Plot&#x27;</span>)<br>ax.set_xlabel(<span class="hljs-string">&#x27;X&#x27;</span>)<br>ax.set_ylabel(<span class="hljs-string">&#x27;Y&#x27;</span>)<br>ax.set_zlabel(<span class="hljs-string">&#x27;Z&#x27;</span>)<br><br><span class="hljs-comment"># 显示图形</span><br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<p>效果:</p>
+<p><img src="/2024/04/11/%E7%AE%97%E6%B3%95/python/python%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/python%E4%B8%ADmatplotlib%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/3.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="5-清除"><a href="#5-清除" class="headerlink" title="5.清除"></a>5.清除</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">plt.clf()<br></code></pre></td></tr></table></figure>
+
+<p><code>plt.clf()</code> 是 matplotlib 中的一个函数，用于清除当前图形窗口中的所有绘图元素，使得窗口变为空白。其作用类似于清除画布上的所有内容，相当于 “clear figure”。</p>
+<p>具体而言，<code>plt.clf()</code> 会清除当前活动的图形（active figure），这是通过最近创建或获取的图形来识别的。调用 <code>plt.clf()</code> 后，图形窗口仍然保持打开状态，但其中的内容被清除。</p>
+<p>这在需要更新图形内容或者需要重新绘制时非常有用，而不必关闭窗口并再次创建新的图形。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-comment"># 创建一个新的图形窗口</span><br>plt.figure()<br><br><span class="hljs-comment"># 绘制一些数据</span><br>plt.plot([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>])<br><br><span class="hljs-comment"># 显示图形</span><br>plt.show()<br><br><span class="hljs-comment"># 等待用户交互后清除图形内容</span><br>plt.pause(<span class="hljs-number">3</span>)  <span class="hljs-comment"># 等待3秒钟</span><br>plt.clf()  <span class="hljs-comment"># 清除图形内容</span><br><br><span class="hljs-comment"># 绘制新的数据</span><br>plt.plot([<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>])<br><br><span class="hljs-comment"># 显示更新后的图形</span><br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<h2 id="6-暂停"><a href="#6-暂停" class="headerlink" title="6.暂停"></a>6.暂停</h2><p><code>plt.pause(1)</code> 是一个 matplotlib 函数调用，用于暂停程序执行指定的时间（以秒为单位）。在这段时间内，程序会暂停执行，并且图形窗口将保持显示状态，以便用户有足够的时间观察图形。</p>
+<p>通常，<code>plt.pause()</code> 函数用于交互式图形显示中，特别是在需要动态更新图形或在图形窗口中显示一段时间后等待用户交互时。在这段暂停期间，用户可以浏览图形，然后程序会在指定的时间后继续执行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-comment"># 创建一个新的图形窗口</span><br>plt.figure()<br><br><span class="hljs-comment"># 绘制一些数据</span><br>plt.plot([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>])<br><br><span class="hljs-comment"># 显示图形</span><br>plt.show()<br><br><span class="hljs-comment"># 等待1秒钟</span><br>plt.pause(<span class="hljs-number">1</span>)<br><br><span class="hljs-comment"># 继续执行后续代码</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Continuing execution...&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="7-设置"><a href="#7-设置" class="headerlink" title="7.设置"></a>7.设置</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 设置图形标题和坐标轴标签</span><br>plt.title(<span class="hljs-string">&#x27;Simple Plot&#x27;</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;X&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;Y&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="8-显示"><a href="#8-显示" class="headerlink" title="8.显示"></a>8.显示</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 显示图形</span><br>plt.show()<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/" class="category-chain-item">算法 ʕ≧ᴥ≦ʔ</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/Python/" class="category-chain-item">Python</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95-%CA%95%E2%89%A7%E1%B4%A5%E2%89%A6%CA%94/Python/Python%E5%BA%93/" class="category-chain-item">Python库</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>matplotlib库的使用!☃️</div>
+      <div>https://yangchuanzhi20.github.io/2024/04/11/算法/python/python库的使用/python中matplotlib库的使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>白色很哇塞</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年4月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/hanlp%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" title="hanlp库的使用！🐈">
+                        <span class="hidden-mobile">hanlp库的使用！🐈</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"uchVjxnRW51J2Mm7CW00jbKk-MdYXbMMI","appKey":"salCKdKKc0oJUGN300BBLXeE","path":"window.location.pathname","placeholder":"ʕ ᵔᴥᵔ ʔ","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://uchvjxnr.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/vvd_js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/gongde.js"></script>
+<script src="/js/move.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/js/duration.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

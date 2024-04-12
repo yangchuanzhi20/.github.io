@@ -1,0 +1,751 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="白色很哇塞">
+  <meta name="keywords" content="发疯，生活">
+  
+    <meta name="description" content="详解 Catmull 细分曲面算法🐶">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三维网格细分算法！🐶">
+<meta property="og:url" content="https://yangchuanzhi20.github.io/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
+<meta property="og:description" content="详解 Catmull 细分曲面算法🐶">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yangchuanzhi20.github.io/img/80.jpg">
+<meta property="article:published_time" content="2024-04-09T08:09:34.000Z">
+<meta property="article:modified_time" content="2024-04-11T01:06:49.085Z">
+<meta property="article:author" content="白色很哇塞">
+<meta property="article:tag" content="建模">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/80.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>三维网格细分算法！🐶 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yangchuanzhi20.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"♡","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>白色很哇塞ฅ՞•ﻌ•՞ฅ</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/game/">
+                <i class="iconfont icon-switch-fill"></i>
+                <span>游戏</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/80.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">三维网格细分算法！🐶</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-09 16:09" pubdate>
+          2024年4月9日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          106 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">三维网格细分算法！🐶</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="三维网格细分算法"><a href="#三维网格细分算法" class="headerlink" title="三维网格细分算法"></a>三维网格细分算法</h1><p>在建模的过程中往往需要用到平滑网格的操作，而在目前的大多数建模软件中，最常用到的平滑操作即是Catmull-Clark细分曲面方法。Catmull-Clark主要是针对四边形网格细分的算法，具体的过程如下。</p>
+<h2 id="1-新增点"><a href="#1-新增点" class="headerlink" title="1.新增点"></a>1.新增点</h2><p>新增点包括<strong>面点</strong>和<strong>边点</strong>。</p>
+<h3 id="1-计算面点（face-points"><a href="#1-计算面点（face-points" class="headerlink" title="1.计算面点（face_points)"></a>1.计算面点（face_points)</h3><p>在后面计算边点（edge_points）时需要用到这一步的结果。</p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/2.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-计算边点（edge-points）"><a href="#2-计算边点（edge-points）" class="headerlink" title="2.计算边点（edge_points）"></a>2.计算边点（edge_points）</h3><p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/3.png" srcset="/img/loading.gif" lazyload></p>
+<p>计算边点（edge_point）需要三个步骤，如上图所示</p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/4.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-原始点"><a href="#2-原始点" class="headerlink" title="2.原始点"></a>2.原始点</h2><h3 id="1-计算平均面点（avg-face-points）"><a href="#1-计算平均面点（avg-face-points）" class="headerlink" title="1. 计算平均面点（avg_face_points）"></a>1. 计算平均面点（avg_face_points）</h3><p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/6.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/7.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-计算平均边中点（avg-mid-edges）"><a href="#2-计算平均边中点（avg-mid-edges）" class="headerlink" title="2.计算平均边中点（avg_mid_edges）"></a>2.计算平均边中点（avg_mid_edges）</h3><p><strong>注意，这里计算的是平均边中点，而不是平均边点！</strong></p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/8.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/9.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/10.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-更新原始点"><a href="#3-更新原始点" class="headerlink" title="3.更新原始点"></a>3.更新原始点</h2><p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/11.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-插入新增点"><a href="#4-插入新增点" class="headerlink" title="4.插入新增点"></a>4.插入新增点</h2><p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/12.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="5-源码"><a href="#5-源码" class="headerlink" title="5.源码"></a>5.源码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> mpl_toolkits.mplot3d <span class="hljs-keyword">import</span> axes3d<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> time<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">center_point</span>(<span class="hljs-params">p1, p2</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    returns a point in the center of the</span><br><span class="hljs-string">    segment ended by points p1 and p2</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    cp = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):<br>        cp.append((p1[i] + p2[i]) / <span class="hljs-number">2</span>)<br><br>    <span class="hljs-keyword">return</span> cp<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">sum_point</span>(<span class="hljs-params">p1, p2</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    adds points p1 and p2</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    sp = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):<br>        sp.append(p1[i] + p2[i])<br><br>    <span class="hljs-keyword">return</span> sp<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">div_point</span>(<span class="hljs-params">p, d</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    divide point p by d</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    sp = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):<br>        sp.append(p[i] / d)<br><br>    <span class="hljs-keyword">return</span> sp<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">mul_point</span>(<span class="hljs-params">p, m</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    multiply point p by m</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    sp = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):<br>        sp.append(p[i] * m)<br><br>    <span class="hljs-keyword">return</span> sp<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_face_points</span>(<span class="hljs-params">input_points, input_faces</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    From http://rosettacode.org/wiki/Catmull%E2%80%93Clark_subdivision_surface</span><br><span class="hljs-string"></span><br><span class="hljs-string">    1. for each face, a face point is created which is the average of all the points of the face.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    <span class="hljs-comment"># 3 dimensional space</span><br><br>    NUM_DIMENSIONS = <span class="hljs-number">3</span><br><br>    <span class="hljs-comment"># face_points will have one point for each face</span><br><br>    face_points = []<br><br>    <span class="hljs-keyword">for</span> curr_face <span class="hljs-keyword">in</span> input_faces:<br>        face_point = [<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>]<br>        <span class="hljs-keyword">for</span> curr_point_index <span class="hljs-keyword">in</span> curr_face:<br>            curr_point = input_points[curr_point_index]<br>            <span class="hljs-comment"># add curr_point to face_point</span><br>            <span class="hljs-comment"># will divide later</span><br>            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(NUM_DIMENSIONS):<br>                face_point[i] += curr_point[i]<br>        <span class="hljs-comment"># divide by number of points for average</span><br>        num_points = <span class="hljs-built_in">len</span>(curr_face)<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(NUM_DIMENSIONS):<br>            face_point[i] /= num_points<br>        face_points.append(face_point)<br><br>    <span class="hljs-keyword">return</span> face_points<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_edges_faces</span>(<span class="hljs-params">input_points, input_faces</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Get list of edges and the one or two adjacent faces in a list.</span><br><span class="hljs-string">    also get center point of edge</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Each edge would be [pointnum_1, pointnum_2, facenum_1, facenum_2, center]</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    <span class="hljs-comment"># will have [pointnum_1, pointnum_2, facenum]</span><br><br>    edges = []<br><br>    <span class="hljs-comment"># get edges from each face</span><br><br>    <span class="hljs-keyword">for</span> facenum <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(input_faces)):<br>        face = input_faces[facenum]<br>        num_points = <span class="hljs-built_in">len</span>(face)<br>        <span class="hljs-comment"># loop over index into face</span><br>        <span class="hljs-keyword">for</span> pointindex <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_points):<br>            <span class="hljs-comment"># if not last point then edge is curr point and next point</span><br>            <span class="hljs-keyword">if</span> pointindex &lt; num_points - <span class="hljs-number">1</span>:<br>                pointnum_1 = face[pointindex]<br>                pointnum_2 = face[pointindex + <span class="hljs-number">1</span>]<br>            <span class="hljs-keyword">else</span>:<br>                <span class="hljs-comment"># for last point edge is curr point and first point</span><br>                pointnum_1 = face[pointindex]<br>                pointnum_2 = face[<span class="hljs-number">0</span>]<br>            <span class="hljs-comment"># order points in edge by lowest point number</span><br>            <span class="hljs-keyword">if</span> pointnum_1 &gt; pointnum_2:<br>                temp = pointnum_1<br>                pointnum_1 = pointnum_2<br>                pointnum_2 = temp<br>            edges.append([pointnum_1, pointnum_2, facenum])<br><br>    <span class="hljs-comment"># sort edges by pointnum_1, pointnum_2, facenum</span><br><br>    edges = <span class="hljs-built_in">sorted</span>(edges)<br><br>    <span class="hljs-comment"># merge edges with 2 adjacent faces</span><br>    <span class="hljs-comment"># [pointnum_1, pointnum_2, facenum_1, facenum_2] or</span><br>    <span class="hljs-comment"># [pointnum_1, pointnum_2, facenum_1, None]</span><br><br>    num_edges = <span class="hljs-built_in">len</span>(edges)<br>    eindex = <span class="hljs-number">0</span><br>    merged_edges = []<br><br>    <span class="hljs-keyword">while</span> eindex &lt; num_edges:<br>        e1 = edges[eindex]<br>        <span class="hljs-comment"># check if not last edge</span><br>        <span class="hljs-keyword">if</span> eindex &lt; num_edges - <span class="hljs-number">1</span>:<br>            e2 = edges[eindex + <span class="hljs-number">1</span>]<br>            <span class="hljs-keyword">if</span> e1[<span class="hljs-number">0</span>] == e2[<span class="hljs-number">0</span>] <span class="hljs-keyword">and</span> e1[<span class="hljs-number">1</span>] == e2[<span class="hljs-number">1</span>]:<br>                merged_edges.append([e1[<span class="hljs-number">0</span>], e1[<span class="hljs-number">1</span>], e1[<span class="hljs-number">2</span>], e2[<span class="hljs-number">2</span>]])<br>                eindex += <span class="hljs-number">2</span><br>            <span class="hljs-keyword">else</span>:<br>                merged_edges.append([e1[<span class="hljs-number">0</span>], e1[<span class="hljs-number">1</span>], e1[<span class="hljs-number">2</span>], <span class="hljs-literal">None</span>])<br>                eindex += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">else</span>:<br>            merged_edges.append([e1[<span class="hljs-number">0</span>], e1[<span class="hljs-number">1</span>], e1[<span class="hljs-number">2</span>], <span class="hljs-literal">None</span>])<br>            eindex += <span class="hljs-number">1</span><br><br>    <span class="hljs-comment"># add edge centers</span><br><br>    edges_centers = []<br><br>    <span class="hljs-keyword">for</span> me <span class="hljs-keyword">in</span> merged_edges:<br>        p1 = input_points[me[<span class="hljs-number">0</span>]]<br>        p2 = input_points[me[<span class="hljs-number">1</span>]]<br>        cp = center_point(p1, p2)<br>        edges_centers.append(me + [cp])<br><br>    <span class="hljs-keyword">return</span> edges_centers<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_edge_points</span>(<span class="hljs-params">input_points, edges_faces, face_points</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    for each edge, an edge point is created which is the average</span><br><span class="hljs-string">    between the center of the edge and the center of the segment made</span><br><span class="hljs-string">    with the face points of the two adjacent faces.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    edge_points = []<br><br>    <span class="hljs-keyword">for</span> edge <span class="hljs-keyword">in</span> edges_faces:<br>        <span class="hljs-comment"># get center of edge</span><br>        cp = edge[<span class="hljs-number">4</span>]<br>        <span class="hljs-comment"># get center of two facepoints</span><br>        fp1 = face_points[edge[<span class="hljs-number">2</span>]]<br>        <span class="hljs-comment"># if not two faces just use one facepoint</span><br>        <span class="hljs-comment"># should not happen for solid like a cube</span><br>        <span class="hljs-keyword">if</span> edge[<span class="hljs-number">3</span>] == <span class="hljs-literal">None</span>:<br>            fp2 = fp1<br>        <span class="hljs-keyword">else</span>:<br>            fp2 = face_points[edge[<span class="hljs-number">3</span>]]<br>        cfp = center_point(fp1, fp2)<br>        <span class="hljs-comment"># get average between center of edge and</span><br>        <span class="hljs-comment"># center of facepoints</span><br>        edge_point = center_point(cp, cfp)<br>        edge_points.append(edge_point)<br><br>    <span class="hljs-keyword">return</span> edge_points<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_avg_face_points</span>(<span class="hljs-params">input_points, input_faces, face_points</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    for each point calculate</span><br><span class="hljs-string"></span><br><span class="hljs-string">    the average of the face points of the faces the point belongs to (avg_face_points)</span><br><span class="hljs-string"></span><br><span class="hljs-string">    create a list of lists of two numbers [facepoint_sum, num_points] by going through the</span><br><span class="hljs-string">    points in all the faces.</span><br><span class="hljs-string"></span><br><span class="hljs-string">    then create the avg_face_points list of point by dividing point_sum (x, y, z) by num_points</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    <span class="hljs-comment"># initialize list with [[0.0, 0.0, 0.0], 0]</span><br><br>    num_points = <span class="hljs-built_in">len</span>(input_points)<br><br>    temp_points = []<br><br>    <span class="hljs-keyword">for</span> pointnum <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_points):<br>        temp_points.append([[<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>], <span class="hljs-number">0</span>])<br><br>    <span class="hljs-comment"># loop through faces updating temp_points</span><br><br>    <span class="hljs-keyword">for</span> facenum <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(input_faces)):<br>        fp = face_points[facenum]<br>        <span class="hljs-keyword">for</span> pointnum <span class="hljs-keyword">in</span> input_faces[facenum]:<br>            tp = temp_points[pointnum][<span class="hljs-number">0</span>]<br>            temp_points[pointnum][<span class="hljs-number">0</span>] = sum_point(tp, fp)<br>            temp_points[pointnum][<span class="hljs-number">1</span>] += <span class="hljs-number">1</span><br>    <span class="hljs-comment"># 以上统计每个点属于多少个面，并将每个面点求和，在接下来求平均</span><br>    <span class="hljs-comment"># divide to create avg_face_points</span><br><br>    avg_face_points = []<br><br>    <span class="hljs-keyword">for</span> tp <span class="hljs-keyword">in</span> temp_points:<br>        afp = div_point(tp[<span class="hljs-number">0</span>], tp[<span class="hljs-number">1</span>])<br>        avg_face_points.append(afp)<br><br>    <span class="hljs-keyword">return</span> avg_face_points<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_avg_mid_edges</span>(<span class="hljs-params">input_points, edges_faces</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    the average of the centers of edges the point belongs to (avg_mid_edges)</span><br><span class="hljs-string"></span><br><span class="hljs-string">    create list with entry for each point</span><br><span class="hljs-string">    each entry has two elements. one is a point that is the sum of the centers of the edges</span><br><span class="hljs-string">    and the other is the number of edges. after going through all edges divide by</span><br><span class="hljs-string">    number of edges.</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    <span class="hljs-comment"># initialize list with [[0.0, 0.0, 0.0], 0]</span><br><br>    num_points = <span class="hljs-built_in">len</span>(input_points)<br><br>    temp_points = []<br><br>    <span class="hljs-keyword">for</span> pointnum <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_points):<br>        temp_points.append([[<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>], <span class="hljs-number">0</span>])<br><br>    <span class="hljs-comment"># go through edges_faces using center updating each point</span><br><br>    <span class="hljs-keyword">for</span> edge <span class="hljs-keyword">in</span> edges_faces:<br>        cp = edge[<span class="hljs-number">4</span>]<br>        <span class="hljs-keyword">for</span> pointnum <span class="hljs-keyword">in</span> [edge[<span class="hljs-number">0</span>], edge[<span class="hljs-number">1</span>]]:<br>            tp = temp_points[pointnum][<span class="hljs-number">0</span>]<br>            temp_points[pointnum][<span class="hljs-number">0</span>] = sum_point(tp, cp)<br>            temp_points[pointnum][<span class="hljs-number">1</span>] += <span class="hljs-number">1</span><br><br>    <span class="hljs-comment"># divide out number of points to get average</span><br><br>    avg_mid_edges = []<br><br>    <span class="hljs-keyword">for</span> tp <span class="hljs-keyword">in</span> temp_points:<br>        ame = div_point(tp[<span class="hljs-number">0</span>], tp[<span class="hljs-number">1</span>])<br>        avg_mid_edges.append(ame)<br><br>    <span class="hljs-keyword">return</span> avg_mid_edges<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_points_faces</span>(<span class="hljs-params">input_points, input_faces</span>):<br>    <span class="hljs-comment"># initialize list with 0</span><br><br>    num_points = <span class="hljs-built_in">len</span>(input_points)<br><br>    points_faces = []<br><br>    <span class="hljs-keyword">for</span> pointnum <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_points):<br>        points_faces.append(<span class="hljs-number">0</span>)<br><br>    <span class="hljs-comment"># loop through faces updating points_faces</span><br><br>    <span class="hljs-keyword">for</span> facenum <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(input_faces)):<br>        <span class="hljs-keyword">for</span> pointnum <span class="hljs-keyword">in</span> input_faces[facenum]:<br>            points_faces[pointnum] += <span class="hljs-number">1</span><br><br>    <span class="hljs-keyword">return</span> points_faces<br><br><br><span class="hljs-comment"># 统计每个点属于多少个面</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_new_points</span>(<span class="hljs-params">input_points, points_faces, avg_face_points, avg_mid_edges</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    m1 = (n - 3.0) / n</span><br><span class="hljs-string">    m2 = 1.0 / n</span><br><span class="hljs-string">    m3 = 2.0 / n</span><br><span class="hljs-string">    new_coords = (m1 * old_coords)</span><br><span class="hljs-string">               + (m2 * avg_face_points)</span><br><span class="hljs-string">               + (m3 * avg_mid_edges)</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    new_points = []<br><br>    <span class="hljs-keyword">for</span> pointnum <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(input_points)):<br>        n = points_faces[pointnum]<br>        m1 = (n - <span class="hljs-number">3.0</span>) / n<br>        m2 = <span class="hljs-number">1.0</span> / n<br>        m3 = <span class="hljs-number">2.0</span> / n<br>        old_coords = input_points[pointnum]<br>        p1 = mul_point(old_coords, m1)<br>        afp = avg_face_points[pointnum]<br>        p2 = mul_point(afp, m2)<br>        ame = avg_mid_edges[pointnum]<br>        p3 = mul_point(ame, m3)<br>        p4 = sum_point(p1, p2)<br>        new_coords = sum_point(p4, p3)<br><br>        new_points.append(new_coords)<br><br>    <span class="hljs-keyword">return</span> new_points<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">switch_nums</span>(<span class="hljs-params">point_nums</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Returns tuple of point numbers</span><br><span class="hljs-string">    sorted least to most</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> point_nums[<span class="hljs-number">0</span>] &lt; point_nums[<span class="hljs-number">1</span>]:<br>        <span class="hljs-keyword">return</span> point_nums<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> (point_nums[<span class="hljs-number">1</span>], point_nums[<span class="hljs-number">0</span>])<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">cmc_subdiv</span>(<span class="hljs-params">input_points, input_faces</span>):<br>    <span class="hljs-comment"># 1. for each face, a face point is created which is the average of all the points of the face.</span><br>    <span class="hljs-comment"># each entry in the returned list is a point (x, y, z).</span><br><br>    face_points = get_face_points(input_points, input_faces)<br><br>    <span class="hljs-comment"># get list of edges with 1 or 2 adjacent faces</span><br>    <span class="hljs-comment"># [pointnum_1, pointnum_2, facenum_1, facenum_2, center] or</span><br>    <span class="hljs-comment"># [pointnum_1, pointnum_2, facenum_1, None, center]</span><br><br>    edges_faces = get_edges_faces(input_points, input_faces)<br><br>    <span class="hljs-comment"># get edge points, a list of points</span><br><br>    edge_points = get_edge_points(input_points, edges_faces, face_points)<br><br>    <span class="hljs-comment"># the average of the face points of the faces the point belongs to (avg_face_points)</span><br><br>    avg_face_points = get_avg_face_points(input_points, input_faces, face_points)<br><br>    <span class="hljs-comment"># the average of the centers of edges the point belongs to (avg_mid_edges)</span><br><br>    avg_mid_edges = get_avg_mid_edges(input_points, edges_faces)<br><br>    <span class="hljs-comment"># how many faces a point belongs to</span><br><br>    points_faces = get_points_faces(input_points, input_faces)<br><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    m1 = (n - 3) / n</span><br><span class="hljs-string">    m2 = 1 / n</span><br><span class="hljs-string">    m3 = 2 / n</span><br><span class="hljs-string">    new_coords = (m1 * old_coords)</span><br><span class="hljs-string">               + (m2 * avg_face_points)</span><br><span class="hljs-string">               + (m3 * avg_mid_edges)</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    new_points = get_new_points(input_points, points_faces, avg_face_points, avg_mid_edges)<br><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Then each face is replaced by new faces made with the new points,</span><br><span class="hljs-string"></span><br><span class="hljs-string">    for a triangle face (a,b,c):</span><br><span class="hljs-string">       (a, edge_point ab, face_point abc, edge_point ca)</span><br><span class="hljs-string">       (b, edge_point bc, face_point abc, edge_point ab)</span><br><span class="hljs-string">       (c, edge_point ca, face_point abc, edge_point bc)</span><br><span class="hljs-string"></span><br><span class="hljs-string">    for a quad face (a,b,c,d):</span><br><span class="hljs-string">       (a, edge_point ab, face_point abcd, edge_point da)</span><br><span class="hljs-string">       (b, edge_point bc, face_point abcd, edge_point ab)</span><br><span class="hljs-string">       (c, edge_point cd, face_point abcd, edge_point bc)</span><br><span class="hljs-string">       (d, edge_point da, face_point abcd, edge_point cd)</span><br><span class="hljs-string"></span><br><span class="hljs-string">    face_points is a list indexed by face number so that is</span><br><span class="hljs-string">    easy to get.</span><br><span class="hljs-string"></span><br><span class="hljs-string">    edge_points is a list indexed by the edge number</span><br><span class="hljs-string">    which is an index into edges_faces.</span><br><span class="hljs-string"></span><br><span class="hljs-string">    need to add face_points and edge points to </span><br><span class="hljs-string">    new_points and get index into each.</span><br><span class="hljs-string"></span><br><span class="hljs-string">    then create two new structures</span><br><span class="hljs-string"></span><br><span class="hljs-string">    face_point_nums - list indexes by facenum</span><br><span class="hljs-string">    whose value is the index into new_points</span><br><span class="hljs-string"></span><br><span class="hljs-string">    edge_point num - dictionary with key (pointnum_1, pointnum_2)</span><br><span class="hljs-string">    and value is index into new_points</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    <span class="hljs-comment"># add face points to new_points</span><br><br>    face_point_nums = []<br><br>    <span class="hljs-comment"># point num after next append to new_points</span><br>    next_pointnum = <span class="hljs-built_in">len</span>(new_points)<br><br>    <span class="hljs-keyword">for</span> face_point <span class="hljs-keyword">in</span> face_points:<br>        new_points.append(face_point)<br>        face_point_nums.append(next_pointnum)<br>        next_pointnum += <span class="hljs-number">1</span><br><br>    <span class="hljs-comment"># add edge points to new_points</span><br><br>    edge_point_nums = <span class="hljs-built_in">dict</span>()<br><br>    <span class="hljs-keyword">for</span> edgenum <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(edges_faces)):<br>        pointnum_1 = edges_faces[edgenum][<span class="hljs-number">0</span>]<br>        pointnum_2 = edges_faces[edgenum][<span class="hljs-number">1</span>]<br>        edge_point = edge_points[edgenum]<br>        new_points.append(edge_point)<br>        edge_point_nums[(pointnum_1, pointnum_2)] = next_pointnum<br>        next_pointnum += <span class="hljs-number">1</span><br><br>    <span class="hljs-comment"># new_points now has the points to output. Need new</span><br>    <span class="hljs-comment"># faces</span><br><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    just doing this case for now:</span><br><span class="hljs-string"></span><br><span class="hljs-string">    for a quad face (a,b,c,d):</span><br><span class="hljs-string">       (a, edge_point ab, face_point abcd, edge_point da)</span><br><span class="hljs-string">       (b, edge_point bc, face_point abcd, edge_point ab)</span><br><span class="hljs-string">       (c, edge_point cd, face_point abcd, edge_point bc)</span><br><span class="hljs-string">       (d, edge_point da, face_point abcd, edge_point cd)</span><br><span class="hljs-string"></span><br><span class="hljs-string">    new_faces will be a list of lists where the elements are like this:</span><br><span class="hljs-string"></span><br><span class="hljs-string">    [pointnum_1, pointnum_2, pointnum_3, pointnum_4]</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    new_faces = []<br><br>    <span class="hljs-keyword">for</span> oldfacenum <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(input_faces)):<br>        oldface = input_faces[oldfacenum]<br>        <span class="hljs-comment"># 4 point face</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(oldface) == <span class="hljs-number">4</span>:<br>            a = oldface[<span class="hljs-number">0</span>]<br>            b = oldface[<span class="hljs-number">1</span>]<br>            c = oldface[<span class="hljs-number">2</span>]<br>            d = oldface[<span class="hljs-number">3</span>]<br>            face_point_abcd = face_point_nums[oldfacenum]<br>            edge_point_ab = edge_point_nums[switch_nums((a, b))]<br>            edge_point_da = edge_point_nums[switch_nums((d, a))]<br>            edge_point_bc = edge_point_nums[switch_nums((b, c))]<br>            edge_point_cd = edge_point_nums[switch_nums((c, d))]<br>            new_faces.append((a, edge_point_ab, face_point_abcd, edge_point_da))<br>            new_faces.append((b, edge_point_bc, face_point_abcd, edge_point_ab))<br>            new_faces.append((c, edge_point_cd, face_point_abcd, edge_point_bc))<br>            new_faces.append((d, edge_point_da, face_point_abcd, edge_point_cd))<br><br>    <span class="hljs-keyword">return</span> new_points, new_faces<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">graph_output</span>(<span class="hljs-params">output_points, output_faces, fig</span>):<br>    ax = fig.add_subplot(<span class="hljs-number">111</span>, projection=<span class="hljs-string">&#x27;3d&#x27;</span>)<br><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Plot each face</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    <span class="hljs-keyword">for</span> facenum <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(output_faces)):<br>        curr_face = output_faces[facenum]<br>        xcurr = []<br>        ycurr = []<br>        zcurr = []<br>        <span class="hljs-keyword">for</span> pointnum <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(curr_face)):<br>            xcurr.append(output_points[curr_face[pointnum]][<span class="hljs-number">0</span>])<br>            ycurr.append(output_points[curr_face[pointnum]][<span class="hljs-number">1</span>])<br>            zcurr.append(output_points[curr_face[pointnum]][<span class="hljs-number">2</span>])<br>        xcurr.append(output_points[curr_face[<span class="hljs-number">0</span>]][<span class="hljs-number">0</span>])<br>        ycurr.append(output_points[curr_face[<span class="hljs-number">0</span>]][<span class="hljs-number">1</span>])<br>        zcurr.append(output_points[curr_face[<span class="hljs-number">0</span>]][<span class="hljs-number">2</span>])<br><br>        ax.plot(xcurr, ycurr, zcurr, color=<span class="hljs-string">&#x27;b&#x27;</span>)<br><br><br><span class="hljs-comment"># cube</span><br><br>input_points = [<br>    [-<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>],<br>    [-<span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>],<br>    [<span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>],<br>    [<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>],<br>    [<span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>],<br>    [<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>],<br>    [-<span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>],<br>    [-<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>]<br>]<br><br>input_faces = [<br>    [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],<br>    [<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>],<br>    [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>],<br>    [<span class="hljs-number">7</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>],<br>    [<span class="hljs-number">7</span>, <span class="hljs-number">6</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>],<br>    [<span class="hljs-number">6</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>],<br>]<br><br>iterations = <span class="hljs-number">7</span><br><br>plt.ion()<br>output_points, output_faces = input_points, input_faces<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(iterations):<br>    fig = plt.figure(<span class="hljs-number">1</span>)<br>    plt.clf()<br>    graph_output(output_points, output_faces, fig)<br>    output_points, output_faces = cmc_subdiv(output_points, output_faces)<br><br>    plt.pause(<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="6-效果"><a href="#6-效果" class="headerlink" title="6.效果"></a>6.效果</h2><p>输入数据为一个立方体，包含八个顶点坐标，对其进行细分。<br>输入数据：</p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/13.png" srcset="/img/loading.gif" lazyload></p>
+<p>细分1次的结果：</p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/14.png" srcset="/img/loading.gif" lazyload></p>
+<p>细分2次的结果：</p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/15.png" srcset="/img/loading.gif" lazyload></p>
+<p>细分4次的结果：</p>
+<p><img src="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/16.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BB%BA%E6%A8%A1-%CA%95%E0%B0%A5%E0%B1%AA%E0%B0%A5%CA%94/" class="category-chain-item">建模 ʕథ౪థʔ</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%BB%BA%E6%A8%A1-%CA%95%E0%B0%A5%E0%B1%AA%E0%B0%A5%CA%94/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/" class="category-chain-item">建模算法</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BB%BA%E6%A8%A1/" class="print-no-link">#建模</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>三维网格细分算法！🐶</div>
+      <div>https://yangchuanzhi20.github.io/2024/04/09/建模/建模算法/三维网格细分算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>白色很哇塞</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年4月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/hanlp%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" title="hanlp库的使用！🐈">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">hanlp库的使用！🐈</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E4%BB%BB%E5%8A%A1/%E8%AF%AD%E4%B9%89%E4%BE%9D%E5%AD%98%E5%88%86%E6%9E%90%E4%BB%BB%E5%8A%A1/" title="语义依存分析任务！🐯">
+                        <span class="hidden-mobile">语义依存分析任务！🐯</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"uchVjxnRW51J2Mm7CW00jbKk-MdYXbMMI","appKey":"salCKdKKc0oJUGN300BBLXeE","path":"window.location.pathname","placeholder":"ʕ ᵔᴥᵔ ʔ","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://uchvjxnr.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/vvd_js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/gongde.js"></script>
+<script src="/js/move.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/js/duration.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

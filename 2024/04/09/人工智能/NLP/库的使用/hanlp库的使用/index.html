@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="白色很哇塞">
+  <meta name="keywords" content="发疯，生活">
+  
+    <meta name="description" content="NLP中hanlp库的使用🐈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hanlp库的使用！🐈">
+<meta property="og:url" content="https://yangchuanzhi20.github.io/2024/04/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/hanlp%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
+<meta property="og:description" content="NLP中hanlp库的使用🐈">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yangchuanzhi20.github.io/img/81.jpg">
+<meta property="article:published_time" content="2024-04-09T08:25:29.000Z">
+<meta property="article:modified_time" content="2024-04-11T14:05:17.179Z">
+<meta property="article:author" content="白色很哇塞">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/81.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>hanlp库的使用！🐈 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yangchuanzhi20.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"♡","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>白色很哇塞ฅ՞•ﻌ•՞ฅ</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/game/">
+                <i class="iconfont icon-switch-fill"></i>
+                <span>游戏</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/81.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">hanlp库的使用！🐈</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-09 16:25" pubdate>
+          2024年4月9日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          74 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">hanlp库的使用！🐈</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="hanlp库的使用"><a href="#hanlp库的使用" class="headerlink" title="hanlp库的使用"></a>hanlp库的使用</h1><h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pip install hanlp<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-1-多任务模型"><a href="#1-1-多任务模型" class="headerlink" title="1.1 多任务模型"></a>1.1 多任务模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hanlp<br>HanLP = hanlp.load(hanlp.pretrained.mtl.CLOSE_TOK_POS_NER_SRL_DEP_SDP_CON_ELECTRA_SMALL_ZH) <span class="hljs-comment"># 世界最大中文语料库</span><br></code></pre></td></tr></table></figure>
+
+<p>通过代码将模型下载到本地</p>
+<p><img src="/2024/04/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/hanlp%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>将模型移动到本地调用的位置</p>
+<p><img src="/2024/04/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/hanlp%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/2.png" srcset="/img/loading.gif" lazyload></p>
+<p>模型库：<a target="_blank" rel="noopener" href="https://hanlp.hankcs.com/docs/api/hanlp/pretrained/mtl.html">https://hanlp.hankcs.com/docs/api/hanlp/pretrained/mtl.html</a></p>
+<h3 id="1-2-单任务模型"><a href="#1-2-单任务模型" class="headerlink" title="1.2 单任务模型"></a>1.2 单任务模型</h3><p>多任务学习的优势在于速度和显存，然而精度往往不如单任务模型。所以，HanLP预训练了许多单任务模型并设计了优雅的<a target="_blank" rel="noopener" href="https://hanlp.hankcs.com/docs/api/hanlp/components/pipeline.html#hanlp.components.pipeline.Pipeline">流水线模式</a>将其组装起来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hanlp<br>HanLP = hanlp.pipeline() \<br>    .append(hanlp.utils.rules.split_sentence, output_key=<span class="hljs-string">&#x27;sentences&#x27;</span>) \<br>    .append(hanlp.load(<span class="hljs-string">&#x27;FINE_ELECTRA_SMALL_ZH&#x27;</span>), output_key=<span class="hljs-string">&#x27;tok&#x27;</span>) \<br>    .append(hanlp.load(<span class="hljs-string">&#x27;CTB9_POS_ELECTRA_SMALL&#x27;</span>), output_key=<span class="hljs-string">&#x27;pos&#x27;</span>) \<br>    .append(hanlp.load(<span class="hljs-string">&#x27;MSRA_NER_ELECTRA_SMALL_ZH&#x27;</span>), output_key=<span class="hljs-string">&#x27;ner&#x27;</span>, input_key=<span class="hljs-string">&#x27;tok&#x27;</span>) \<br>    .append(hanlp.load(<span class="hljs-string">&#x27;CTB9_DEP_ELECTRA_SMALL&#x27;</span>, conll=<span class="hljs-number">0</span>), output_key=<span class="hljs-string">&#x27;dep&#x27;</span>, input_key=<span class="hljs-string">&#x27;tok&#x27;</span>)\<br>    .append(hanlp.load(<span class="hljs-string">&#x27;CTB9_CON_ELECTRA_SMALL&#x27;</span>), output_key=<span class="hljs-string">&#x27;con&#x27;</span>, input_key=<span class="hljs-string">&#x27;tok&#x27;</span>)<br>HanLP(<span class="hljs-string">&#x27;2021年HanLPv2.1为生产环境带来次世代最先进的多语种NLP技术。阿婆主来到北京立方庭参观自然语义科技公司。&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>同多任务模型，将单任务模型保存到本地。</p>
+<p><img src="/2024/04/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/hanlp%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/3.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-调用"><a href="#2-调用" class="headerlink" title="2.调用"></a>2.调用</h2><h3 id="2-1-多任务"><a href="#2-1-多任务" class="headerlink" title="2.1 多任务"></a>2.1 多任务</h3><h4 id="2-1-1-批量分析"><a href="#2-1-1-批量分析" class="headerlink" title="2.1.1 批量分析"></a>2.1.1 批量分析</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">doc = HanLP([<span class="hljs-string">&#x27;2021年HanLPv2.1为生产环境带来次世代最先进的多语种NLP技术。&#x27;</span>, <span class="hljs-string">&#x27;阿婆主来到北京立方庭参观自然语义科技公司。&#x27;</span>])<br><span class="hljs-built_in">print</span>(doc)<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-1-2-可视化"><a href="#2-1-2-可视化" class="headerlink" title="2.1.2 可视化"></a>2.1.2 可视化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">doc.pretty_print()<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-1-3-指定任务"><a href="#2-1-3-指定任务" class="headerlink" title="2.1.3 指定任务"></a>2.1.3 指定任务</h4><p><strong>分词：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">HanLP(<span class="hljs-string">&#x27;阿婆主来到北京立方庭参观自然语义科技公司。&#x27;</span>, tasks=<span class="hljs-string">&#x27;tok&#x27;</span>).pretty_print()<br></code></pre></td></tr></table></figure>
+
+<p><strong>粗颗粒度分词：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">HanLP(<span class="hljs-string">&#x27;阿婆主来到北京立方庭参观自然语义科技公司。&#x27;</span>, tasks=<span class="hljs-string">&#x27;tok/coarse&#x27;</span>).pretty_print()<br></code></pre></td></tr></table></figure>
+
+<p><strong>分词和PKU词性标注：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">HanLP(<span class="hljs-string">&#x27;阿婆主来到北京立方庭参观自然语义科技公司。&#x27;</span>, tasks=<span class="hljs-string">&#x27;pos/pku&#x27;</span>).pretty_print()<br></code></pre></td></tr></table></figure>
+
+<p><strong>粗颗粒度分词和PKU词性标注：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">HanLP(<span class="hljs-string">&#x27;阿婆主来到北京立方庭参观自然语义科技公司。&#x27;</span>, tasks=[<span class="hljs-string">&#x27;tok/coarse&#x27;</span>, <span class="hljs-string">&#x27;pos/pku&#x27;</span>], skip_tasks=<span class="hljs-string">&#x27;tok/fine&#x27;</span>).pretty_print()<br></code></pre></td></tr></table></figure>
+
+<p><strong>分词和MSRA标准NER：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">HanLP(<span class="hljs-string">&#x27;阿婆主来到北京立方庭参观自然语义科技公司。&#x27;</span>, tasks=<span class="hljs-string">&#x27;ner/msra&#x27;</span>).pretty_print()<br></code></pre></td></tr></table></figure>
+
+<p><strong>分词、词性标注和依存句法分析：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">doc = HanLP(<span class="hljs-string">&#x27;阿婆主来到北京立方庭参观自然语义科技公司。&#x27;</span>, tasks=[<span class="hljs-string">&#x27;pos&#x27;</span>, <span class="hljs-string">&#x27;dep&#x27;</span>])<br>doc.pretty_print()<br><br>转换为CoNLL格式：<br><span class="hljs-built_in">print</span>(doc.to_conll())<br></code></pre></td></tr></table></figure>
+
+<p><strong>分词、词性标注和短语成分分析：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">doc = HanLP(<span class="hljs-string">&#x27;阿婆主来到北京立方庭参观自然语义科技公司。&#x27;</span>, tasks=[<span class="hljs-string">&#x27;pos&#x27;</span>, <span class="hljs-string">&#x27;con&#x27;</span>])<br>doc.pretty_print()<br><br>将短语结构树以bracketed形式打印<br><span class="hljs-built_in">print</span>(doc[<span class="hljs-string">&#x27;con&#x27;</span>])<br></code></pre></td></tr></table></figure>
+
+<p><strong>语义依存分析：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">sdp = hanlp.load(<span class="hljs-string">&#x27;SEMEVAL16_ALL_ELECTRA_SMALL_ZH&#x27;</span>)<br>graph = sdp([<span class="hljs-string">&quot;2021年&quot;</span>, <span class="hljs-string">&quot;HanLPv2.1&quot;</span>, <span class="hljs-string">&quot;为&quot;</span>, <span class="hljs-string">&quot;生产&quot;</span>, <span class="hljs-string">&quot;环境&quot;</span>, <span class="hljs-string">&quot;带来&quot;</span>, <span class="hljs-string">&quot;次&quot;</span>, <span class="hljs-string">&quot;世代&quot;</span>, <span class="hljs-string">&quot;最&quot;</span>, <span class="hljs-string">&quot;先进&quot;</span>, <span class="hljs-string">&quot;的&quot;</span>, <span class="hljs-string">&quot;多&quot;</span>, <span class="hljs-string">&quot;语种&quot;</span>, <span class="hljs-string">&quot;NLP&quot;</span>, <span class="hljs-string">&quot;技术&quot;</span>, <span class="hljs-string">&quot;。&quot;</span>])<br><span class="hljs-built_in">print</span>(graph)<br><br>或者：<br><span class="hljs-keyword">import</span> hanlp<br>HanLP = hanlp.pipeline() \<br>    .append(hanlp.utils.rules.split_sentence, output_key=<span class="hljs-string">&#x27;sentences&#x27;</span>).append(hanlp.load(<span class="hljs-string">&#x27;D:/Python/new_pytorch/HanLP/single_task/tok/fine_electra_small&#x27;</span>), output_key=<span class="hljs-string">&#x27;tok&#x27;</span>)<br>tok = HanLP(<span class="hljs-string">&#x27;2021年HanLPv2.1为生产环境带来次世代最先进的多语种NLP技术。阿婆主来到北京立方庭参观自然语义科技公司。&#x27;</span>, tasks=<span class="hljs-string">&#x27;tok/fine&#x27;</span>)<br><span class="hljs-built_in">print</span>(tok[<span class="hljs-string">&quot;tok&quot;</span>][<span class="hljs-number">0</span>])<br>sdp = hanlp.load(<span class="hljs-string">&#x27;D:/Python/new_pytorch/HanLP/single_task/sdp/semeval16_sdp_electra_small&#x27;</span>)<br>graph = sdp(tok[<span class="hljs-string">&quot;tok&quot;</span>][<span class="hljs-number">0</span>])<br><span class="hljs-built_in">print</span>(graph)<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-1-4-删除冗余任务"><a href="#2-1-4-删除冗余任务" class="headerlink" title="2.1.4 删除冗余任务"></a>2.1.4 删除冗余任务</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hanlp<br><span class="hljs-keyword">from</span> hanlp.components.mtl.multi_task_learning <span class="hljs-keyword">import</span> MultiTaskLearning<br><span class="hljs-keyword">from</span> hanlp_common.document <span class="hljs-keyword">import</span> Document<br><br>HanLP: MultiTaskLearning = hanlp.load(hanlp.pretrained.mtl.OPEN_TOK_POS_NER_SRL_DEP_SDP_CON_ELECTRA_SMALL_ZH)<br>tasks = <span class="hljs-built_in">list</span>(HanLP.tasks.keys())<br><span class="hljs-built_in">print</span>(tasks)  <span class="hljs-comment"># Pick what you need from what we have</span><br><span class="hljs-keyword">for</span> task <span class="hljs-keyword">in</span> tasks:<br>    <span class="hljs-keyword">if</span> task <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> (<span class="hljs-string">&#x27;tok&#x27;</span>, <span class="hljs-string">&#x27;pos&#x27;</span>):<br>        <span class="hljs-keyword">del</span> HanLP[task]<br><span class="hljs-comment"># You can save it as a new component</span><br><span class="hljs-comment"># HanLP.save(&#x27;path/to/new/component&#x27;)</span><br><span class="hljs-comment"># HanLP.load(&#x27;path/to/new/component&#x27;)</span><br><span class="hljs-built_in">print</span>(HanLP.tasks.keys())<br>doc: Document = HanLP([<span class="hljs-string">&#x27;2021年HanLPv2.1为生产环境带来次世代最先进的多语种NLP技术。&#x27;</span>, <span class="hljs-string">&#x27;up主来到北京立方庭参观自然语义科技公司。&#x27;</span>])<br><span class="hljs-built_in">print</span>(doc)<br>doc.pretty_print()<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-1-5-自定义词典"><a href="#2-1-5-自定义词典" class="headerlink" title="2.1.5 自定义词典"></a>2.1.5 自定义词典</h4><p>先获取分词任务：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">tok = HanLP[<span class="hljs-string">&#x27;tok/fine&#x27;</span>]<br></code></pre></td></tr></table></figure>
+
+<p>以“商品和服务项目”为例，不做任何修改的情况：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs 【python">tok.dict_force = tok.dict_combine = None<br>HanLP(&quot;商品和服务项目&quot;, tasks=&#x27;tok/fine&#x27;).pretty_print()<br><br>输出：<br>商品 和 服务 项目<br></code></pre></td></tr></table></figure>
+
+<p><strong>强制模式</strong>（强制模式优先输出正向最长匹配到的自定义词条）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">tok.dict_force = &#123;<span class="hljs-string">&#x27;和服&#x27;</span>, <span class="hljs-string">&#x27;服务项目&#x27;</span>&#125;<br>HanLP(<span class="hljs-string">&quot;商品和服务项目&quot;</span>, tasks=<span class="hljs-string">&#x27;tok/fine&#x27;</span>).pretty_print()<br><br>输出：<br>商品 和服 务 项目<br></code></pre></td></tr></table></figure>
+
+<p><strong>强制校正模式</strong>（匹配到的自定义词条替换为相应的分词结果）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">tok.dict_force = &#123;<span class="hljs-string">&#x27;和服务&#x27;</span>: [<span class="hljs-string">&#x27;和&#x27;</span>, <span class="hljs-string">&#x27;服务&#x27;</span>]&#125;<br>HanLP(<span class="hljs-string">&quot;商品和服务项目&quot;</span>, tasks=<span class="hljs-string">&#x27;tok/fine&#x27;</span>).pretty_print()<br><br>输出：<br>商品 和 服务 项目<br></code></pre></td></tr></table></figure>
+
+<p><strong>合并模式</strong>（合并模式的优先级低于统计模型，即<code>dict_combine</code>会在统计模型的分词结果上执行最长匹配并合并匹配到的词条）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">tok.dict_force = <span class="hljs-literal">None</span><br>tok.dict_combine = &#123;<span class="hljs-string">&#x27;和服&#x27;</span>, <span class="hljs-string">&#x27;服务项目&#x27;</span>&#125;<br>HanLP(<span class="hljs-string">&quot;商品和服务项目&quot;</span>, tasks=<span class="hljs-string">&#x27;tok/fine&#x27;</span>).pretty_print()<br><br>输出：<br>商品 和 服务项目<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-1-6-单词位置"><a href="#2-1-6-单词位置" class="headerlink" title="2.1.6 单词位置"></a>2.1.6 单词位置</h4><p>HanLP支持输出每个单词在文本中的原始位置，以便用于搜索引擎等场景。在词法分析中，非语素字符（空格、换行、制表符等）会被剔除，此时需要额外的位置信息才能定位每个单词：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">tok.config.output_spans = <span class="hljs-literal">True</span><br>sent = <span class="hljs-string">&#x27;2021 年\nHanLPv2.1 为生产环境带来次世代最先进的多语种NLP技术。&#x27;</span><br>word_offsets = HanLP(sent, tasks=<span class="hljs-string">&#x27;tok/fine&#x27;</span>)[<span class="hljs-string">&#x27;tok/fine&#x27;</span>]<br><span class="hljs-built_in">print</span>(word_offsets)<br><br>输出：<br>[[<span class="hljs-string">&#x27;2021 年&#x27;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>], [<span class="hljs-string">&#x27;HanLPv2.1&#x27;</span>, <span class="hljs-number">7</span>, <span class="hljs-number">16</span>], [<span class="hljs-string">&#x27;为&#x27;</span>, <span class="hljs-number">17</span>, <span class="hljs-number">18</span>], [<span class="hljs-string">&#x27;生产&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-number">20</span>], [<span class="hljs-string">&#x27;环境&#x27;</span>, <span class="hljs-number">20</span>, <span class="hljs-number">22</span>], [<span class="hljs-string">&#x27;带来&#x27;</span>, <span class="hljs-number">22</span>, <span class="hljs-number">24</span>], [<span class="hljs-string">&#x27;次&#x27;</span>, <span class="hljs-number">24</span>, <span class="hljs-number">25</span>], [<span class="hljs-string">&#x27;世代&#x27;</span>, <span class="hljs-number">25</span>, <span class="hljs-number">27</span>], [<span class="hljs-string">&#x27;最&#x27;</span>, <span class="hljs-number">27</span>, <span class="hljs-number">28</span>], [<span class="hljs-string">&#x27;先进&#x27;</span>, <span class="hljs-number">28</span>, <span class="hljs-number">30</span>], [<span class="hljs-string">&#x27;的&#x27;</span>, <span class="hljs-number">30</span>, <span class="hljs-number">31</span>], [<span class="hljs-string">&#x27;多&#x27;</span>, <span class="hljs-number">31</span>, <span class="hljs-number">32</span>], [<span class="hljs-string">&#x27;语种&#x27;</span>, <span class="hljs-number">32</span>, <span class="hljs-number">34</span>], [<span class="hljs-string">&#x27;NLP&#x27;</span>, <span class="hljs-number">34</span>, <span class="hljs-number">37</span>], [<span class="hljs-string">&#x27;技术&#x27;</span>, <span class="hljs-number">37</span>, <span class="hljs-number">39</span>], [<span class="hljs-string">&#x27;。&#x27;</span>, <span class="hljs-number">39</span>, <span class="hljs-number">40</span>]]<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-2-单任务"><a href="#2-2-单任务" class="headerlink" title="2.2 单任务"></a>2.2 单任务</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hanlp<br>HanLP = hanlp.pipeline() \<br>    .append(hanlp.utils.rules.split_sentence, output_key=<span class="hljs-string">&#x27;sentences&#x27;</span>) \<br>    .append(hanlp.load(<span class="hljs-string">&#x27;FINE_ELECTRA_SMALL_ZH&#x27;</span>), output_key=<span class="hljs-string">&#x27;tok&#x27;</span>) \<br>    .append(hanlp.load(<span class="hljs-string">&#x27;CTB9_POS_ELECTRA_SMALL&#x27;</span>), output_key=<span class="hljs-string">&#x27;pos&#x27;</span>) \<br>    .append(hanlp.load(<span class="hljs-string">&#x27;MSRA_NER_ELECTRA_SMALL_ZH&#x27;</span>), output_key=<span class="hljs-string">&#x27;ner&#x27;</span>, input_key=<span class="hljs-string">&#x27;tok&#x27;</span>) \<br>    .append(hanlp.load(<span class="hljs-string">&#x27;CTB9_DEP_ELECTRA_SMALL&#x27;</span>, conll=<span class="hljs-number">0</span>), output_key=<span class="hljs-string">&#x27;dep&#x27;</span>, input_key=<span class="hljs-string">&#x27;tok&#x27;</span>)\<br>    .append(hanlp.load(<span class="hljs-string">&#x27;CTB9_CON_ELECTRA_SMALL&#x27;</span>), output_key=<span class="hljs-string">&#x27;con&#x27;</span>, input_key=<span class="hljs-string">&#x27;tok&#x27;</span>)<br>    <br>HanLP(<span class="hljs-string">&#x27;2021年HanLPv2.1为生产环境带来次世代最先进的多语种NLP技术。阿婆主来到北京立方庭参观自然语义科技公司。&#x27;</span>, tasks=<span class="hljs-string">&#x27;tok/fine&#x27;</span>).pretty_print()<br><br>输出：<br><span class="hljs-number">2021</span>年 HanLPv2<span class="hljs-number">.1</span> 为 生产 环境 带来 次 世代 最 先进 的 多 语种 NLP 技术 。<br>阿婆主 来到 北京 立方庭 参观 自然 语义 科技 公司 。<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-3-word2vec"><a href="#2-3-word2vec" class="headerlink" title="2.3 word2vec"></a>2.3 word2vec</h3><h4 id="2-3-1-加载模型"><a href="#2-3-1-加载模型" class="headerlink" title="2.3.1 加载模型"></a>2.3.1 加载模型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hanlp<br>word2vec = hanlp.load(<span class="hljs-string">&quot;/HanLP/word2vec/MERGE_SGNS_BIGRAM_CHAR_300_ZH&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-3-2-输出向量"><a href="#2-3-2-输出向量" class="headerlink" title="2.3.2 输出向量"></a>2.3.2 输出向量</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(word2vec(<span class="hljs-string">&#x27;先进&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-3-3-计算相似度"><a href="#2-3-3-计算相似度" class="headerlink" title="2.3.3 计算相似度"></a>2.3.3 计算相似度</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-built_in">print</span>(torch.nn.functional.cosine_similarity(word2vec(<span class="hljs-string">&#x27;先进&#x27;</span>), word2vec(<span class="hljs-string">&#x27;优秀&#x27;</span>), dim=<span class="hljs-number">0</span>))<br><span class="hljs-built_in">print</span>(torch.nn.functional.cosine_similarity(word2vec(<span class="hljs-string">&#x27;先进&#x27;</span>), word2vec(<span class="hljs-string">&#x27;水果&#x27;</span>), dim=<span class="hljs-number">0</span>))<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-3-4-最相似单词"><a href="#2-3-4-最相似单词" class="headerlink" title="2.3.4 最相似单词"></a>2.3.4 最相似单词</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">word2vec.most_similar(<span class="hljs-string">&#x27;上海&#x27;</span>)<br><br>输出：<br>&#123;<span class="hljs-string">&#x27;广州&#x27;</span>: <span class="hljs-number">0.8630875945091248</span>,<br> <span class="hljs-string">&#x27;北京&#x27;</span>: <span class="hljs-number">0.8542779088020325</span>,<br> <span class="hljs-string">&#x27;天津&#x27;</span>: <span class="hljs-number">0.8537402153015137</span>,<br> <span class="hljs-string">&#x27;深圳&#x27;</span>: <span class="hljs-number">0.8526542782783508</span>,<br> <span class="hljs-string">&#x27;成都&#x27;</span>: <span class="hljs-number">0.8255313634872437</span>,<br> <span class="hljs-string">&#x27;西安&#x27;</span>: <span class="hljs-number">0.8215534687042236</span>,<br> <span class="hljs-string">&#x27;杭州&#x27;</span>: <span class="hljs-number">0.8207105398178101</span>,<br> <span class="hljs-string">&#x27;厦门&#x27;</span>: <span class="hljs-number">0.8186136484146118</span>,<br> <span class="hljs-string">&#x27;昆明&#x27;</span>: <span class="hljs-number">0.8184518814086914</span>,<br> <span class="hljs-string">&#x27;武汉&#x27;</span>: <span class="hljs-number">0.8055384755134583</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>Word2Vec 通常无法处理 OOV 或短语</code></p>
+<p>Doc2Vec 与 Word2Vec 模型相反，可以通过平均一组单词来创建矢量化表示。要为 OOV 和短语启用 Doc2Vec，请传递 <code>doc2vec=True</code> ：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">word2vec.most_similar(<span class="hljs-string">&#x27;非常寒冷&#x27;</span>, doc2vec=<span class="hljs-literal">True</span>)<br><br>输出：<br>&#123;<span class="hljs-string">&#x27;寒冷&#x27;</span>: <span class="hljs-number">0.7510591745376587</span>,<br> <span class="hljs-string">&#x27;非常&#x27;</span>: <span class="hljs-number">0.7510591745376587</span>,<br> <span class="hljs-string">&#x27;很&#x27;</span>: <span class="hljs-number">0.7312490344047546</span>,<br> <span class="hljs-string">&#x27;比较&#x27;</span>: <span class="hljs-number">0.6991080045700073</span>,<br> <span class="hljs-string">&#x27;无比&#x27;</span>: <span class="hljs-number">0.685967743396759</span>,<br> <span class="hljs-string">&#x27;极其&#x27;</span>: <span class="hljs-number">0.6834490895271301</span>,<br> <span class="hljs-string">&#x27;十分&#x27;</span>: <span class="hljs-number">0.6786675453186035</span>,<br> <span class="hljs-string">&#x27;潮湿&#x27;</span>: <span class="hljs-number">0.67008376121521</span>,<br> <span class="hljs-string">&#x27;焦躁不安&#x27;</span>: <span class="hljs-number">0.6699174642562866</span>,<br> <span class="hljs-string">&#x27;阴冷&#x27;</span>: <span class="hljs-number">0.6695235967636108</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-4-mlm"><a href="#2-4-mlm" class="headerlink" title="2.4 mlm"></a>2.4 mlm</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> hanlp.components.lm.mlm <span class="hljs-keyword">import</span> MaskedLanguageModel<br>mlm = MaskedLanguageModel()<br>mlm.load(<span class="hljs-string">&#x27;bert-base-chinese&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">mlm(<span class="hljs-string">&#x27;生活的真谛是[MASK]。&#x27;</span>)<br><br>输出：<br>[&#123;<span class="hljs-string">&#x27;美&#x27;</span>: <span class="hljs-number">0.3407564163208008</span>,<br>  <span class="hljs-string">&#x27;爱&#x27;</span>: <span class="hljs-number">0.2292439043521881</span>,<br>  <span class="hljs-string">&#x27;乐&#x27;</span>: <span class="hljs-number">0.032554809004068375</span>,<br>  <span class="hljs-string">&#x27;人&#x27;</span>: <span class="hljs-number">0.022961532697081566</span>,<br>  <span class="hljs-string">&#x27;：&#x27;</span>: <span class="hljs-number">0.01942446455359459</span>,<br>  <span class="hljs-string">&#x27;笑&#x27;</span>: <span class="hljs-number">0.017893701791763306</span>,<br>  <span class="hljs-string">&#x27;-&#x27;</span>: <span class="hljs-number">0.016441352665424347</span>,<br>  <span class="hljs-string">&#x27;玩&#x27;</span>: <span class="hljs-number">0.016314353793859482</span>,<br>  <span class="hljs-string">&#x27;活&#x27;</span>: <span class="hljs-number">0.014588544145226479</span>,<br>  <span class="hljs-string">&#x27;好&#x27;</span>: <span class="hljs-number">0.013642454519867897</span>&#125;]<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python">mlm([<span class="hljs-string">&#x27;生活的真谛是[MASK]。&#x27;</span>, <span class="hljs-string">&#x27;巴黎是[MASK][MASK]的首都。&#x27;</span>])<br><br>输出：<br>[[&#123;<span class="hljs-string">&#x27;美&#x27;</span>: <span class="hljs-number">0.3407564163208008</span>,<br>   <span class="hljs-string">&#x27;爱&#x27;</span>: <span class="hljs-number">0.2292439043521881</span>,<br>   <span class="hljs-string">&#x27;乐&#x27;</span>: <span class="hljs-number">0.032554809004068375</span>,<br>   <span class="hljs-string">&#x27;人&#x27;</span>: <span class="hljs-number">0.022961532697081566</span>,<br>   <span class="hljs-string">&#x27;：&#x27;</span>: <span class="hljs-number">0.01942446455359459</span>,<br>   <span class="hljs-string">&#x27;笑&#x27;</span>: <span class="hljs-number">0.017893701791763306</span>,<br>   <span class="hljs-string">&#x27;-&#x27;</span>: <span class="hljs-number">0.016441352665424347</span>,<br>   <span class="hljs-string">&#x27;玩&#x27;</span>: <span class="hljs-number">0.016314353793859482</span>,<br>   <span class="hljs-string">&#x27;活&#x27;</span>: <span class="hljs-number">0.014588544145226479</span>,<br>   <span class="hljs-string">&#x27;好&#x27;</span>: <span class="hljs-number">0.013642454519867897</span>&#125;],<br> [&#123;<span class="hljs-string">&#x27;法&#x27;</span>: <span class="hljs-number">0.5057310461997986</span>,<br>   <span class="hljs-string">&#x27;德&#x27;</span>: <span class="hljs-number">0.08851869404315948</span>,<br>   <span class="hljs-string">&#x27;歐&#x27;</span>: <span class="hljs-number">0.06904969364404678</span>,<br>   <span class="hljs-string">&#x27;巴&#x27;</span>: <span class="hljs-number">0.04269423708319664</span>,<br>   <span class="hljs-string">&#x27;瑞&#x27;</span>: <span class="hljs-number">0.039870887994766235</span>,<br>   <span class="hljs-string">&#x27;英&#x27;</span>: <span class="hljs-number">0.03201477229595184</span>,<br>   <span class="hljs-string">&#x27;美&#x27;</span>: <span class="hljs-number">0.02721557952463627</span>,<br>   <span class="hljs-string">&#x27;荷&#x27;</span>: <span class="hljs-number">0.02194151096045971</span>,<br>   <span class="hljs-string">&#x27;中&#x27;</span>: <span class="hljs-number">0.018307117745280266</span>,<br>   <span class="hljs-string">&#x27;欧&#x27;</span>: <span class="hljs-number">0.011474725790321827</span>&#125;,<br>  &#123;<span class="hljs-string">&#x27;國&#x27;</span>: <span class="hljs-number">0.6981891989707947</span>,<br>   <span class="hljs-string">&#x27;国&#x27;</span>: <span class="hljs-number">0.10869748890399933</span>,<br>   <span class="hljs-string">&#x27;洲&#x27;</span>: <span class="hljs-number">0.03609883040189743</span>,<br>   <span class="hljs-string">&#x27;蘭&#x27;</span>: <span class="hljs-number">0.013893415220081806</span>,<br>   <span class="hljs-string">&#x27;臘&#x27;</span>: <span class="hljs-number">0.010245074518024921</span>,<br>   <span class="hljs-string">&#x27;士&#x27;</span>: <span class="hljs-number">0.009544524364173412</span>,<br>   <span class="hljs-string">&#x27;盟&#x27;</span>: <span class="hljs-number">0.00916974525898695</span>,<br>   <span class="hljs-string">&#x27;西&#x27;</span>: <span class="hljs-number">0.005254795774817467</span>,<br>   <span class="hljs-string">&#x27;典&#x27;</span>: <span class="hljs-number">0.004525361582636833</span>,<br>   <span class="hljs-string">&#x27;邦&#x27;</span>: <span class="hljs-number">0.0044594407081604</span>&#125;]]<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/" class="category-chain-item">AI ʢᵕᴗᵕʡ</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/NLP/" class="category-chain-item">NLP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/NLP/NLP%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" class="category-chain-item">NLP库的使用</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/NLP/" class="print-no-link">#NLP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>hanlp库的使用！🐈</div>
+      <div>https://yangchuanzhi20.github.io/2024/04/09/人工智能/NLP/库的使用/hanlp库的使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>白色很哇塞</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年4月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/11/%E7%AE%97%E6%B3%95/python/python%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/python%E4%B8%ADmatplotlib%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" title="matplotlib库的使用!☃️">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">matplotlib库的使用!☃️</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/09/%E5%BB%BA%E6%A8%A1/%E5%BB%BA%E6%A8%A1%E7%AE%97%E6%B3%95/%E4%B8%89%E7%BB%B4%E7%BD%91%E6%A0%BC%E7%BB%86%E5%88%86%E7%AE%97%E6%B3%95/" title="三维网格细分算法！🐶">
+                        <span class="hidden-mobile">三维网格细分算法！🐶</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"uchVjxnRW51J2Mm7CW00jbKk-MdYXbMMI","appKey":"salCKdKKc0oJUGN300BBLXeE","path":"window.location.pathname","placeholder":"ʕ ᵔᴥᵔ ʔ","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://uchvjxnr.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/vvd_js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/gongde.js"></script>
+<script src="/js/move.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/js/duration.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
