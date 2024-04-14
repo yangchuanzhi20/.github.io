@@ -4,11 +4,42 @@
   
   
   <entry>
+    <title>blender蘑菇！🐅</title>
+    <link href="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/"/>
+    <url>/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/</url>
+    
+    <content type="html"><![CDATA[<h1 id="blender蘑菇"><a href="#blender蘑菇" class="headerlink" title="blender蘑菇"></a>blender蘑菇</h1><h2 id="1-蘑菇头"><a href="#1-蘑菇头" class="headerlink" title="1.蘑菇头"></a>1.蘑菇头</h2><p>表面细分+<code>alt+Z</code>透视+正视图+<code>S</code>缩放+<code>ctrl+R</code>循环切割</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/1.png"></p><p><code>ctrl+I</code>向内挤出+<code>S</code>缩放+向内挤出（千万别按到<code>O</code>,<code>O</code>是衰减编辑，如果按到了再按一次<code>O</code>)</p><p>+<code>G+Z</code>拉到内部</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/2.png"></p><p>通过ctrl+R不断调整缩放+改名+平滑着色</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/3.png"></p><h2 id="2-蘑菇杆"><a href="#2-蘑菇杆" class="headerlink" title="2.蘑菇杆"></a>2.蘑菇杆</h2><p><code>ctrl+2</code>添加表面细分为2的修改器+<code>ctrl+R</code>循环切割+<code>S</code>调整</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/4.png"></p><p>选择底面+<code>ctrl+I</code>向内挤出+<code>S</code>缩放+<code>G+Z</code>向外拉出产生突起感+改名+<code>ctrl+S</code>保存（<strong>要习惯性保存</strong>）</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/5.png"></p><p>添加简易形变修改器+<strong>移动原点到蘑菇杆底部（选项—》仅影响原点）</strong>+调整修改器</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/6.png"></p><p>点击蘑菇头和蘑菇杆<strong>分别<code>ctrl+a</code>应用缩放</strong>（尽量在<strong>编辑模式下使用缩放！！！！！</strong>）应用后右上角缩放会设置默认大小，不应用则在导入其他设备时会导致缩放效果不一致。</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/7.png"></p><p>新建集合+导入蘑菇头蘑菇杆+<code>按住蘑菇杆+shift</code>移动到蘑菇头上<strong>创建父子集的关系</strong>（或者先点击蘑菇杆（子）然后按住<code>shift</code>点击蘑菇头（父），再<code>ctrl+P</code>设置父子集关系）</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/8.png"></p><h2 id="3-蘑菇点"><a href="#3-蘑菇点" class="headerlink" title="3.蘑菇点"></a>3.蘑菇点</h2><p>缩放+倒角</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/9.png"></p><p>吸附</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/10.png"></p><p>吸附之前一定要把所有的物体的原点设置到几何中心，才能有想要的吸附效果</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/11.png"></p><p>最终效果：</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/12.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模案例</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>设计</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Blender修改器！🥕</title>
     <link href="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/"/>
     <url>/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="修改器"><a href="#修改器" class="headerlink" title="修改器"></a>修改器</h1><p>修改器的目的是使模型的改变可控。</p><p>修改器使用完成后需要在<strong>物体模式</strong>的<strong>修改器栏从上到下</strong>进行应用。</p><p>应用快捷键：</p><p><code>ctrl+A</code></p><h2 id="1-插件安装及使用"><a href="#1-插件安装及使用" class="headerlink" title="1.插件安装及使用"></a>1.插件安装及使用</h2><p>编辑—-》偏好设置—-》插件—–》勾选</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/1.png"></p><p>按住<code>n</code>键，弹出选择栏，选择编辑，调出插件</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/2.png"></p><p><strong>tips:</strong></p><p>在<strong>编辑模式</strong>的<strong>边面板</strong>进行细分，在<strong>物体模式</strong>下进行平滑着色。</p><h2 id="2-添加修改器"><a href="#2-添加修改器" class="headerlink" title="2.添加修改器"></a>2.添加修改器</h2><p>选择要添加修改器的物体，按如下图的操作进行修改器的添加</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/3.png"></p><h2 id="3-细分修改器"><a href="#3-细分修改器" class="headerlink" title="3.细分修改器"></a>3.细分修改器</h2><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/4.png"></p><p><strong>视图层级</strong>：编辑时的细分等级</p><p><strong>渲染层级</strong>：渲染时的细分等级</p><p><strong>tips：</strong></p><p>细分修改器和平滑着色的区别：</p><ol><li><strong>细分修改器</strong>：<ul><li>细分修改器会根据原始网格的拓扑结构，在渲染时<strong>自动增加细分</strong>。这种细分会使模型的表面看起来更加光滑，因为它会在原始几何体的基础上生成更多的几何细节。</li><li>使用细分修改器，你可以通过增加迭代次数来调整模型的光滑度。迭代次数越高，模型的细节越丰富，但也会<strong>增加计算量</strong>。</li></ul></li><li><strong>平滑着色</strong>：<ul><li>平滑着色是一种外观效果，它会使模型的表面在渲染时看起来更加光滑，而不会改变模型的几何结构。</li><li>平滑着色通过将相邻三角形或多边形的<strong>法线平均化</strong>来实现。这样会使相邻的面之间的过渡更加平滑，而不会有锐利的边缘或角。</li><li>平滑着色并<strong>不会增加几何细分</strong>，因此不会增加模型的顶点数量或者计算复杂度。</li></ul></li></ol><p><strong>一般先添加细分修改器，然后再平滑着色</strong>。</p><p>下列选项可以修改观察方式。</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/5.png"></p><h2 id="4-实体化修改器"><a href="#4-实体化修改器" class="headerlink" title="4.实体化修改器"></a>4.实体化修改器</h2><p>生成栏中找到。</p><p>偏移量是选择往什么地方增加厚度。如图所示</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/6.png"></p><h2 id="5-倒角修改器"><a href="#5-倒角修改器" class="headerlink" title="5.倒角修改器"></a>5.倒角修改器</h2><p>生成栏中找到。</p><p>由数量和段数控制。</p><h2 id="6-布尔修改器"><a href="#6-布尔修改器" class="headerlink" title="6.布尔修改器"></a>6.布尔修改器</h2><p>生成栏中找到。</p><p>选择运算方式，选择<strong>运算物体</strong>。</p><p>运算物体是用来进行运算的工具，运算完成后可以<strong>隐藏</strong>。</p><h2 id="7-简易形变修改器"><a href="#7-简易形变修改器" class="headerlink" title="7.简易形变修改器"></a>7.简易形变修改器</h2><p>形变栏中找到。</p><p>弯曲：</p><p>弯曲的点以原点为弯曲点进行弯曲，可以移动角度和轴进行调整。</p><p>锥化：</p><p>选择锥化的方向。</p>]]></content>
     
     
     <categories>
@@ -1605,7 +1636,7 @@
   
   
   <entry>
-    <title>珍珠耳环少女！🐅</title>
+    <title>blender珍珠耳环少女！🐅</title>
     <link href="/2023/12/09/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E7%8F%8D%E7%8F%A0%E8%80%B3%E7%8E%AF%E5%B0%91%E5%A5%B3/"/>
     <url>/2023/12/09/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E7%8F%8D%E7%8F%A0%E8%80%B3%E7%8E%AF%E5%B0%91%E5%A5%B3/</url>
     
