@@ -4,6 +4,99 @@
   
   
   <entry>
+    <title>Blender修改器！🥕</title>
+    <link href="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/"/>
+    <url>/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Blender建模操作！🥕</title>
+    <link href="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E6%93%8D%E4%BD%9C/"/>
+    <url>/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<h1 id="建模操作"><a href="#建模操作" class="headerlink" title="建模操作"></a>建模操作</h1><h2 id="1-挤出（E）"><a href="#1-挤出（E）" class="headerlink" title="1.挤出（E）"></a>1.挤出（E）</h2><p><code>E</code>挤出是挤出+移动操作</p><p>按XYZ可以切换挤出方向。</p><p><strong>tips:</strong></p><p>挤出流形：无重复边。</p><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E6%93%8D%E4%BD%9C/1.png"></p><p>沿法线方向挤出：挤出方向为法线。</p><p>挤出各个面：</p><p>如果不使用，各个面是连在一起的，如图所示</p><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E6%93%8D%E4%BD%9C/2.png"></p><p>使用后各个面是分开的。</p><p>挤出至光标（<code>ctrl+右键</code>)：</p><p>先选择一个面，然后光标点击哪则挤到哪。</p><h2 id="2-内插（I）"><a href="#2-内插（I）" class="headerlink" title="2.内插（I）"></a>2.内插（I）</h2><p>用<code>s</code>调整大小。</p><h2 id="3-倒角（ctrl-B）"><a href="#3-倒角（ctrl-B）" class="headerlink" title="3.倒角（ctrl+B）"></a>3.倒角（ctrl+B）</h2><p>滑动鼠标中键增加细分面。</p><h2 id="4-循环切割（ctrl-R）"><a href="#4-循环切割（ctrl-R）" class="headerlink" title="4.循环切割（ctrl+R）"></a>4.循环切割（ctrl+R）</h2><p>滑动鼠标中键增加条数，点击后移动确定位置。</p><h2 id="5-合并（M）"><a href="#5-合并（M）" class="headerlink" title="5.合并（M）"></a>5.合并（M）</h2><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E6%93%8D%E4%BD%9C/3.png"></p><h2 id="6-断开（V）"><a href="#6-断开（V）" class="headerlink" title="6.断开（V）"></a>6.断开（V）</h2><p>前提是一个点有三条边。</p><h2 id="7-填充（F）"><a href="#7-填充（F）" class="headerlink" title="7.填充（F）"></a>7.填充（F）</h2><p>先选择填充的边，再填充。</p><p>或者使用栅格填充，会增加四边形。（<strong>边必须为偶数</strong>）</p><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E6%93%8D%E4%BD%9C/4.png"></p><h2 id="8-切刀（K）"><a href="#8-切刀（K）" class="headerlink" title="8.切刀（K）"></a>8.切刀（K）</h2><p>右键退出编辑，空格退出模式。</p><h2 id="9-桥接"><a href="#9-桥接" class="headerlink" title="9.桥接"></a>9.桥接</h2><p><code>ctr+E</code>调出边面板，选择桥接循环边。<strong>（<code>alt</code>选择循环边，再<code>shift+alt</code>选择另一条循环边）</strong></p><p><strong>tips：</strong></p><p>桥接的前提是桥接对象为同一物体。</p><p><code>ctrl+J</code>将两个物体合并为同一个物体。</p><h2 id="10-分离（P）"><a href="#10-分离（P）" class="headerlink" title="10.分离（P）"></a>10.分离（P）</h2><p>分离后要按<code>tab</code>退出编辑模式。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Blender点线面的选择与控制！🥕</title>
+    <link href="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E7%82%B9%E7%BA%BF%E9%9D%A2%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E6%8E%A7%E5%88%B6/"/>
+    <url>/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E7%82%B9%E7%BA%BF%E9%9D%A2%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E6%8E%A7%E5%88%B6/</url>
+    
+    <content type="html"><![CDATA[<h1 id="点线面的选择与控制"><a href="#点线面的选择与控制" class="headerlink" title="点线面的选择与控制"></a>点线面的选择与控制</h1><h2 id="1-模式切换"><a href="#1-模式切换" class="headerlink" title="1.模式切换"></a>1.模式切换</h2><p><code>tab键</code>切换物体模式和编辑模式，物体模式是对整个物体进行操作，编辑模式是对点线面进行操作。</p><h2 id="2-点线面切换"><a href="#2-点线面切换" class="headerlink" title="2.点线面切换"></a>2.点线面切换</h2><p><strong>快捷键：</strong></p><p><code>1</code>：点，<code>2</code>：线，<code>3</code>面</p><p><strong>界面点击：</strong></p><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E7%82%B9%E7%BA%BF%E9%9D%A2%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E6%8E%A7%E5%88%B6/1.png"></p><p><strong>同时选：</strong></p><p><code>shift+1/2/3</code>可以一起选择</p><h2 id="3-点线面选择"><a href="#3-点线面选择" class="headerlink" title="3.点线面选择"></a>3.点线面选择</h2><p><code>w</code>键切换选择方式，或者长按下图的选择键进行选择。</p><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E7%82%B9%E7%BA%BF%E9%9D%A2%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E6%8E%A7%E5%88%B6/2.png"></p><p><strong>快捷键：</strong></p><p>框选：<code>B</code>   刷选：<code>C</code></p><p><strong>tips：</strong></p><p>快捷键进入选择状态，会无法按其他键。鼠标中键可以进行擦除，按<code>esc</code>或者鼠标右键在空白处点击退出。</p><p><strong>反选</strong>：<code>ctrl+i</code></p><p><strong>多选</strong>：<code>shift</code>+选择点</p><p>最短路径选择：</p><p>先选择一个点&#x2F;线&#x2F;面，然后按住<code>ctrl</code>选择另一个点&#x2F;线&#x2F;面，则可以选择最短路径。</p><p>选择相连：</p><p><code>L</code>(鼠标需要在物体上，以四边形为基础)</p><p><strong>循环选择</strong>：</p><p>先选择一个点，再按住<code>alt</code>键双击循环方向的位置进行循环选择。鼠标偏向纵向则会选择纵向循环，鼠标偏向横向则会选择横向循环。</p><p>tips：</p><p><code>ctrl+alt</code>双击会沿垂直方向循环。</p><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E7%82%B9%E7%BA%BF%E9%9D%A2%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E6%8E%A7%E5%88%B6/3.png"></p><p><strong>透视选择</strong>：</p><p><code>alt+Z</code>切换透视模式，选择的时候可以选择背面。</p><p><strong>扩大&#x2F;缩小选区</strong>：</p><p><code>ctrl+（小键盘）+/-</code>进行扩大&#x2F;缩小的选择。</p><h2 id="4-点线面控制"><a href="#4-点线面控制" class="headerlink" title="4.点线面控制"></a>4.点线面控制</h2><p>选择完后按照<code>G/R/S</code>进行控制。</p><p>删除：</p><p><code>X</code>(弹出选择框)</p><p>tips：</p><p><strong>融并：</strong></p><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E7%82%B9%E7%BA%BF%E9%9D%A2%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E6%8E%A7%E5%88%B6/4.png">将选择的内容删除后，会用面进行缝合。</p><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E7%82%B9%E7%BA%BF%E9%9D%A2%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E6%8E%A7%E5%88%B6/5.png"></p><h2 id="6-法线"><a href="#6-法线" class="headerlink" title="6.法线"></a>6.法线</h2><p>打开面朝向</p><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E7%82%B9%E7%BA%BF%E9%9D%A2%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E6%8E%A7%E5%88%B6/6.png"></p><p><strong>蓝色</strong>为正面，<strong>红色</strong>为反面。</p><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E7%82%B9%E7%BA%BF%E9%9D%A2%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E6%8E%A7%E5%88%B6/7.png"></p><p>选择法向可以看到法线</p><p><img src="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E7%82%B9%E7%BA%BF%E9%9D%A2%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E6%8E%A7%E5%88%B6/8.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>matplotlib库的使用!☃️</title>
     <link href="/2024/04/11/%E7%AE%97%E6%B3%95/python/python%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/python%E4%B8%ADmatplotlib%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <url>/2024/04/11/%E7%AE%97%E6%B3%95/python/python%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/python%E4%B8%ADmatplotlib%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
@@ -1543,7 +1636,7 @@
   
   
   <entry>
-    <title>界面认识！🥕</title>
+    <title>Blender界面认识！🥕</title>
     <link href="/2023/12/08/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/Blender%E7%95%8C%E9%9D%A2%E8%AE%A4%E8%AF%86/"/>
     <url>/2023/12/08/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/Blender%E7%95%8C%E9%9D%A2%E8%AE%A4%E8%AF%86/</url>
     
@@ -1758,7 +1851,7 @@
   
   
   <entry>
-    <title>视图和物体控制!🥕</title>
+    <title>Blender视图和物体控制!🥕</title>
     <link href="/2023/12/06/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     <url>/2023/12/06/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
     
