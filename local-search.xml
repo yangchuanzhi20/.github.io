@@ -4,6 +4,130 @@
   
   
   <entry>
+    <title>blender树干！🐅</title>
+    <link href="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E5%B9%B2/"/>
+    <url>/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E5%B9%B2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="blender树干"><a href="#blender树干" class="headerlink" title="blender树干"></a>blender树干</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模案例</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>设计</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>blender实用操作！🥕</title>
+    <link href="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
+    <url>/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<h1 id="blender实用操作"><a href="#blender实用操作" class="headerlink" title="blender实用操作"></a>blender实用操作</h1><h2 id="1-吸附"><a href="#1-吸附" class="headerlink" title="1.吸附"></a>1.吸附</h2><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/1.png"></p><p>使用前一定要将每个物体的原点设置在几何中心。</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/2.png"></p><h2 id="2-衰减（O）"><a href="#2-衰减（O）" class="headerlink" title="2.衰减（O）"></a>2.衰减（O）</h2><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/3.png">使用时按住移动建后滑动滚轮缩放缩减范围。</p><h2 id="3-旋绕"><a href="#3-旋绕" class="headerlink" title="3.旋绕"></a>3.旋绕</h2><p>选择步数（生成的个数）+旋绕的轴+旋绕的中心点的位置</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/4.png"></p><p>直接点击加号会自动生成，勾选使用副本会保留原始的形状</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/5.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>blender花朵！🐅</title>
+    <link href="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%8A%B1%E6%9C%B5/"/>
+    <url>/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%8A%B1%E6%9C%B5/</url>
+    
+    <content type="html"><![CDATA[<h1 id="blender花朵"><a href="#blender花朵" class="headerlink" title="blender花朵"></a>blender花朵</h1><p>新建平面+表面细分+<code>ctrl+R</code>+缩放+环绕</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%8A%B1%E6%9C%B5/1.png"></p><p><code>O+G</code>衰减缩放中心一圈点+实体化修改器</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%8A%B1%E6%9C%B5/2.png"></p><p>在物体模式下选择花朵右键设置原点到几何中心+<code>alt+G</code>移动到世界中心</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%8A%B1%E6%9C%B5/3.png"></p><p>新建一个花蕊，不断挤出缩放来做出圆滚滚的效果（不要先切很多刀再调，先调一个再挤出缩放来调）</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%8A%B1%E6%9C%B5/4.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模案例</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>设计</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>blender树桩!🐅</title>
+    <link href="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E6%A1%A9/"/>
+    <url>/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E6%A1%A9/</url>
+    
+    <content type="html"><![CDATA[<h1 id="blender树桩"><a href="#blender树桩" class="headerlink" title="blender树桩"></a>blender树桩</h1><p><code>ctrl+R</code>循环切割+<code>S+Z</code>拉长底座</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E6%A1%A9/1.png"></p><p><code>I</code>向内挤出+<code>G+Z</code>向下</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E6%A1%A9/2.png"></p><p>选择四个面+<code>I+Loop+E+S/R</code></p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E6%A1%A9/3.png"></p><p><code>E+O</code>（衰减,按<code>G</code>后可以滑动滚轮缩放缩减的范围)</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E6%A1%A9/4.png"></p><p>S+Z+0拉平树桩底部</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E6%A1%A9/5.png"></p><p>选择一部分树桩+<code>Shift+D+右键撤销移动+P</code>复制并分离选中项+实体化修改器</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E6%A1%A9/6.png"></p><p>选择随机改变物体的颜色让观察更仔细，点击苔藓的点G+Z下拉</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E6%A1%A9/7.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模案例</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>设计</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>blender蘑菇！🐅</title>
     <link href="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/"/>
     <url>/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E8%98%91%E8%8F%87/</url>
@@ -66,7 +190,7 @@
   
   
   <entry>
-    <title>Blender建模操作！🥕</title>
+    <title>Blender十大建模操作！🥕</title>
     <link href="/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E6%93%8D%E4%BD%9C/"/>
     <url>/2024/04/13/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%BB%BA%E6%A8%A1%E6%93%8D%E4%BD%9C/</url>
     
