@@ -4,11 +4,135 @@
   
   
   <entry>
+    <title>blender藤曼！🐅</title>
+    <link href="/2024/04/20/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/%E8%97%A4%E6%9B%BC/"/>
+    <url>/2024/04/20/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/%E8%97%A4%E6%9B%BC/</url>
+    
+    <content type="html"><![CDATA[<h1 id="blender藤曼"><a href="#blender藤曼" class="headerlink" title="blender藤曼"></a>blender藤曼</h1><p>alt+D复制多片叶子，再shift+D复制到另一侧并给杆增加细分</p><p><img src="/2024/04/20/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/%E8%97%A4%E6%9B%BC/1.png"></p><p><strong>tips：</strong></p><p>alt+D的复制：改变原始物体的状态，后续复制物体的状态同时改变</p><p>创建一条NUBURS路径，改变位置，给杆增加曲线修改器</p><p><img src="/2024/04/20/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/%E8%97%A4%E6%9B%BC/2.png"></p><p>创建叶子和杆的父级关系，选则顶点（基于三点）</p><p><img src="/2024/04/20/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/%E8%97%A4%E6%9B%BC/3.png"></p><p><strong>tips:</strong></p><p>建立父级时：</p><p>单纯的<strong>顶点</strong>，叶子不会改变方向。</p><p>单纯的<strong>物体</strong>，叶子不会改变。</p><p><strong>alt+P清空父级</strong>。</p><p>移动杆的轴，叶子和杆会跟着曲线走。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模案例</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>设计</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>blender曲线建模！🥕</title>
+    <link href="/2024/04/20/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E6%9B%B2%E7%BA%BF%E5%BB%BA%E6%A8%A1/"/>
+    <url>/2024/04/20/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E6%9B%B2%E7%BA%BF%E5%BB%BA%E6%A8%A1/</url>
+    
+    <content type="html"><![CDATA[<h1 id="blender曲线建模"><a href="#blender曲线建模" class="headerlink" title="blender曲线建模"></a>blender曲线建模</h1><h2 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1.基础知识"></a>1.基础知识</h2><h3 id="1-1-贝塞尔曲线"><a href="#1-1-贝塞尔曲线" class="headerlink" title="1.1 贝塞尔曲线"></a>1.1 贝塞尔曲线</h3><p>shift+A新建，tab进入编辑模式</p><p><strong>生成</strong>：</p><p>选择一个点，E挤出生成新的点</p><p><strong>合并：</strong></p><p>选择两端的点，F合并（或者选择曲线任何一点，alt+C闭合）</p><p><strong>删除：</strong></p><p>选择要删除的段的两个端点，X选择删除段数</p><h3 id="1-2-圆环"><a href="#1-2-圆环" class="headerlink" title="1.2 圆环"></a>1.2 圆环</h3><p>封闭的贝塞尔曲线</p><h3 id="1-3-路径曲线"><a href="#1-3-路径曲线" class="headerlink" title="1.3 路径曲线"></a>1.3 路径曲线</h3><p>根据控制点拟合曲线哎u你，可以控制点的权重。</p><p><img src="/2024/04/20/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E6%9B%B2%E7%BA%BF%E5%BB%BA%E6%A8%A1/3.png"></p><p>打开法线方向。</p><p><strong>tips：</strong></p><p>无法旋转时，修改变换轴心点为<strong>质心</strong></p><h3 id="1-4-NURBS曲线"><a href="#1-4-NURBS曲线" class="headerlink" title="1.4 NURBS曲线"></a>1.4 NURBS曲线</h3><p><strong>生成：</strong></p><p>E</p><p><strong>合并：</strong><br>两端+F或alt+C（同上 ）</p><h3 id="1-4-NURBS圆环"><a href="#1-4-NURBS圆环" class="headerlink" title="1.4 NURBS圆环"></a>1.4 NURBS圆环</h3><p>封闭的NURBS曲线</p><h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h2><h3 id="2-1-贝塞尔曲线"><a href="#2-1-贝塞尔曲线" class="headerlink" title="2.1 贝塞尔曲线"></a>2.1 贝塞尔曲线</h3><p><img src="/2024/04/20/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E6%9B%B2%E7%BA%BF%E5%BB%BA%E6%A8%A1/1.png"></p><p>在几何数据栏下的倒角中：</p><p><strong>圆：</strong></p><p>修改深度和分辨率形成管道，勾选封盖会闭合管道，只会是圆形</p><p><strong>物体：</strong></p><p>新建一个曲线，修改形状，吸管选中该形状，则生成的曲线保留该形状</p><p>alt+S缩放管道某一点的粗细</p><p><img src="/2024/04/20/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E6%9B%B2%E7%BA%BF%E5%BB%BA%E6%A8%A1/2.png"></p><h3 id="2-2-NURBS曲线"><a href="#2-2-NURBS曲线" class="headerlink" title="2.2 NURBS曲线"></a>2.2 NURBS曲线</h3><p>同上</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>blender棕榈树！🐅</title>
+    <link href="/2024/04/19/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A3%95%E6%A6%88%E6%A0%91/"/>
+    <url>/2024/04/19/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A3%95%E6%A6%88%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<h1 id="blender棕榈树"><a href="#blender棕榈树" class="headerlink" title="blender棕榈树"></a>blender棕榈树</h1><h2 id="1-第一种棕榈树"><a href="#1-第一种棕榈树" class="headerlink" title="1.第一种棕榈树"></a>1.第一种棕榈树</h2><p>先建一个叶子，用ctrl+R&#x2F;ctrl+B多切几刀，添加表面细分和实体化修改器</p><p><img src="/2024/04/19/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A3%95%E6%A6%88%E6%A0%91/1.png"></p><p>添加阵列修改器，沿z轴使用</p><p><img src="/2024/04/19/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A3%95%E6%A6%88%E6%A0%91/2.png"></p><p>添加镜像修改器，并增加树干</p><p><img src="/2024/04/19/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A3%95%E6%A6%88%E6%A0%91/3.png"></p><p>使用晶格修改器改变树叶的形状，ctrl+J让叶子和树干结合成一个物体，添加简易型变修改器</p><p><img src="/2024/04/19/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A3%95%E6%A6%88%E6%A0%91/4.png"></p><h2 id="2-第二种棕榈树"><a href="#2-第二种棕榈树" class="headerlink" title="2.第二种棕榈树"></a>2.第二种棕榈树</h2><p>用上述方式生成第二种叶子</p><p><img src="/2024/04/19/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A3%95%E6%A6%88%E6%A0%91/5.png"></p><p>添加阵列修改器，选择物体偏移，创建空对象，物体偏移下的物体则选中该空对象，移动空对象并旋转角度获得树叶的形状</p><p><img src="/2024/04/19/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A3%95%E6%A6%88%E6%A0%91/6.png"></p><p>打开衰减模式，选择叶子的尖端部分按住G调整衰减的范围，移动尖端使叶子呈现下垂的形状</p><p><img src="/2024/04/19/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A3%95%E6%A6%88%E6%A0%91/7.png"></p><p>不断调整空物体的位置，旋转角度，缩放，产生一个合适的形状</p><p><img src="/2024/04/19/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A3%95%E6%A6%88%E6%A0%91/8.png"></p><p>设置空立方体将物体包裹，先选择树（ctrl+点击选择进行多选），再shift选择空物体，ctrl+P设置父级</p><p><img src="/2024/04/19/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A3%95%E6%A6%88%E6%A0%91/9.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模案例</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>设计</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>blender龟背竹！🐅</title>
+    <link href="/2024/04/17/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E9%BE%9F%E8%83%8C%E7%AB%B9/"/>
+    <url>/2024/04/17/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E9%BE%9F%E8%83%8C%E7%AB%B9/</url>
+    
+    <content type="html"><![CDATA[<h1 id="blender龟背竹"><a href="#blender龟背竹" class="headerlink" title="blender龟背竹"></a>blender龟背竹</h1><p>shift+A载入参考图，在右边图像栏调整透明度</p><p><img src="/2024/04/17/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E9%BE%9F%E8%83%8C%E7%AB%B9/1.png"></p><p>不断地选择边挤出调整点，下面的豁口先用<code>K</code>切一刀然后空格退出，选择分离的点按<code>v</code>分离。选择两个点<code>M</code>合并。</p><p><img src="/2024/04/17/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E9%BE%9F%E8%83%8C%E7%AB%B9/2.png"></p><p>应用实体化修改器，选择末端的面挤出合并做杆</p><p><img src="/2024/04/17/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E9%BE%9F%E8%83%8C%E7%AB%B9/3.png"></p><p>ctrl+A应用全部变换（条目），添加简易形变修改器，可以添加三个不同的方向（注意顺序）</p><p><img src="/2024/04/17/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E9%BE%9F%E8%83%8C%E7%AB%B9/4.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模案例</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>设计</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>blender树干！🐅</title>
     <link href="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E5%B9%B2/"/>
     <url>/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E5%B9%B2/</url>
     
-    <content type="html"><![CDATA[<h1 id="blender树干"><a href="#blender树干" class="headerlink" title="blender树干"></a>blender树干</h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="blender树干"><a href="#blender树干" class="headerlink" title="blender树干"></a>blender树干</h1><p><code>R+X+90</code>绕x轴旋转90度</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E5%B9%B2/1.png"></p><p><code>I+ctrl+E</code>桥接循环边</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E5%B9%B2/2.png"></p><p><code>ctrl+B</code>倒角（也可以<code>ctrl+R</code>环切）</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E5%B9%B2/3.png"></p><p>选择苔藓网格，shift+D+右键复制并撤销移动+实体化+网格细分修改器+缩裹修改器</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E6%A0%91%E5%B9%B2/4.png"></p>]]></content>
     
     
     <categories>
@@ -39,7 +163,7 @@
     <link href="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
     <url>/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/</url>
     
-    <content type="html"><![CDATA[<h1 id="blender实用操作"><a href="#blender实用操作" class="headerlink" title="blender实用操作"></a>blender实用操作</h1><h2 id="1-吸附"><a href="#1-吸附" class="headerlink" title="1.吸附"></a>1.吸附</h2><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/1.png"></p><p>使用前一定要将每个物体的原点设置在几何中心。</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/2.png"></p><h2 id="2-衰减（O）"><a href="#2-衰减（O）" class="headerlink" title="2.衰减（O）"></a>2.衰减（O）</h2><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/3.png">使用时按住移动建后滑动滚轮缩放缩减范围。</p><h2 id="3-旋绕"><a href="#3-旋绕" class="headerlink" title="3.旋绕"></a>3.旋绕</h2><p>选择步数（生成的个数）+旋绕的轴+旋绕的中心点的位置</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/4.png"></p><p>直接点击加号会自动生成，勾选使用副本会保留原始的形状</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/5.png"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="blender实用操作"><a href="#blender实用操作" class="headerlink" title="blender实用操作"></a>blender实用操作</h1><h2 id="1-吸附"><a href="#1-吸附" class="headerlink" title="1.吸附"></a>1.吸附</h2><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/1.png"></p><p>使用前一定要将每个物体的原点设置在几何中心。</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/2.png"></p><h2 id="2-衰减（O）"><a href="#2-衰减（O）" class="headerlink" title="2.衰减（O）"></a>2.衰减（O）</h2><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/3.png">使用时按住移动建后滑动滚轮缩放缩减范围。</p><h2 id="3-旋绕"><a href="#3-旋绕" class="headerlink" title="3.旋绕"></a>3.旋绕</h2><p>选择步数（生成的个数）+旋绕的轴+旋绕的中心点的位置</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/4.png"></p><p>直接点击加号会自动生成，勾选使用副本会保留原始的形状</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/5.png"></p><h2 id="4-晶格"><a href="#4-晶格" class="headerlink" title="4.晶格"></a>4.晶格</h2><p><code>shift+A</code>生成晶格，在五一模式下编辑晶格的范围。</p><p>选中使用晶格的物体，再选中晶格，按住<code>ctrl+P</code>选择晶格形变，或者在需要使用的晶格物体中添加晶格修改器，再选择晶格即可应用。</p><p>在编辑模式编辑晶格，即可操作物体。</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/6.png"></p><h2 id="5-空物体"><a href="#5-空物体" class="headerlink" title="5.空物体"></a>5.空物体</h2><p><code>shift+A</code>新建空物体</p><p><img src="/2024/04/16/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%AE%9E%E7%94%A8%E6%93%8D%E4%BD%9C/7.png"></p><p>用来做阵列修改器的物体偏移模式下的物体。</p>]]></content>
     
     
     <categories>
@@ -163,7 +287,7 @@
     <link href="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/"/>
     <url>/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
     
-    <content type="html"><![CDATA[<h1 id="修改器"><a href="#修改器" class="headerlink" title="修改器"></a>修改器</h1><p>修改器的目的是使模型的改变可控。</p><p>修改器使用完成后需要在<strong>物体模式</strong>的<strong>修改器栏从上到下</strong>进行应用。</p><p>应用快捷键：</p><p><code>ctrl+A</code></p><h2 id="1-插件安装及使用"><a href="#1-插件安装及使用" class="headerlink" title="1.插件安装及使用"></a>1.插件安装及使用</h2><p>编辑—-》偏好设置—-》插件—–》勾选</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/1.png"></p><p>按住<code>n</code>键，弹出选择栏，选择编辑，调出插件</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/2.png"></p><p><strong>tips:</strong></p><p>在<strong>编辑模式</strong>的<strong>边面板</strong>进行细分，在<strong>物体模式</strong>下进行平滑着色。</p><h2 id="2-添加修改器"><a href="#2-添加修改器" class="headerlink" title="2.添加修改器"></a>2.添加修改器</h2><p>选择要添加修改器的物体，按如下图的操作进行修改器的添加</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/3.png"></p><h2 id="3-细分修改器"><a href="#3-细分修改器" class="headerlink" title="3.细分修改器"></a>3.细分修改器</h2><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/4.png"></p><p><strong>视图层级</strong>：编辑时的细分等级</p><p><strong>渲染层级</strong>：渲染时的细分等级</p><p><strong>tips：</strong></p><p>细分修改器和平滑着色的区别：</p><ol><li><strong>细分修改器</strong>：<ul><li>细分修改器会根据原始网格的拓扑结构，在渲染时<strong>自动增加细分</strong>。这种细分会使模型的表面看起来更加光滑，因为它会在原始几何体的基础上生成更多的几何细节。</li><li>使用细分修改器，你可以通过增加迭代次数来调整模型的光滑度。迭代次数越高，模型的细节越丰富，但也会<strong>增加计算量</strong>。</li></ul></li><li><strong>平滑着色</strong>：<ul><li>平滑着色是一种外观效果，它会使模型的表面在渲染时看起来更加光滑，而不会改变模型的几何结构。</li><li>平滑着色通过将相邻三角形或多边形的<strong>法线平均化</strong>来实现。这样会使相邻的面之间的过渡更加平滑，而不会有锐利的边缘或角。</li><li>平滑着色并<strong>不会增加几何细分</strong>，因此不会增加模型的顶点数量或者计算复杂度。</li></ul></li></ol><p><strong>一般先添加细分修改器，然后再平滑着色</strong>。</p><p>下列选项可以修改观察方式。</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/5.png"></p><h2 id="4-实体化修改器"><a href="#4-实体化修改器" class="headerlink" title="4.实体化修改器"></a>4.实体化修改器</h2><p>生成栏中找到。</p><p>偏移量是选择往什么地方增加厚度。如图所示</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/6.png"></p><h2 id="5-倒角修改器"><a href="#5-倒角修改器" class="headerlink" title="5.倒角修改器"></a>5.倒角修改器</h2><p>生成栏中找到。</p><p>由数量和段数控制。</p><h2 id="6-布尔修改器"><a href="#6-布尔修改器" class="headerlink" title="6.布尔修改器"></a>6.布尔修改器</h2><p>生成栏中找到。</p><p>选择运算方式，选择<strong>运算物体</strong>。</p><p>运算物体是用来进行运算的工具，运算完成后可以<strong>隐藏</strong>。</p><h2 id="7-简易形变修改器"><a href="#7-简易形变修改器" class="headerlink" title="7.简易形变修改器"></a>7.简易形变修改器</h2><p>形变栏中找到。</p><p>弯曲：</p><p>弯曲的点以原点为弯曲点进行弯曲，可以移动角度和轴进行调整。</p><p>锥化：</p><p>选择锥化的方向。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="修改器"><a href="#修改器" class="headerlink" title="修改器"></a>修改器</h1><p>修改器的目的是使模型的改变可控。</p><p>修改器使用完成后需要在<strong>物体模式</strong>的<strong>修改器栏从上到下</strong>进行应用。</p><p>应用快捷键：</p><p><code>ctrl+A</code></p><h2 id="1-插件安装及使用"><a href="#1-插件安装及使用" class="headerlink" title="1.插件安装及使用"></a>1.插件安装及使用</h2><p>编辑—-》偏好设置—-》插件—–》勾选</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/1.png"></p><p>按住<code>n</code>键，弹出选择栏，选择编辑，调出插件</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/2.png"></p><p><strong>tips:</strong></p><p>在<strong>编辑模式</strong>的<strong>边面板</strong>进行细分，在<strong>物体模式</strong>下进行平滑着色。</p><h2 id="2-添加修改器"><a href="#2-添加修改器" class="headerlink" title="2.添加修改器"></a>2.添加修改器</h2><p>选择要添加修改器的物体，按如下图的操作进行修改器的添加</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/3.png"></p><h2 id="3-细分修改器"><a href="#3-细分修改器" class="headerlink" title="3.细分修改器"></a>3.细分修改器</h2><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/4.png"></p><p><strong>视图层级</strong>：编辑时的细分等级</p><p><strong>渲染层级</strong>：渲染时的细分等级</p><p><strong>tips：</strong></p><p>细分修改器和平滑着色的区别：</p><ol><li><strong>细分修改器</strong>：<ul><li>细分修改器会根据原始网格的拓扑结构，在渲染时<strong>自动增加细分</strong>。这种细分会使模型的表面看起来更加光滑，因为它会在原始几何体的基础上生成更多的几何细节。</li><li>使用细分修改器，你可以通过增加迭代次数来调整模型的光滑度。迭代次数越高，模型的细节越丰富，但也会<strong>增加计算量</strong>。</li></ul></li><li><strong>平滑着色</strong>：<ul><li>平滑着色是一种外观效果，它会使模型的表面在渲染时看起来更加光滑，而不会改变模型的几何结构。</li><li>平滑着色通过将相邻三角形或多边形的<strong>法线平均化</strong>来实现。这样会使相邻的面之间的过渡更加平滑，而不会有锐利的边缘或角。</li><li>平滑着色并<strong>不会增加几何细分</strong>，因此不会增加模型的顶点数量或者计算复杂度。</li></ul></li></ol><p><strong>一般先添加细分修改器，然后再平滑着色</strong>。</p><p>下列选项可以修改观察方式。</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/5.png"></p><h2 id="4-实体化修改器"><a href="#4-实体化修改器" class="headerlink" title="4.实体化修改器"></a>4.实体化修改器</h2><p>生成栏中找到。</p><p>偏移量是选择往什么地方增加厚度。如图所示</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/6.png"></p><h2 id="5-倒角修改器"><a href="#5-倒角修改器" class="headerlink" title="5.倒角修改器"></a>5.倒角修改器</h2><p>生成栏中找到。</p><p>由数量和段数控制。</p><h2 id="6-布尔修改器"><a href="#6-布尔修改器" class="headerlink" title="6.布尔修改器"></a>6.布尔修改器</h2><p>生成栏中找到。</p><p>选择运算方式，选择<strong>运算物体</strong>。</p><p>运算物体是用来进行运算的工具，运算完成后可以<strong>隐藏</strong>。</p><h2 id="7-简易形变修改器"><a href="#7-简易形变修改器" class="headerlink" title="7.简易形变修改器"></a>7.简易形变修改器</h2><p>形变栏中找到。</p><p>弯曲：</p><p>弯曲的点以原点为弯曲点进行弯曲，可以移动角度和轴进行调整。</p><p>锥化：</p><p>选择锥化的方向。</p><h2 id="8-缩裹修改器"><a href="#8-缩裹修改器" class="headerlink" title="8.缩裹修改器"></a>8.缩裹修改器</h2><p>形变栏中找到。</p><p>用吸棒选择需要吸附的对象。需要缩裹的对象一定要有<strong>足够多的细分</strong>才能达到更好的效果。</p><h2 id="9-阵列修改器"><a href="#9-阵列修改器" class="headerlink" title="9.阵列修改器"></a>9.阵列修改器</h2><p>生成栏中找到。</p><p>可以生成多种数量的模型并一起调整。</p><p>物体偏移模式下选择一个物体（可以是空物体），该物体相对于原物体的偏移方式即是接下来的物体相对于前一个物体的偏移方式。</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/7.png"></p><h2 id="10-镜像修改器"><a href="#10-镜像修改器" class="headerlink" title="10.镜像修改器"></a>10.镜像修改器</h2><p>生成栏中找到。</p><p>可以将选择的物体进行镜像。</p><h2 id="11-晶格修改器"><a href="#11-晶格修改器" class="headerlink" title="11.晶格修改器"></a>11.晶格修改器</h2><p>形变栏中找到。</p><p>使用晶格修改器之前一定要生成晶格。晶格选定框住的位置，在需要用晶格的模型上添加晶格修改器后在物体栏选定生成的晶格。编辑晶格可以操作物体。</p><h2 id="12-曲线修改器"><a href="#12-曲线修改器" class="headerlink" title="12.曲线修改器"></a>12.曲线修改器</h2><p>形变栏中找到。</p><p>先生成一个曲线，添加曲线修改器后选择曲线物体为曲线，修改形变轴。</p><p>需要与物体重合。</p><p>选择物体，选择曲线，ctrl+P绑定父级</p><h2 id="13-蒙皮修改器"><a href="#13-蒙皮修改器" class="headerlink" title="13.蒙皮修改器"></a>13.蒙皮修改器</h2><p>生成栏中找到。</p><p>新建平面，选择四个点+M合并到中心</p><p>E挤出一条线，添加蒙皮修改器</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/8.png"></p><p>选择<strong>任意一个点+E</strong>可以挤出分叉，<strong>ctrl+A</strong>修改半径，<strong>ctrl+R</strong>增加分段</p><p><img src="/2024/04/14/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E4%BF%AE%E6%94%B9%E5%99%A8/9.png"></p><p>在蒙皮修改器中选择平滑着色进行平滑。</p><h2 id="14-置换修改器"><a href="#14-置换修改器" class="headerlink" title="14.置换修改器"></a>14.置换修改器</h2><p>形变栏中找到。</p><p>新建平面，细分或添加细分修改器，再添加置换修改器，选择纹理（黑白）</p>]]></content>
     
     
     <categories>
