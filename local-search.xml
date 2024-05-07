@@ -4,6 +4,95 @@
   
   
   <entry>
+    <title>git使用！🦸🏻‍♂️</title>
+    <link href="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/"/>
+    <url>/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>工具 ʕ•ᴥ•ʔ</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>工具</tag>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>transformers库的使用！🐈</title>
+    <link href="/2024/04/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/transformers%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <url>/2024/04/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/transformers%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="transformers库的使用"><a href="#transformers库的使用" class="headerlink" title="transformers库的使用"></a>transformers库的使用</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI ʢᵕᴗᵕʡ</category>
+      
+      <category>NLP</category>
+      
+      <category>NLP库的使用</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>NLP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pytorch模型的保存和加载！🍧</title>
+    <link href="/2024/04/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/pytorch%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BF%9D%E5%AD%98%E5%92%8C%E5%8A%A0%E8%BD%BD/"/>
+    <url>/2024/04/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/pytorch%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BF%9D%E5%AD%98%E5%92%8C%E5%8A%A0%E8%BD%BD/</url>
+    
+    <content type="html"><![CDATA[<h1 id="pytorch模型的保存和加载"><a href="#pytorch模型的保存和加载" class="headerlink" title="pytorch模型的保存和加载"></a>pytorch模型的保存和加载</h1><p>torch提供了两种方式进行保存：</p><ol><li><strong>保存整个模型</strong>：保存整个模型的结构（代码）、参数。</li><li><strong>保存模型参数</strong>：仅保存模型的参数，而不保存模型的结构（代码）。</li></ol><p>先看一下第一种保存方式，保存整个模型的结构（代码）、参数：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 保存模型</span><br>torch.save(model, <span class="hljs-string">&#x27;model.pth&#x27;</span>)<br></code></pre></td></tr></table></figure><p>那如何使用呢？特别简单：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 加载整个模型</span><br>loaded_model = torch.load(<span class="hljs-string">&#x27;model.pth&#x27;</span>)<br><span class="hljs-comment"># 直接进行推理</span><br>output = loaded_model(input_tensor)<br></code></pre></td></tr></table></figure><p>第二种方式是只保存了保存模型的参数，不保存模型的结构（代码）：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 保存模型参数</span><br>torch.save(model.state_dict(), <span class="hljs-string">&#x27;model_params.pth&#x27;</span><br></code></pre></td></tr></table></figure><p>那使用呢？和第一种方式有很大的差别！<strong>要先实例化模型，也是说要有模型结构的代码，才能加载参数</strong>：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 模型结构</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleNN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(SimpleNN, self).__init__()<br>        self.fc1 = nn.Linear(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>)  <span class="hljs-comment"># 输入大小为10，输出大小为20</span><br>        self.fc2 = nn.Linear(<span class="hljs-number">20</span>, <span class="hljs-number">1</span>)   <span class="hljs-comment"># 输入大小为20，输出大小为1</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = torch.relu(self.fc1(x))  <span class="hljs-comment"># 使用ReLU作为激活函数</span><br>        x = self.fc2(x)<br>        <span class="hljs-keyword">return</span> x<br><br><span class="hljs-comment"># 加载模型参数</span><br>model = SimpleNN()  <span class="hljs-comment"># 创建模型实例</span><br>model.load_state_dict(torch.load(<span class="hljs-string">&#x27;model_params.pth&#x27;</span>))<br><span class="hljs-comment"># 直接进行推理</span><br>output = model(input_tensor)<br></code></pre></td></tr></table></figure><p>两种保存方式的差别，但是还是要<strong>注意</strong>：第一种方式其实是在保存模型的时候，<a href="https://www.zhihu.com/search?q=%E5%BA%8F%E5%88%97%E5%8C%96&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:3230090109%7D">序列化</a>的数据被绑定到了特定的类（代码中的模型类）和确切的目录，本质上是不保存模型结构（代码）本身，而是<strong>保存这个模型结构（代码）的路径</strong>，并且在加载的时候会使用，因此当在其他项目里使用或者重构的时候，这种方式加载模型的时候会出错。所以<strong>一般建议使用第二种方式！</strong></p><p><strong>tips：</strong></p><p>huggingface保存的bin文件和pth文件有什么区别？</p><p>答案是<a href="https://www.zhihu.com/search?q=bin%E6%96%87%E4%BB%B6&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:3230090109%7D">bin文件</a>保存的是模型的参数，是上述的torch的第二种方式，想要完整加载模型是需要模型结构（代码）的。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI ʢᵕᴗᵕʡ</category>
+      
+      <category>Pytorch</category>
+      
+      <category>Pytorch基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>Pytorch</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>blender材质基础!🥕</title>
     <link href="/2024/04/27/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%9D%90%E8%B4%A8%E5%9F%BA%E7%A1%80/"/>
     <url>/2024/04/27/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%9D%90%E8%B4%A8%E5%9F%BA%E7%A1%80/</url>
@@ -3007,16 +3096,16 @@
   
   
   <entry>
-    <title>小杨来啦！🦸🏻‍♂️🦸🏻‍♂️🦸🏻‍♂️</title>
-    <link href="/2023/10/31/%E6%97%A5%E8%AE%B0/kaixin/"/>
-    <url>/2023/10/31/%E6%97%A5%E8%AE%B0/kaixin/</url>
+    <title>小杨来啦！🦸🏻‍♂️</title>
+    <link href="/2023/10/31/%E5%B7%A5%E5%85%B7/kaixin/"/>
+    <url>/2023/10/31/%E5%B7%A5%E5%85%B7/kaixin/</url>
     
     <content type="html"><![CDATA[<p>开心就好</p>]]></content>
     
     
     <categories>
       
-      <category>思考 ʕ•ᴥ•ʔ</category>
+      <category>工具 ʕ•ᴥ•ʔ</category>
       
     </categories>
     
