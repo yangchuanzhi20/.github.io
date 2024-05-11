@@ -4,11 +4,203 @@
   
   
   <entry>
+    <title>blender简单的UV纹理绘制！🥕</title>
+    <link href="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/"/>
+    <url>/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/</url>
+    
+    <content type="html"><![CDATA[<h1 id="简单的UV纹理绘制"><a href="#简单的UV纹理绘制" class="headerlink" title="简单的UV纹理绘制"></a>简单的UV纹理绘制</h1><p><strong>1.生成材质</strong></p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/1.png"></p><p><strong>2.纹理绘制</strong></p><p>进入纹理绘制</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/2.png"></p><p>调出颜色选项，x切换颜色</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/3.png"></p><p>勾选对称符号可以对称画图，F缩放画笔大小</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/4.png"></p><p>3.展开uv</p><p>选中缝合边，快捷键<code>U</code>打开选项框，点击标记缝合边，再点击<code>U</code>展开</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/5.png"></p><p>点击下图按钮，可以移动uv图的位置</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/6.png"></p><p>调色板添加基础色</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/7.png"></p><p>油漆桶工具画梯度渐变，从上往下一拉</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/8.png"></p><p>按退格键色板的点会回到中间</p><p>选择耳蜗的面进入绘制模式，点击遮罩进行绘制</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/9.png"></p><p>尾巴渐变如上同理</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/10.png"></p><p>身体由于不规则投射，需要智能展uv，在编辑模式下U–》智能投射后，再用油漆桶工具即可</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+      <category>Blender基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>blender混合材质节点！🥕</title>
+    <link href="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%B7%B7%E5%90%88%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9/"/>
+    <url>/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%B7%B7%E5%90%88%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9/</url>
+    
+    <content type="html"><![CDATA[<h1 id="混合材质节点"><a href="#混合材质节点" class="headerlink" title="混合材质节点"></a>混合材质节点</h1><p><code>ctrl+J</code>打组</p><p>着色器—》混合着色器</p><p>将两个不同效果的BSDF输出连接到混合着色器进行混合，系数可由黑白纹理图确定。</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%B7%B7%E5%90%88%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9/1.png"></p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%B7%B7%E5%90%88%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9/2.png"></p><p>快捷键：</p><p>1.<code>ctrl+shift</code>右键拖拉可以快速增加一个混合BSDF节点</p><p>2.<code>alt+S</code>可以快速交换混合节点的着色器位置</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+      <category>Blender基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>blender凹凸感和置换形变！🥕</title>
+    <link href="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E5%87%B9%E5%87%B8%E6%84%9F%E5%92%8C%E7%BD%AE%E6%8D%A2%E5%BD%A2%E5%8F%98/"/>
+    <url>/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E5%87%B9%E5%87%B8%E6%84%9F%E5%92%8C%E7%BD%AE%E6%8D%A2%E5%BD%A2%E5%8F%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="凹凸感和置换形变"><a href="#凹凸感和置换形变" class="headerlink" title="凹凸感和置换形变"></a>凹凸感和置换形变</h1><h2 id="1-凹凸节点"><a href="#1-凹凸节点" class="headerlink" title="1.凹凸节点"></a>1.凹凸节点</h2><p><strong>矢量—》凹凸</strong></p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E5%87%B9%E5%87%B8%E6%84%9F%E5%92%8C%E7%BD%AE%E6%8D%A2%E5%BD%A2%E5%8F%98/1.png"></p><p>高度：接受0-1的值</p><p>法向：连接BSDF的法向</p><p><strong>tips：</strong></p><p>凹凸感的模拟并不是改变物体本身的形状，即<strong>不发生形变</strong>，而是<strong>改变法线的方向</strong>进行模拟。</p><h2 id="2-置换形变"><a href="#2-置换形变" class="headerlink" title="2.置换形变"></a>2.置换形变</h2><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E5%87%B9%E5%87%B8%E6%84%9F%E5%92%8C%E7%BD%AE%E6%8D%A2%E5%BD%A2%E5%8F%98/2.png"></p><p>如图所示是一张法线贴图，为什么法线贴图是彩色？因为法线是有方向的量，所以计算机就用RGB的三个值代表三维空间的xyz的位置</p><p><strong>举例：</strong>图中的砖块法线大部分垂直于xy平面，所以法向的值为（0，0，1），对应RGB的值带入后就是纯蓝色。</p><p>在<strong>cycles渲染引擎</strong>下，将设置下的置换改成置换与凹凸</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E5%87%B9%E5%87%B8%E6%84%9F%E5%92%8C%E7%BD%AE%E6%8D%A2%E5%BD%A2%E5%8F%98/3.png"></p><p><strong>方法一：置换节点</strong></p><p><strong>矢量—》置换</strong></p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E5%87%B9%E5%87%B8%E6%84%9F%E5%92%8C%E7%BD%AE%E6%8D%A2%E5%BD%A2%E5%8F%98/4.png"></p><p>注意，要将平面进行细分。修改置换节点的缩放参数进行调整。</p><p>快捷键：</p><p>创建新材质，在BSDF下使用快捷键<code>ctrl+shift+T</code>选择四个纹理图，修改材质–》设置—》置换—》置换与凹凸即可。</p><p><strong>方法二：置换修改器+置换纹理</strong></p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E5%87%B9%E5%87%B8%E6%84%9F%E5%92%8C%E7%BD%AE%E6%8D%A2%E5%BD%A2%E5%8F%98/5.png"></p><p>两种方式对比，第二种要明显很多，但更耗资源</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E5%87%B9%E5%87%B8%E6%84%9F%E5%92%8C%E7%BD%AE%E6%8D%A2%E5%BD%A2%E5%8F%98/6.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+      <category>Blender基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>blender蒙版添加材质！🥕</title>
+    <link href="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E8%92%99%E7%89%88%E6%B7%BB%E5%8A%A0%E6%9D%90%E8%B4%A8/"/>
+    <url>/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E8%92%99%E7%89%88%E6%B7%BB%E5%8A%A0%E6%9D%90%E8%B4%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="蒙版添加材质"><a href="#蒙版添加材质" class="headerlink" title="蒙版添加材质"></a>蒙版添加材质</h1><h2 id="1-node-wrangler插件"><a href="#1-node-wrangler插件" class="headerlink" title="1.node wrangler插件"></a>1.node wrangler插件</h2><p>智能加节点。</p><p>选举需要加的节点，按<code>ctrl+T</code>可以自动添加映射和纹理坐标</p><h2 id="2-混合节点"><a href="#2-混合节点" class="headerlink" title="2.混合节点"></a>2.混合节点</h2><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E8%92%99%E7%89%88%E6%B7%BB%E5%8A%A0%E6%9D%90%E8%B4%A8/1.png"></p><p>AB控制混合的颜色，系数控制程度，系数越接近0，颜色越接近A，系数越接近1，颜色越接近B</p><h2 id="3-蒙版"><a href="#3-蒙版" class="headerlink" title="3.蒙版"></a>3.蒙版</h2><p>黑色：0</p><p>白色：1</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E8%92%99%E7%89%88%E6%B7%BB%E5%8A%A0%E6%9D%90%E8%B4%A8/2.png"></p><p>如图所示，当该纹理连接混合的系数时，其中黑色部分的系数为0，即A的颜色，白色部分为1，即B的颜色</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E8%92%99%E7%89%88%E6%B7%BB%E5%8A%A0%E6%9D%90%E8%B4%A8/3.png"></p><p>上面结果的连接节点如下：</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E8%92%99%E7%89%88%E6%B7%BB%E5%8A%A0%E6%9D%90%E8%B4%A8/4.png"></p><p>同理可以将其连接到颜色渐变的系数</p><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E8%92%99%E7%89%88%E6%B7%BB%E5%8A%A0%E6%9D%90%E8%B4%A8/5.png"></p><h2 id="4-多纹理混合"><a href="#4-多纹理混合" class="headerlink" title="4.多纹理混合"></a>4.多纹理混合</h2><p><img src="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E8%92%99%E7%89%88%E6%B7%BB%E5%8A%A0%E6%9D%90%E8%B4%A8/6.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+      <category>Blender基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>blender纹理！🥕</title>
+    <link href="/2024/05/09/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%BA%B9%E7%90%86/"/>
+    <url>/2024/05/09/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%BA%B9%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h1 id="blender纹理"><a href="#blender纹理" class="headerlink" title="blender纹理"></a>blender纹理</h1><h2 id="1-基础节点"><a href="#1-基础节点" class="headerlink" title="1.基础节点"></a>1.基础节点</h2><p><img src="/2024/05/09/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%BA%B9%E7%90%86/1.png"></p><p>1.纹理—》图像纹理</p><p>2.矢量—》映射</p><p>3.输入—》纹理坐标</p><h2 id="2-UV"><a href="#2-UV" class="headerlink" title="2.UV"></a>2.UV</h2><p>在编辑模式下打开uv编辑器</p><p><img src="/2024/05/09/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%BA%B9%E7%90%86/2.png"></p><p>可以移动uv编辑器中展开的图形</p><h2 id="3-生成"><a href="#3-生成" class="headerlink" title="3.生成"></a>3.生成</h2><p>基于全局坐标系，由图像纹理节点控制，可改变生成方式。</p><h2 id="4-物体"><a href="#4-物体" class="headerlink" title="4.物体"></a>4.物体</h2><p>基于局部坐标系。移动原点改变映射方式。</p><p><img src="/2024/05/09/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%BA%B9%E7%90%86/3.png"></p><p>可以以其他物体作为原点，使纹理跟随物体移动。</p><h2 id="5-映射"><a href="#5-映射" class="headerlink" title="5.映射"></a>5.映射</h2><p><img src="/2024/05/09/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%BA%B9%E7%90%86/4.png"></p><p>映射类型中点和纹理的区别在于点模式移动的是坐标轴，纹理模式移动的是纹理。</p><h2 id="6-渐变"><a href="#6-渐变" class="headerlink" title="6.渐变"></a>6.渐变</h2><p><img src="/2024/05/09/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%BA%B9%E7%90%86/5.png"></p><p>1.转换器—》颜色渐变</p><p>2.转换器—》分离xyz</p><p>选择分离xyz中的x&#x2F;y&#x2F;z连接到颜色渐变的系数上，会从不同轴向进行渐变。</p><p>可以使用映射中的属性进行调整。</p><p>思路就是：纹理坐标确定将模型放在哪个坐标系中进行渲染，不同的坐标系下由映射控制xyz的轴，分离xyz表示只考虑一个轴向的内容。</p><h2 id="7-关联材质"><a href="#7-关联材质" class="headerlink" title="7.关联材质"></a>7.关联材质</h2><p>先选需要关联的物体 ，再选关联材质的物体，<code>ctrl+L</code>选择关联材质</p><h2 id="8-程序化纹理"><a href="#8-程序化纹理" class="headerlink" title="8.程序化纹理"></a>8.程序化纹理</h2><p>程序化纹理（Procedural Texture）是计算机图形学中一种生成纹理的方法，它不依赖于事先准备好的纹理图像，而是通过算法在运行时动态生成。程序化纹理通常由一些数学函数、随机数生成器和参数控制组成，可以生成各种复杂的纹理效果，如大理石、木材、云彩等。</p><p>程序化纹理的主要优点包括：</p><ol><li><strong>无限分辨率</strong>：程序化纹理可以根据需要生成任意分辨率的纹理，不受原始纹理图像的限制。</li><li><strong>无缝重复</strong>：由于纹理是根据算法生成的，因此可以轻松实现无缝重复，避免了纹理贴图在重复拼接处产生不连续的视觉效果。</li><li><strong>灵活性</strong>：通过调整参数或修改生成算法，可以轻松地获得不同风格、不同形状的纹理效果，具有较高的灵活性和可定制性。</li><li><strong>节省资源</strong>：与使用预先制作的纹理图像相比，程序化纹理不需要存储大量的纹理图像文件，因此可以节省存储空间。</li></ol><p>程序化纹理的应用非常广泛，特别是在计算机图形学、电影特效、游戏开发等领域。通过程序化纹理，可以实现更加逼真和多样化的视觉效果，提高图形图像的真实感和艺术表现力。</p><p>A</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+      <category>Blender基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pycharm中gitee的使用!🦸🏻‍♂️</title>
+    <link href="/2024/05/09/%E5%B7%A5%E5%85%B7/pycharm%E4%B8%ADgitee%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <url>/2024/05/09/%E5%B7%A5%E5%85%B7/pycharm%E4%B8%ADgitee%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="pycharm中gitee的使用"><a href="#pycharm中gitee的使用" class="headerlink" title="pycharm中gitee的使用"></a>pycharm中gitee的使用</h1><p><img src="/2024/05/09/%E5%B7%A5%E5%85%B7/pycharm%E4%B8%ADgitee%E7%9A%84%E4%BD%BF%E7%94%A8/1.png"></p><p>首先在文件—》设置—-》插件中安装gitee</p><p><img src="/2024/05/09/%E5%B7%A5%E5%85%B7/pycharm%E4%B8%ADgitee%E7%9A%84%E4%BD%BF%E7%94%A8/2.png"></p><p>然后在版本控制—》gitee下登录gitee账号进行关联</p><p><img src="/2024/05/09/%E5%B7%A5%E5%85%B7/pycharm%E4%B8%ADgitee%E7%9A%84%E4%BD%BF%E7%94%A8/3.png"></p><p>找到gitee仓库下的下载地址</p><p><img src="/2024/05/09/%E5%B7%A5%E5%85%B7/pycharm%E4%B8%ADgitee%E7%9A%84%E4%BD%BF%E7%94%A8/4.png"></p><p>在本地新建一个push文件夹，打开git bash，将下载地址的代码粘贴进去，<strong>粘贴快捷键：</strong><code>shift+ins</code></p><p><img src="/2024/05/09/%E5%B7%A5%E5%85%B7/pycharm%E4%B8%ADgitee%E7%9A%84%E4%BD%BF%E7%94%A8/5.png"></p><p>打开pycharm，该文件将自动进行版本控制并和远程仓库进行关联（右键项目，在git—》管理远程中管理远程仓库）</p><p><img src="/2024/05/09/%E5%B7%A5%E5%85%B7/pycharm%E4%B8%ADgitee%E7%9A%84%E4%BD%BF%E7%94%A8/6.png"></p><p>从pycharm版本控制栏—》远程下选择需要进行推送的分支进行签出</p><p><img src="/2024/05/09/%E5%B7%A5%E5%85%B7/pycharm%E4%B8%ADgitee%E7%9A%84%E4%BD%BF%E7%94%A8/7.png"></p><p>则修改文件后提交并推送就会在gitee对应的项目分支下进行更新</p><p><strong>所以可以在本地的MImicSolver项目中将代码调试完成后复制到push_mimic文件夹下的mimicsolver项目中进行提交并推送到远程的码云仓库。</strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具 ʕ•ᴥ•ʔ</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>工具</tag>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>git使用！🦸🏻‍♂️</title>
     <link href="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/"/>
     <url>/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="git使用"><a href="#git使用" class="headerlink" title="git使用"></a>git使用</h1><h2 id="1-git-gui的使用"><a href="#1-git-gui的使用" class="headerlink" title="1.git gui的使用"></a>1.git gui的使用</h2><p>新建文件夹，在该文件夹中新建test文件，右键选择git gui，第一次使用时会弹出如图所示的选项，选择创建新的库，选择目录为该文件夹<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/1.png"></p><p>创建完成后，在test文件中增加内容，git gui中会有对应的显示，如图所示<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/2.png"></p><p>rescan是重新扫描整个文件夹</p><p>stage changed是将文件的修改状态移到暂存区，准备提交到版本控制系统，当你需要将这些文件当前的状态保存下来时进行该操作</p><p>sign off是增加修改的对象</p><p>commit是将文件提交到本地的版本控制系统</p><p>push是提交到网络</p><p><img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/3.png"></p><p>添加commit message后点击commit即可。</p><p>再次修改test文件的内容，<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/4.png">点击rescan，git gui中会显示修改的前后对比，按照第一次提交的方式提交。</p><p>点击如图所示的选项，可看到提交的版本记录。<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/5.png">分支的命名是你的commit message<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/6.png"></p><p>若想要文件恢复到历史版本，点击如图所示选项<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/7.png">，<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/8.png">选择hard即可恢复</p><h2 id="2-推送方式"><a href="#2-推送方式" class="headerlink" title="2.推送方式"></a>2.推送方式</h2><p>ssh推送和https推送的区别：<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/9.png"></p><ol><li><strong>认证方式</strong>：<ul><li><strong>SSH推送</strong>：使用SSH公钥认证。在SSH推送中，你需要在本地计算机上生成SSH密钥对，并将公钥添加到你的代码托管服务（如GitHub、GitLab、Bitbucket等）的帐户设置中。推送时，你的私钥用于身份验证。</li><li><strong>HTTPS推送</strong>：使用用户名和密码或个人访问令牌（Personal Access Token）进行认证。在HTTPS推送中，你需要在每次推送时提供用户名和密码，或者使用个人访问令牌作为凭证。</li></ul></li><li><strong>安全性</strong>：<ul><li><strong>SSH推送</strong>：SSH推送相对于HTTPS推送来说更加安全，因为它使用了非对称加密技术，私钥储存在本地，不会在网络上传输，因此更难受到中间人攻击。</li><li><strong>HTTPS推送</strong>：HTTPS推送需要在每次推送时输入用户名和密码或个人访问令牌，这可能会增加泄露凭证的风险，尤其是如果在不安全的网络上操作时。</li></ul></li><li><strong>配置要求</strong>：<ul><li><strong>SSH推送</strong>：使用SSH推送需要在本地生成SSH密钥对，并将公钥添加到你的代码托管服务中，这需要一些额外的配置步骤。</li><li><strong>HTTPS推送</strong>：使用HTTPS推送不需要额外的配置，只需在每次推送时提供用户名和密码或个人访问令牌即可。</li></ul></li><li><strong>网络代理</strong>：<ul><li><strong>SSH推送</strong>：SSH通常不受网络代理的限制，因此在某些网络环境中可能更容易使用。</li><li><strong>HTTPS推送</strong>：在某些网络环境中，如企业网络，可能存在对HTTPS协议的限制或审查，这可能会影响到推送操作的顺利进行。</li></ul></li></ol><p><strong>ssh推送设置：</strong></p><p>在下图中的目录中查看是否有rsa文件<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/10.png"></p><p><strong>pub文件的为公钥可以随便给人，非pub的为私钥不能给别人</strong></p><p>如果没有：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">ssh-keygen -t rsa -C &quot;你的邮箱地址&quot;<br></code></pre></td></tr></table></figure><p><img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/11.png">根据如图所示操作，将pub中的内容复制到公钥中即可。</p><h2 id="3-本地推送"><a href="#3-本地推送" class="headerlink" title="3.本地推送"></a>3.本地推送</h2><p><img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/12.png">如图所示添加远程仓库，<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/13.png">填写项目名称和远程仓库的location，https和ssh都可以填写，填写完后选择push提交。</p><p><img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/14.png">push的时候选择远程仓库的项目名称，<strong>gitee和github原理一致</strong>。</p>]]></content>
     
     
     <categories>
@@ -97,7 +289,7 @@
     <link href="/2024/04/27/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%9D%90%E8%B4%A8%E5%9F%BA%E7%A1%80/"/>
     <url>/2024/04/27/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%9D%90%E8%B4%A8%E5%9F%BA%E7%A1%80/</url>
     
-    <content type="html"><![CDATA[<h1 id="blender材质基础"><a href="#blender材质基础" class="headerlink" title="blender材质基础"></a>blender材质基础</h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="blender材质基础"><a href="#blender材质基础" class="headerlink" title="blender材质基础"></a>blender材质基础</h1><h2 id="1-添加材质"><a href="#1-添加材质" class="headerlink" title="1.添加材质"></a>1.添加材质</h2><p><img src="/2024/04/27/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%9D%90%E8%B4%A8%E5%9F%BA%E7%A1%80/1.png"></p><p>在<strong>渲染视图</strong>模式下选择材质栏，<strong>添加&#x2F;选择&#x2F;删除</strong>材质（+&#x2F;-符号）</p><p><img src="/2024/04/27/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%9D%90%E8%B4%A8%E5%9F%BA%E7%A1%80/2.png"></p><p>默认情况下未用的材质在关闭窗口后会自动删除，点击盾牌可以将材质赋予给伪用户进行保护。</p><h2 id="2-着色器编辑器"><a href="#2-着色器编辑器" class="headerlink" title="2.着色器编辑器"></a>2.着色器编辑器</h2><p><img src="/2024/04/27/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%9D%90%E8%B4%A8%E5%9F%BA%E7%A1%80/3.png"></p><p>打开着色器编辑器可以发现每一个材质背后都有节点。（n隐藏&#x2F;显示工具栏）</p><p><img src="/2024/04/27/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%9D%90%E8%B4%A8%E5%9F%BA%E7%A1%80/4.png"></p><p>着色器右上角的菜单和材质栏菜单一一对应。</p><p><img src="/2024/04/27/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E6%9D%90%E8%B4%A8%E5%9F%BA%E7%A1%80/5.png"></p><p>将场景世界的勾选去掉可以让让预览更清晰（假光）。</p><h2 id="3-BSDF"><a href="#3-BSDF" class="headerlink" title="3.BSDF"></a>3.BSDF</h2><p>1.金属度：一般要么0，要么1，不会给中间值。</p><p>2.糙度：改变粗糙程度。</p><p>3.自发光：在渲染栏改渲染引擎为cycles效果明显</p><h2 id="4-多材质"><a href="#4-多材质" class="headerlink" title="4.多材质"></a>4.多材质</h2><p>点击加号添加材质，编辑模式下选择面，选择材质，点击指定即可。</p>]]></content>
     
     
     <categories>

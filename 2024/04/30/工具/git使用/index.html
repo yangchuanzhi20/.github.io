@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/101.jpg">
 <meta property="article:published_time" content="2024-04-30T07:26:50.000Z">
-<meta property="article:modified_time" content="2024-04-30T07:30:37.954Z">
+<meta property="article:modified_time" content="2024-05-09T05:20:51.722Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="工具">
 <meta property="article:tag" content="教程">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.2k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          1 分钟
+          11 分钟
         
       </span>
     
@@ -294,7 +294,51 @@
             
               <div class="markdown-body">
                 
-                
+                <h1 id="git使用"><a href="#git使用" class="headerlink" title="git使用"></a>git使用</h1><h2 id="1-git-gui的使用"><a href="#1-git-gui的使用" class="headerlink" title="1.git gui的使用"></a>1.git gui的使用</h2><p>新建文件夹，在该文件夹中新建test文件，右键选择git gui，第一次使用时会弹出如图所示的选项，选择创建新的库，选择目录为该文件夹<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>创建完成后，在test文件中增加内容，git gui中会有对应的显示，如图所示<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/2.png" srcset="/img/loading.gif" lazyload></p>
+<p>rescan是重新扫描整个文件夹</p>
+<p>stage changed是将文件的修改状态移到暂存区，准备提交到版本控制系统，当你需要将这些文件当前的状态保存下来时进行该操作</p>
+<p>sign off是增加修改的对象</p>
+<p>commit是将文件提交到本地的版本控制系统</p>
+<p>push是提交到网络</p>
+<p><img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/3.png" srcset="/img/loading.gif" lazyload></p>
+<p>添加commit message后点击commit即可。</p>
+<p>再次修改test文件的内容，<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/4.png" srcset="/img/loading.gif" lazyload>点击rescan，git gui中会显示修改的前后对比，按照第一次提交的方式提交。</p>
+<p>点击如图所示的选项，可看到提交的版本记录。<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/5.png" srcset="/img/loading.gif" lazyload>分支的命名是你的commit message<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/6.png" srcset="/img/loading.gif" lazyload></p>
+<p>若想要文件恢复到历史版本，点击如图所示选项<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/7.png" srcset="/img/loading.gif" lazyload>，<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/8.png" srcset="/img/loading.gif" lazyload>选择hard即可恢复</p>
+<h2 id="2-推送方式"><a href="#2-推送方式" class="headerlink" title="2.推送方式"></a>2.推送方式</h2><p>ssh推送和https推送的区别：<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/9.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>认证方式</strong>：<ul>
+<li><strong>SSH推送</strong>：使用SSH公钥认证。在SSH推送中，你需要在本地计算机上生成SSH密钥对，并将公钥添加到你的代码托管服务（如GitHub、GitLab、Bitbucket等）的帐户设置中。推送时，你的私钥用于身份验证。</li>
+<li><strong>HTTPS推送</strong>：使用用户名和密码或个人访问令牌（Personal Access Token）进行认证。在HTTPS推送中，你需要在每次推送时提供用户名和密码，或者使用个人访问令牌作为凭证。</li>
+</ul>
+</li>
+<li><strong>安全性</strong>：<ul>
+<li><strong>SSH推送</strong>：SSH推送相对于HTTPS推送来说更加安全，因为它使用了非对称加密技术，私钥储存在本地，不会在网络上传输，因此更难受到中间人攻击。</li>
+<li><strong>HTTPS推送</strong>：HTTPS推送需要在每次推送时输入用户名和密码或个人访问令牌，这可能会增加泄露凭证的风险，尤其是如果在不安全的网络上操作时。</li>
+</ul>
+</li>
+<li><strong>配置要求</strong>：<ul>
+<li><strong>SSH推送</strong>：使用SSH推送需要在本地生成SSH密钥对，并将公钥添加到你的代码托管服务中，这需要一些额外的配置步骤。</li>
+<li><strong>HTTPS推送</strong>：使用HTTPS推送不需要额外的配置，只需在每次推送时提供用户名和密码或个人访问令牌即可。</li>
+</ul>
+</li>
+<li><strong>网络代理</strong>：<ul>
+<li><strong>SSH推送</strong>：SSH通常不受网络代理的限制，因此在某些网络环境中可能更容易使用。</li>
+<li><strong>HTTPS推送</strong>：在某些网络环境中，如企业网络，可能存在对HTTPS协议的限制或审查，这可能会影响到推送操作的顺利进行。</li>
+</ul>
+</li>
+</ol>
+<p><strong>ssh推送设置：</strong></p>
+<p>在下图中的目录中查看是否有rsa文件<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/10.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>pub文件的为公钥可以随便给人，非pub的为私钥不能给别人</strong></p>
+<p>如果没有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">ssh-keygen -t rsa -C &quot;你的邮箱地址&quot;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/11.png" srcset="/img/loading.gif" lazyload>根据如图所示操作，将pub中的内容复制到公钥中即可。</p>
+<h2 id="3-本地推送"><a href="#3-本地推送" class="headerlink" title="3.本地推送"></a>3.本地推送</h2><p><img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/12.png" srcset="/img/loading.gif" lazyload>如图所示添加远程仓库，<img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/13.png" srcset="/img/loading.gif" lazyload>填写项目名称和远程仓库的location，https和ssh都可以填写，填写完后选择push提交。</p>
+<p><img src="/2024/04/30/%E5%B7%A5%E5%85%B7/git%E4%BD%BF%E7%94%A8/14.png" srcset="/img/loading.gif" lazyload>push的时候选择远程仓库的项目名称，<strong>gitee和github原理一致</strong>。</p>
+
                 
               </div>
             
@@ -385,6 +429,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/05/09/%E5%B7%A5%E5%85%B7/pycharm%E4%B8%ADgitee%E7%9A%84%E4%BD%BF%E7%94%A8/" title="pycharm中gitee的使用!🦸🏻‍♂️">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">pycharm中gitee的使用!🦸🏻‍♂️</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
