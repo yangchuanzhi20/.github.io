@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>blender粒子！🥕</title>
+    <link href="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/"/>
+    <url>/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/</url>
+    
+    <content type="html"><![CDATA[<h2 id="粒子"><a href="#粒子" class="headerlink" title="粒子"></a>粒子</h2><h2 id="1-发射体粒子"><a href="#1-发射体粒子" class="headerlink" title="1.发射体粒子"></a>1.发射体粒子</h2><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/1.png"></p><p>如上图所示新建，空格键播放</p><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/2.png"></p><p>将三个物体框选，<code>M</code>快捷键新建&#x2F;移动到集合</p><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/3.png"></p><p>改变渲染的方式为集合，则发射的例子为集合中的内容</p><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/4.png"></p><p>源是改变粒子发射的位置，可以从面或者点或者体积（物体内部）发出。</p><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/5.png"></p><p>速度法向确定距离，物体对齐是在不同方向进行粒子的发射。</p><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/6.png"></p><p>力场和物理改变粒子的物理属性，如改变重力。</p><h2 id="2-碰撞"><a href="#2-碰撞" class="headerlink" title="2.碰撞"></a>2.碰撞</h2><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/7.png"></p><p>新建物体，增加物理状态，新增碰撞，修改阻尼，即会产生碰撞效果。</p><h2 id="3-力场"><a href="#3-力场" class="headerlink" title="3.力场"></a>3.力场</h2><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/8.png"></p><p>shift+A新建力场—》常力，相当于给整个世界系统添加了力场，粒子会向左移动。</p><h2 id="4-毛发粒子"><a href="#4-毛发粒子" class="headerlink" title="4.毛发粒子"></a>4.毛发粒子</h2><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/9.png"></p><p>生成草的形状，颜色和材质纹理颜色对应</p><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/10.png"></p><p>勾选高级，旋转改变随机化阶段，可以随机旋转，显示数量改为1</p><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/11.png"></p><p>打开移动的箭头，毛发粒子的方向和原点的方向有关，在移动仅原点的模式下移动原点。（或者打开渲染—》物体—》物体旋转，直接改变物体的旋转方向来改变粒子的方向）</p><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/12.png"></p><p>改变毛发的生长方向是在全局&#x2F;局部&#x2F;方向</p><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/13.png"></p><p>可以使用物体信息+颜色渐变（常值）来控制毛发颜色的随机性。</p><p><img src="/2024/05/11/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%B2%92%E5%AD%90/14.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建模 ʕథ౪థʔ</category>
+      
+      <category>Blender</category>
+      
+      <category>Blender建模技巧</category>
+      
+      <category>Blender基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技巧</tag>
+      
+      <tag>Blender</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>blender简单的UV纹理绘制！🥕</title>
     <link href="/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/"/>
     <url>/2024/05/10/%E5%BB%BA%E6%A8%A1/blender/%E6%8A%80%E5%B7%A7/blender%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/blender%E7%AE%80%E5%8D%95%E7%9A%84UV%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6/</url>
