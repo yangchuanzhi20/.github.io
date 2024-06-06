@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/100.jpg">
 <meta property="article:published_time" content="2024-04-28T05:46:21.000Z">
-<meta property="article:modified_time" content="2024-04-28T06:06:36.291Z">
+<meta property="article:modified_time" content="2024-05-12T13:19:58.158Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="NLP">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16 字
+          3.3k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          1 分钟
+          28 分钟
         
       </span>
     
@@ -294,7 +294,43 @@
             
               <div class="markdown-body">
                 
-                <h1 id="transformers库的使用"><a href="#transformers库的使用" class="headerlink" title="transformers库的使用"></a>transformers库的使用</h1>
+                <h1 id="transformers库的使用"><a href="#transformers库的使用" class="headerlink" title="transformers库的使用"></a>transformers库的使用</h1><h2 id="1、加载预训练模型"><a href="#1、加载预训练模型" class="headerlink" title="1、加载预训练模型"></a><strong>1、加载预训练模型</strong></h2><p>例如，加载一个预训练的BERT模型，并查看一些关键的参数信息，可以使用以下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> BertModel<br><br><span class="hljs-comment"># 加载预训练模型，会自动下载</span><br>model = BertModel.from_pretrained(<span class="hljs-string">&quot;bert-base-uncased&quot;</span>)<br><span class="hljs-built_in">print</span>(model.config)<br></code></pre></td></tr></table></figure>
+
+<p>1.<code>from transformers import BertModel</code>：这一行从Transformers库中导入<code>BertModel</code>类。Transformers库是Hugging Face公司开发的一个用于处理自然语言处理（NLP）任务的库。<code>BertModel</code>类是用于表示BERT模型的基本架构的类。</p>
+<p>2.<code>model = BertModel.from_pretrained(&quot;bert-base-uncased&quot;)</code>：这一行加载一个预训练的BERT模型。<code>from_pretrained()</code>方法是一个类方法，它根据给定的预训练模型名称（在这里是”bert-base-uncased”）自动下载并加载相应的模型权重。”bert-base-uncased”是BERT模型的一个变体，它使用小写字母进行训练，具有较小的模型大小和计算复杂度。加载完成后，<code>model</code>变量将包含一个可以用于各种NLP任务的预训练BERT模型。</p>
+<p>3.<code>print(model.config)</code>：这一行打印模型的配置信息。<code>model.config</code>是一个包含模型配置（例如模型架构、隐藏层大小、注意力头数等）的对象。通过打印这些信息，你可以了解模型的详细配置。</p>
+<h2 id="2-Tokenizer的使用"><a href="#2-Tokenizer的使用" class="headerlink" title="2.Tokenizer的使用"></a>2.<strong>Tokenizer的使用</strong></h2><p>在使用预训练模型处理文本之前，我们需要将文本转换为模型可以理解的格式。这就需要使用tokenizer对文本进行分词、编码等操作。transformers库为每种预训练模型提供了相应的tokenizer类，使用方法非常简单。</p>
+<p>例如，使用BERT的tokenizer进行文本编码，可以使用以下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> BertTokenizer<br><br>tokenizer = BertTokenizer.from_pretrained(<span class="hljs-string">&quot;bert-base-uncased&quot;</span>)<br>text = <span class="hljs-string">&quot;here is some text to encode&quot;</span><br>encoded_input = tokenizer(text, return_tensors=<span class="hljs-string">&#x27;pt&#x27;</span>)<br><span class="hljs-built_in">print</span>(encoded_input)<br></code></pre></td></tr></table></figure>
+
+<p><code>tokenizer</code> 是用于将文本数据转换为模型可接受的输入格式的工具。在 Hugging Face Transformers 库中，<code>tokenizer</code> 的参数通常有很多，下面是一些常用的参数及其作用：</p>
+<ol>
+<li><strong>text</strong>：要编码的文本数据。</li>
+<li><strong>return_tensors</strong>：指定返回的张量类型，通常为 <code>&#39;pt&#39;</code>（PyTorch）或 <code>&#39;tf&#39;</code>（TensorFlow）。如果不指定，默认返回 Python 列表格式。</li>
+<li><strong>padding</strong>：指定是否对输入序列进行填充，通常为 <code>&#39;max_length&#39;</code>（填充到指定的最大长度）或 <code>&#39;longest&#39;</code>（填充到最长样本的长度）。如果不需要填充，可以设置为 <code>False</code>。</li>
+<li><strong>truncation</strong>：指定是否对输入序列进行截断，通常为 <code>&#39;max_length&#39;</code>（截断到指定的最大长度）或 <code>&#39;only_first&#39;</code>（仅截断第一个序列）等。如果不需要截断，可以设置为 <code>False</code>。</li>
+<li><strong>max_length</strong>：指定输入序列的最大长度，超出该长度的序列将被截断或填充。</li>
+<li><strong>return_attention_mask</strong>：指定是否返回注意力掩码（attention mask），用于标记输入序列中的填充部分。如果为 <code>True</code>，则返回一个二进制张量，表示哪些位置是填充的，哪些是真实的输入。</li>
+<li><strong>return_offsets_mapping</strong>：指定是否返回偏移映射（offsets mapping），用于将编码后的序列映射回原始文本中的字符位置。</li>
+<li><strong>return_token_type_ids</strong>：指定是否返回令牌类型 ID，用于区分不同的句子。通常在处理句子对时使用，比如问答任务或文本对分类任务。</li>
+<li><strong>add_special_tokens</strong>：指定是否添加特殊令牌（如 <code>[CLS]</code>、<code>[SEP]</code>）到输入序列中。</li>
+</ol>
+<p>tips：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">tokenized_input = tokenizer.encode(sentence, add_special_tokens=<span class="hljs-literal">True</span>, return_tensors=<span class="hljs-string">&quot;pt&quot;</span>)<br>tokenized_input1 = tokenizer(sentence, add_special_tokens=<span class="hljs-literal">True</span>, return_tensors=<span class="hljs-string">&quot;pt&quot;</span>)<br><br><span class="hljs-comment">#分别使用：</span><br><span class="hljs-keyword">with</span> torch.no_grad():<br>    outputs = model(tokenized_input)<br>    outputs1 = model(**tokenized_input1)<br>   <br><span class="hljs-comment">#结果一致</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="3-文本分类任务示例"><a href="#3-文本分类任务示例" class="headerlink" title="3.文本分类任务示例"></a>3.<strong>文本分类任务示例</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> BertForSequenceClassification<br><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> BertTokenizer<br><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 准备输入文本和对应的标签</span><br>model = BertForSequenceClassification.from_pretrained(<span class="hljs-string">&quot;bert-base-uncased&quot;</span>, num_labels=<span class="hljs-number">2</span>)<br>input_text = [<span class="hljs-string">&quot;I love this movie!&quot;</span>, <span class="hljs-string">&quot;This movie is terrible.&quot;</span>]<br>labels = [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>]  <span class="hljs-comment"># 1表示正面情感，0表示负面情感</span><br><br><span class="hljs-comment"># 使用tokenizer对输入文本进行编码：将文本转换为模型可以理解的向量（input_ids和attention_mask）</span><br>tokenizer = BertTokenizer.from_pretrained(<span class="hljs-string">&quot;bert-base-uncased&quot;</span>)<br>encoded_inputs = tokenizer(input_text, padding=<span class="hljs-literal">True</span>, truncation=<span class="hljs-literal">True</span>, return_tensors=<span class="hljs-string">&quot;pt&quot;</span>)<br><br><span class="hljs-comment"># 将编码结果输入到模型中，得到分类结果：</span><br><span class="hljs-keyword">with</span> torch.no_grad():<br>    outputs = model(**encoded_inputs)<br>    logits = outputs.logits<br>    <span class="hljs-comment"># 对logits进行argmax操作，得到预测的类别</span><br>    predictions = torch.argmax(logits, dim=-<span class="hljs-number">1</span>)<br><br><span class="hljs-built_in">print</span>(predictions)<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p><code>with torch.no_grad():</code>：这是一个上下文管理器，它在其内部的代码块中禁用梯度计算。这在评估或推理阶段（而非训练阶段）使用模型时非常有用，因为它可以减少内存使用并提高计算速度。</p>
+</li>
+<li><p>对模型的原始输出更感兴趣，而不是将其转换为概率分布。在这种情况下，我们可以直接使用 logits。此外，如果我们只关注模型对每个类别的相对置信度，而不需要概率值，也可以直接使用 logits。（<strong>logits是值的大小，没有进行归一化的概率计算，softmax进行了归一化的概率计算</strong>）</p>
+<p>因此，在使用模型输出时，要根据具体任务和需求来决定是否进行 softmax 处理。如果<strong>需要概率分布</strong>或进行后续的<strong>概率计算</strong>（如交叉熵损失计算），则需要对 logits 进行 softmax 处理；如果只需要模型的原始输出或对置信度进行比较，则可以直接使用 <strong>logits</strong>。</p>
+</li>
+<li><p><strong>outputs.logits &#x3D; outputs[0]</strong></p>
+</li>
+</ol>
+<h2 id="4-对模型进行微调与保存"><a href="#4-对模型进行微调与保存" class="headerlink" title="4.对模型进行微调与保存"></a>4.对模型进行微调与保存</h2>
                 
               </div>
             

@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="白色很哇塞">
+  <meta name="keywords" content="发疯，生活">
+  
+    <meta name="description" content="loss和优化器的细节说明👕">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于loss和优化器的细节！👕">
+<meta property="og:url" content="https://yangchuanzhi20.github.io/2024/05/31/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E4%BD%BF%E7%94%A8%E7%BB%86%E8%8A%82/%E5%85%B3%E4%BA%8Eloss%E5%92%8C%E4%BC%98%E5%8C%96%E5%99%A8%E7%9A%84%E7%BB%86%E8%8A%82/index.html">
+<meta property="og:site_name" content="小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ">
+<meta property="og:description" content="loss和优化器的细节说明👕">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yangchuanzhi20.github.io/img/17.jpg">
+<meta property="article:published_time" content="2024-05-31T09:01:01.000Z">
+<meta property="article:modified_time" content="2024-06-05T11:52:42.140Z">
+<meta property="article:author" content="白色很哇塞">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Pytorch">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yangchuanzhi20.github.io/img/17.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>关于loss和优化器的细节！👕 ˙ϖ˙ 小杨的精神世界ヽ( ຶ▮ ຶ)ﾉ</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yangchuanzhi20.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"♡","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>白色很哇塞ฅ՞•ﻌ•՞ฅ</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/game/">
+                <i class="iconfont icon-switch-fill"></i>
+                <span>游戏</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/17.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">关于loss和优化器的细节！👕</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-31 17:01" pubdate>
+          2024年5月31日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">关于loss和优化器的细节！👕</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="loss和优化器的细节"><a href="#loss和优化器的细节" class="headerlink" title="loss和优化器的细节"></a>loss和优化器的细节</h1><h2 id="1-梯度累计过程"><a href="#1-梯度累计过程" class="headerlink" title="1.梯度累计过程"></a>1.梯度累计过程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 输入和期望输出</span><br>x = torch.ones(<span class="hljs-number">5</span>)  <span class="hljs-comment"># input tensor</span><br>w0 = [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>)]<br>y = torch.zeros(<span class="hljs-number">3</span>)  <span class="hljs-comment"># expected output</span><br><br><span class="hljs-comment"># 初始化参数</span><br>w = torch.tensor(w0, dtype=torch.float32, requires_grad=<span class="hljs-literal">True</span>)<br>b0 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br>b = torch.tensor(b0, dtype=torch.float32, requires_grad=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># 设置优化器和学习率</span><br>optimizer = torch.optim.SGD([w, b], lr=<span class="hljs-number">0.0009</span>)<br><br><span class="hljs-comment"># 训练循环</span><br>num_epochs = <span class="hljs-number">10000</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_epochs):<br>    optimizer.zero_grad()  <span class="hljs-comment"># 梯度清零</span><br>    z = torch.matmul(x, w) + b<br>    loss = torch.nn.functional.binary_cross_entropy_with_logits(z, y)<br>    loss.backward()  <span class="hljs-comment"># 反向传播计算梯度</span><br>    torch.nn.utils.clip_grad_norm_([w, b], max_norm=<span class="hljs-number">1.0</span>)<br>    optimizer.step()  <span class="hljs-comment"># 更新参数</span><br><br>    <span class="hljs-comment"># print(&#x27;internal w:&#x27;, w)</span><br>    <span class="hljs-comment"># print(&#x27;internal b:&#x27;, b)</span><br>    <span class="hljs-comment"># print(&#x27;internal z:&#x27;, z)</span><br>    <span class="hljs-comment"># print(&#x27;internal loss:&#x27;, loss)</span><br><br>    <span class="hljs-keyword">if</span> epoch % <span class="hljs-number">500</span> == <span class="hljs-number">0</span>:  <span class="hljs-comment"># 每100个epoch打印一次损失</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Epoch <span class="hljs-subst">&#123;epoch&#125;</span>, Loss: <span class="hljs-subst">&#123;loss.item()&#125;</span>&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(z)<br><br><span class="hljs-comment"># 打印最终结果</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Final w:&#x27;</span>, w)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Final b:&#x27;</span>, b)<br><br><br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>w，y在上述代码中为自定义张量，在模型中为某一层中随机初始化的张量</li>
+<li>该代码验证了<strong>反向传播算法对参数的影响</strong></li>
+<li>可以优化的参数为带有requires_grad&#x3D;True的变量，且<strong>变量类型为浮点型</strong></li>
+<li>优化器的初始化要设置需要优化的参数，在这里是[w,b]，在实际模型训练过程中改为<strong>model.parameters</strong>()</li>
+<li>学习率对实验结果影响较大，影响学习的速度，<strong>学习率越大，epoch可以越小</strong></li>
+<li>在每一次循环之前要将梯度清零，否则每一次loss.backward都会让梯度累计，<strong>查看梯度使用w.grad</strong></li>
+<li>使用 <code>torch.nn.utils.clip_grad_norm_</code> 对梯度进行裁剪，<strong>防止梯度爆炸</strong>。这里设置最大范数 <code>max_norm</code> 为 <code>1.0</code>，否则，当epoch过多时，z会越来越小</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br>x = torch.ones(<span class="hljs-number">5</span>)  <span class="hljs-comment"># input tensor</span><br>w0 = [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>)]<br>y = torch.zeros(<span class="hljs-number">3</span>)  <span class="hljs-comment"># expected output</span><br>w = torch.tensor(w0, dtype=torch.float32,requires_grad=<span class="hljs-literal">True</span>)<br>b0 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br>b = torch.tensor(b0, dtype=torch.float32, requires_grad=<span class="hljs-literal">True</span>)<br>z = torch.matmul(x, w) + b<br>loss = torch.nn.functional.binary_cross_entropy_with_logits(z, y)<br><br>loss.backward()<br><span class="hljs-built_in">print</span>(w.grad)<br><span class="hljs-built_in">print</span>(b.grad)<br><br>x1 = torch.ones(<span class="hljs-number">5</span>)  <span class="hljs-comment"># input tensor</span><br>z1 = torch.matmul(x1, w) + b<br>loss = torch.nn.functional.binary_cross_entropy_with_logits(z1, y)<br><br>loss.backward()<br><span class="hljs-built_in">print</span>(w.grad)<br><span class="hljs-built_in">print</span>(b.grad)<br><br><br><span class="hljs-comment"># 结果</span><br>tensor([[<span class="hljs-number">0.3325</span>, <span class="hljs-number">0.3333</span>, <span class="hljs-number">0.3333</span>],<br>        [<span class="hljs-number">0.3325</span>, <span class="hljs-number">0.3333</span>, <span class="hljs-number">0.3333</span>],<br>        [<span class="hljs-number">0.3325</span>, <span class="hljs-number">0.3333</span>, <span class="hljs-number">0.3333</span>],<br>        [<span class="hljs-number">0.3325</span>, <span class="hljs-number">0.3333</span>, <span class="hljs-number">0.3333</span>],<br>        [<span class="hljs-number">0.3325</span>, <span class="hljs-number">0.3333</span>, <span class="hljs-number">0.3333</span>]])<br>tensor([<span class="hljs-number">0.3325</span>, <span class="hljs-number">0.3333</span>, <span class="hljs-number">0.3333</span>])<br>tensor([[<span class="hljs-number">0.6650</span>, <span class="hljs-number">0.6667</span>, <span class="hljs-number">0.6667</span>],<br>        [<span class="hljs-number">0.6650</span>, <span class="hljs-number">0.6667</span>, <span class="hljs-number">0.6667</span>],<br>        [<span class="hljs-number">0.6650</span>, <span class="hljs-number">0.6667</span>, <span class="hljs-number">0.6667</span>],<br>        [<span class="hljs-number">0.6650</span>, <span class="hljs-number">0.6667</span>, <span class="hljs-number">0.6667</span>],<br>        [<span class="hljs-number">0.6650</span>, <span class="hljs-number">0.6667</span>, <span class="hljs-number">0.6667</span>]])<br>tensor([<span class="hljs-number">0.6650</span>, <span class="hljs-number">0.6667</span>, <span class="hljs-number">0.6667</span>])<br></code></pre></td></tr></table></figure>
+
+<p>如上所示，每调用一次loss.backward()，梯度就会累计（直接相加）。</p>
+<p>用随机数种子来保留每次随机初始化的结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 设置随机数种子</span><br>torch.manual_seed(<span class="hljs-number">42</span>)<br><br><span class="hljs-comment"># 输入和期望输出</span><br>x = torch.ones(<span class="hljs-number">5</span>)  <span class="hljs-comment"># input tensor</span><br>y = torch.zeros(<span class="hljs-number">3</span>)  <span class="hljs-comment"># expected output</span><br><br><span class="hljs-comment"># 初始化参数 w 和 b 为随机值</span><br>w = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, dtype=torch.float32, requires_grad=<span class="hljs-literal">True</span>)<br>b = torch.randn(<span class="hljs-number">3</span>, dtype=torch.float32, requires_grad=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># 设置优化器和学习率</span><br>optimizer = torch.optim.SGD([w, b], lr=<span class="hljs-number">0.01</span>)  <span class="hljs-comment"># 降低学习率</span><br><br><span class="hljs-comment"># 训练循环</span><br>num_epochs = <span class="hljs-number">1000</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_epochs):<br>    optimizer.zero_grad()  <span class="hljs-comment"># 梯度清零</span><br>    z = torch.matmul(x, w) + b<br>    loss = torch.nn.functional.binary_cross_entropy_with_logits(z, y)<br>    loss.backward()  <span class="hljs-comment"># 反向传播计算梯度</span><br><br>    <span class="hljs-comment"># 梯度裁剪，防止梯度爆炸</span><br>    torch.nn.utils.clip_grad_norm_([w, b], max_norm=<span class="hljs-number">1.0</span>)<br><br>    optimizer.step()  <span class="hljs-comment"># 更新参数</span><br><br>    <span class="hljs-keyword">if</span> epoch % <span class="hljs-number">1000</span> == <span class="hljs-number">0</span>:  <span class="hljs-comment"># 每1000个epoch打印一次损失</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Epoch <span class="hljs-subst">&#123;epoch&#125;</span>, Loss: <span class="hljs-subst">&#123;loss.item()&#125;</span>&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;z: <span class="hljs-subst">&#123;z.detach().numpy()&#125;</span>&#x27;</span>)<br><br><span class="hljs-comment"># 打印最终结果</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Final w:&#x27;</span>, w)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Final b:&#x27;</span>, b)<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-梯度下降原理"><a href="#2-梯度下降原理" class="headerlink" title="2.梯度下降原理"></a>2.梯度下降原理</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">train</span>(<span class="hljs-params">category_tensor, line_tensor</span>):<br>    hidden = rnn.initHidden()<br><br>    rnn.zero_grad()<br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(line_tensor.size()[<span class="hljs-number">0</span>]):<br>        output, hidden = rnn(line_tensor[i], hidden)<br>        <span class="hljs-comment"># print(rnn.parameters())</span><br><br>    loss = criterion(output, category_tensor)<br>    loss.backward()<br></code></pre></td></tr></table></figure>
+
+<p>在上述代码中，output经过多次的rnn，则其计算图为output &#x3D; <code>&#123;[（i1+h1)\*w+b+i2]\*w+b+i3&#125;\*w+b</code></p>
+<p>w,b在计算图中出现多次，则在loss.backward中，根据下列原则</p>
+<p><img src="/2024/05/31/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E4%BD%BF%E7%94%A8%E7%BB%86%E8%8A%82/%E5%85%B3%E4%BA%8Eloss%E5%92%8C%E4%BC%98%E5%8C%96%E5%99%A8%E7%9A%84%E7%BB%86%E8%8A%82/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>损失函数中包含了output的整个表达式，所以在计算梯度时会应用相应的求导方式。</p>
+<p><strong>结论：</strong></p>
+<p>调用一次RNN和多次调用RNN结果不同。</p>
+<h2 id="3-loss累加反向传播"><a href="#3-loss累加反向传播" class="headerlink" title="3.loss累加反向传播"></a>3.loss累加反向传播</h2><p>在用rnn处理序列任务时，需要累加不同output的loss进行一次反向传播</p>
+<p>单个时间步反向传播和最后一起反向传播的区别主要在于参数更新的时机和计算效率。</p>
+<ol>
+<li><strong>单个时间步反向传播</strong>：<ul>
+<li>在每个时间步都进行反向传播，即每个时间步都计算损失并更新参数。</li>
+<li>优点是可以更快地更新模型参数，因为每个时间步都有梯度信息来更新参数。</li>
+<li>缺点是计算开销较大，因为需要在每个时间步都进行一次前向传播和一次反向传播。</li>
+</ul>
+</li>
+<li><strong>最后一起反向传播</strong>：<ul>
+<li>在整个序列处理完毕后，再进行一次反向传播。</li>
+<li>优点是计算效率高，因为只需要进行一次前向传播和一次反向传播，节省了计算资源。</li>
+<li>缺点是可能会出现梯度消失或爆炸的问题，因为在长序列中梯度信息可能会衰减或者放大。</li>
+</ul>
+</li>
+</ol>
+<p>通常情况下，如果序列长度不是特别长，可以考虑使用单个时间步反向传播；而如果序列长度较长，为了减少计算量，可以考虑最后一起反向传播。此外，还有一些方法，如使用门控循环单元（GRU）或长短期记忆网络（LSTM）等，可以在长序列中更好地处理梯度消失或爆炸的问题。</p>
+<h2 id="4-with-torch-no-grad-的好处"><a href="#4-with-torch-no-grad-的好处" class="headerlink" title="4.with torch.no_grad()的好处"></a>4.with torch.no_grad()的好处</h2><p>在推理阶段，如果不使用 <code>torch.no_grad()</code>，虽然模型的参数不会自动改变，但会产生一些不必要的计算开销和潜在的风险。以下是详细说明：</p>
+<h3 id="无需梯度计算的开销"><a href="#无需梯度计算的开销" class="headerlink" title="无需梯度计算的开销"></a>无需梯度计算的开销</h3><p>在前向传播过程中，PyTorch 会跟踪所有计算以便于后续的反向传播。这会<strong>消耗额外的内存来存储计算图</strong>。如果你在推理阶段不使用 <code>torch.no_grad()</code>，PyTorch 仍然会跟踪这些操作并构建计算图，导致内存使用的增加。</p>
+<h3 id="意外的反向传播风险"><a href="#意外的反向传播风险" class="headerlink" title="意外的反向传播风险"></a>意外的反向传播风险</h3><p>尽管你在推理阶段不打算进行反向传播，但如果你不使用 <code>torch.no_grad()</code>，模型的参数和输入仍然会被记录到计算图中。如果在推理过程中你意外调用了 <code>loss.backward()</code>，这会导致梯度计算和潜在的参数更新（如果你之后调用 <code>optimizer.step()</code>）。</p>
+<h2 id="5-不同优化器以及adam优化器"><a href="#5-不同优化器以及adam优化器" class="headerlink" title="5.不同优化器以及adam优化器"></a>5.不同优化器以及adam优化器</h2><p>不同优化器有不同的优化策略，主要是在更新模型参数时的方式上有所不同。以下是几种常见的优化器及其优化策略：</p>
+<ol>
+<li><strong>梯度下降法（Gradient Descent）</strong>：是最基本的优化算法之一。它根据损失函数对模型参数的梯度方向，以一定的步长更新参数，使损失函数逐渐减小。缺点是可能收敛速度慢，容易陷入局部最优解。</li>
+<li><strong>随机梯度下降法（Stochastic Gradient Descent，SGD）</strong>：与梯度下降类似，但每次更新参数时只使用一个样本的梯度。因为每次只考虑一个样本，收敛速度较快，但可能导致参数更新的方差较大，甚至无法收敛到最优解。</li>
+<li><strong>小批量随机梯度下降法（Mini-batch Stochastic Gradient Descent）</strong>：是SGD的一种改进版本，每次更新参数时使用一个小批量（mini-batch）的样本来计算梯度。它综合了梯度下降的稳定性和SGD的收敛速度。</li>
+<li><strong>动量（Momentum）</strong>：在更新参数时引入了动量项，模拟物体在运动中的惯性，使得更新方向不仅取决于当前的梯度，还取决于历史梯度的加权平均。这样可以加速收敛并减少震荡。</li>
+<li><strong>AdaGrad</strong>：自适应学习率算法，对每个参数应用不同的学习率，学习率随着参数的更新而逐渐减小。对于频繁出现的参数，学习率将减小得更快，对于不频繁出现的参数，学习率将减小得更慢。</li>
+<li><strong>RMSProp</strong>（Root Mean Square Propagation）：与AdaGrad类似，但对学习率的累积进行了指数加权移动平均，以减少学习率的快速降低。</li>
+<li><strong>Adam</strong>（Adaptive Moment Estimation）：结合了动量和自适应学习率的优点，同时使用了动量的指数衰减平均和梯度的指数衰减平方平均来更新参数。通常被认为是最有效的优化算法之一。</li>
+</ol>
+<p>每种优化器都有其适用的场景，通常需要根据具体问题和数据集的特点选择合适的优化器。</p>
+<p><strong>Adam（Adaptive Moment Estimation）</strong>优化器是一种结合了动量（momentum）和自适应学习率（adaptive learning rate）的优化算法。它在更新参数时同时考虑了梯度的一阶矩估计（梯度的平均值）和二阶矩估计（梯度的平方的平均值），并通过偏置校正来纠正估计的偏差。</p>
+<p>具体来说，Adam算法的更新规则如下：</p>
+<ol>
+<li><p>初始化参数 $θ$ 和一阶矩估计 $m$ 和二阶矩估计 $v$，通常初始化为0。</p>
+</li>
+<li><p>在每次迭代中，计算梯度 $g_t$。</p>
+</li>
+<li><p>更新一阶矩估计 $m_t$ 和二阶矩估计 $v_t$：</p>
+<p>mt&#x3D;β1mt−1+(1−β1)gtm_t &#x3D; β_1m_{t-1} + (1-β_1)g_tmt&#x3D;β1mt−1+(1−β1)gt</p>
+<p>vt&#x3D;β2vt−1+(1−β2)gt2v_t &#x3D; β_2v_{t-1} + (1-β_2)g_t^2vt&#x3D;β2vt−1+(1−β2)gt2</p>
+<p>其中，$β_1$ 和 $β_2$ 是用于控制一阶矩估计和二阶矩估计的指数衰减率，通常设定为接近1的值，例如0.9 和 0.999。</p>
+</li>
+<li><p>根据一阶矩估计和二阶矩估计来更新参数：</p>
+<p>θt+1&#x3D;θt−αvt+ϵ⋅mtθ_{t+1} &#x3D; θ_t - \frac{α}{\sqrt{v_t}+\epsilon} \cdot m_tθt+1&#x3D;θt−vt+ϵα⋅mt</p>
+<p>其中，$α$ 是学习率，$\epsilon$ 是为了数值稳定性而添加的小常数，通常设为 $10^{-8}$。</p>
+</li>
+</ol>
+<p>Adam优化器的优点在于能够在不同参数的梯度变化范围很大的情况下自适应地调整学习率，同时结合了动量的优点，能够在训练过程中保持稳定性并且有效地收敛到局部最优解。因此，Adam优化器在深度学习中被广泛使用，并且通常是默认的优化器之一。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/" class="category-chain-item">AI ʢᵕᴗᵕʡ</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/Pytorch/" class="category-chain-item">Pytorch</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI-%CA%A2%E1%B5%95%E1%B4%97%E1%B5%95%CA%A1/Pytorch/Pytorch%E4%BD%BF%E7%94%A8%E7%BB%86%E8%8A%82/" class="category-chain-item">Pytorch使用细节</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/Pytorch/" class="print-no-link">#Pytorch</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>关于loss和优化器的细节！👕</div>
+      <div>https://yangchuanzhi20.github.io/2024/05/31/人工智能/Pytorch/使用细节/关于loss和优化器的细节/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>白色很哇塞</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E6%A8%A1%E5%9E%8B/LSTM/" title="LSTM">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LSTM</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/13/%E5%BB%BA%E6%A8%A1/blender/%E8%AE%BE%E8%AE%A1/blender%E7%81%AB%E7%84%B0%E5%BB%BA%E6%A8%A1/" title="blender火焰!🐅">
+                        <span class="hidden-mobile">blender火焰!🐅</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"uchVjxnRW51J2Mm7CW00jbKk-MdYXbMMI","appKey":"salCKdKKc0oJUGN300BBLXeE","path":"window.location.pathname","placeholder":"ʕ ᵔᴥᵔ ʔ","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://uchvjxnr.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/vvd_js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/gongde.js"></script>
+<script src="/js/move.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/js/duration.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yangchuanzhi20.github.io/img/39.jpg">
 <meta property="article:published_time" content="2024-01-24T06:34:19.000Z">
-<meta property="article:modified_time" content="2024-03-19T09:52:26.644Z">
+<meta property="article:modified_time" content="2024-05-31T09:03:31.365Z">
 <meta property="article:author" content="白色很哇塞">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Pytorch">
@@ -593,7 +593,7 @@
 <p>我们定义以下用于训练的超参数：</p>
 <ul>
 <li><strong>Number of Epochs</strong>  - <strong>遍历数据集的次数</strong></li>
-<li><strong>Batch Size</strong> 批量大小 - 在<strong>更新参数之前</strong>通过网络传播的<strong>数据样本数</strong></li>
+<li><strong>Batch Size</strong> 批量大小 - 在<strong>更新参数之前</strong>通过网络传播的<strong>数据样本数</strong>，参数.grad会<strong>累计一个batch的梯度</strong></li>
 <li><strong>Learning Rate</strong> 学习率 - 在每个批次&#x2F;周期<strong>更新模型参数的程度</strong>。较小的值会导致学习速度较慢，而较大的值可能会导致训练期间出现不可预测的行为。</li>
 </ul>
 <h3 id="5-2-优化循环"><a href="#5-2-优化循环" class="headerlink" title="5.2 优化循环"></a>5.2 优化循环</h3><p>一旦我们设置了超参数，我们就可以使用优化循环来训练和优化我们的模型。优化循环的每次迭代称为一个纪元。</p>
@@ -613,6 +613,8 @@
 <li>通过调用  <code>loss.backward()</code> 反向传播预测损失。PyTorch 将损失的梯度与每个参数交汇。</li>
 <li>一旦我们有了梯度，我们就会调用 <code>optimizer.step()</code> 通过向后传递中收集的梯度来调整参数。</li>
 </ul>
+<p><strong>tips:</strong></p>
+<p>model.parameters()为每一层的<strong>权重和偏差</strong>。比如上述例子中的w，b</p>
 <p>举例：</p>
 <p><img src="/2024/01/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Pytorch/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/pytorch%E5%9F%BA%E7%A1%80/7.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="5-5-全面实施"><a href="#5-5-全面实施" class="headerlink" title="5.5   全面实施"></a>5.5   全面实施</h3><p>我们在优化代码上定义 <code>train_loop</code> 循环，并 <code>test_loop</code> 根据我们的测试数据评估模型的性能。</p>
