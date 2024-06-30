@@ -4,13 +4,114 @@
   
   
   <entry>
-    <title>LSTM</title>
+    <title>latex使用!🦸🏻‍♂️</title>
+    <link href="/2024/06/18/%E5%B7%A5%E5%85%B7/latex%E4%BD%BF%E7%94%A8/"/>
+    <url>/2024/06/18/%E5%B7%A5%E5%85%B7/latex%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="latex使用"><a href="#latex使用" class="headerlink" title="latex使用"></a>latex使用</h1><h2 id="1-Latex宏包"><a href="#1-Latex宏包" class="headerlink" title="1.Latex宏包"></a>1.Latex宏包</h2><h3 id="1-1-dutchcal"><a href="#1-1-dutchcal" class="headerlink" title="1.1 dutchcal"></a>1.1 dutchcal</h3><p>用于更改数学模式下的教科书字母（calligraphic letters）的外观。默认情况下，LaTeX 提供 <code>\mathcal</code> 命令用于生成教科书字母，但它的风格可能比较简单。<code>dutchcal</code> 包提供了一种替代的风格，通常更加复杂和具有装饰性。</p><p>使用：</p><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;dutchcal&#125;<br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><br>这是一些使用 `dutchcal` 风格的字母：<span class="hljs-built_in">$</span><span class="hljs-keyword">\mathcal</span>&#123;A&#125;<span class="hljs-built_in">$</span>, <span class="hljs-built_in">$</span><span class="hljs-keyword">\mathcal</span>&#123;B&#125;<span class="hljs-built_in">$</span>, <span class="hljs-built_in">$</span><span class="hljs-keyword">\mathcal</span>&#123;C&#125;<span class="hljs-built_in">$</span>。<br><br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure><p>使用前：</p><p><img src="/2024/06/18/%E5%B7%A5%E5%85%B7/latex%E4%BD%BF%E7%94%A8/1.png"></p><p>使用后：</p><p><img src="/2024/06/18/%E5%B7%A5%E5%85%B7/latex%E4%BD%BF%E7%94%A8/2.png"></p><h2 id="2-特殊命令"><a href="#2-特殊命令" class="headerlink" title="2.特殊命令"></a>2.特殊命令</h2><h3 id="2-1-hyphenation"><a href="#2-1-hyphenation" class="headerlink" title="2.1 \hyphenation"></a>2.1 \hyphenation</h3><p>在 LaTeX 中，<code>\hyphenation</code> 命令用于指定单词的断字位置。当 LaTeX 需要在单词的某个位置断行时，如果默认的断字规则不符合要求，可以使用这个命令手动指定可断开的词缀。</p><p>例如：</p><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\hyphenation</span>&#123;op-tical net-works semi-conduc-tor&#125;<br></code></pre></td></tr></table></figure><p>这个命令告诉 LaTeX 在排版 <code>optical</code>、<code>networks</code> 和 <code>semiconductor</code> 这些单词时，可以在指定的位置进行断字。这在长单词需要在行尾断开时特别有用，确保断字的地方符合读者的习惯并保持美观。</p><h2 id="3-特殊符号"><a href="#3-特殊符号" class="headerlink" title="3.特殊符号"></a>3.特殊符号</h2><h3 id="3-1-u"><a href="#3-1-u" class="headerlink" title="3.1 \u{  }"></a>3.1 \u{  }</h3><p>在 LaTeX 中，<code>\u&#123;&#125;</code> 命令用于生成具有上方小勾（也称为标记或音标）的字符。这种小勾通常用于标记重音或特定语音特征。在 <code>\u&#123;&#125;</code> 命令中，你可以指定要在其上方添加的字符，并使用其 Unicode 编码点来定义。</p><p>例如，<code>\u&#123;G&#125;</code> 可能用于生成带有 G 字符上方小勾的字符。这种符号在语言学和语音学上有特定的用途，用于指示音素或语音变体。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具 ʕ•ᴥ•ʔ</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>工具</tag>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>python爬虫！🦸🏻‍♂️</title>
+    <link href="/2024/06/14/%E5%B7%A5%E5%85%B7/python%E7%88%AC%E8%99%AB/"/>
+    <url>/2024/06/14/%E5%B7%A5%E5%85%B7/python%E7%88%AC%E8%99%AB/</url>
+    
+    <content type="html"><![CDATA[<h1 id="python爬虫"><a href="#python爬虫" class="headerlink" title="python爬虫"></a>python爬虫</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-keyword">from</span> selenium.webdriver.chrome.options <span class="hljs-keyword">import</span> Options<br><span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By<br><span class="hljs-keyword">from</span> selenium.webdriver.support.ui <span class="hljs-keyword">import</span> WebDriverWait<br><span class="hljs-keyword">from</span> selenium.webdriver.support <span class="hljs-keyword">import</span> expected_conditions <span class="hljs-keyword">as</span> EC<br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup<br><span class="hljs-keyword">import</span> json<br><br>chrome_options = Options()<br><span class="hljs-comment"># chrome_options.add_argument(&quot;--headless&quot;)</span><br><br>driver = webdriver.Chrome(options=chrome_options)<br><br>url_conf_cat = <span class="hljs-string">&#x27;https://papers.cool&#x27;</span><br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;confs_data.json&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    datas = json.load(f)<br>    <span class="hljs-keyword">for</span> num, data <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(datas):<br>        href = data[<span class="hljs-string">&#x27;url&#x27;</span>]<br>        conf_name = data[<span class="hljs-string">&#x27;name&#x27;</span>]<br><br>        <span class="hljs-keyword">if</span> num &gt;= <span class="hljs-number">1</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;num:&#x27;</span>+<span class="hljs-built_in">str</span>(num))<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;conf_name:&#x27;</span>+<span class="hljs-built_in">str</span>(conf_name))<br><br>            driver.get(href)<br>            <span class="hljs-comment"># print(href)</span><br><br>            scroll_pause_time = <span class="hljs-number">2</span>  <span class="hljs-comment"># 每次滚动后暂停的时间</span><br>            last_height = driver.execute_script(<span class="hljs-string">&quot;return document.body.scrollHeight&quot;</span>)  <span class="hljs-comment"># 获取当前页面的总高度</span><br><br>            <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>                <span class="hljs-comment"># 执行 JavaScript 将页面滚动到底部</span><br>                driver.execute_script(<span class="hljs-string">&quot;window.scrollTo(0, document.body.scrollHeight);&quot;</span>)<br>                <span class="hljs-comment"># 等待页面加载</span><br>                time.sleep(scroll_pause_time)<br>                <span class="hljs-comment"># 获取当前页面的总高度</span><br>                new_height = driver.execute_script(<span class="hljs-string">&quot;return document.body.scrollHeight&quot;</span>)<br>                <span class="hljs-comment"># 如果滚动条已经到达页面底部，则退出循环</span><br>                <span class="hljs-keyword">if</span> new_height == last_height:<br>                    <span class="hljs-keyword">break</span><br><br>                last_height = new_height<br>                <span class="hljs-comment"># print(new_height)</span><br><br>            page_source = driver.page_source<br>            soup = BeautifulSoup(page_source, <span class="hljs-string">&#x27;html.parser&#x27;</span>)<br>            conf_items = soup.find_all(<span class="hljs-string">&#x27;a&#x27;</span>, class_=<span class="hljs-string">&#x27;title-link&#x27;</span>)<br><br>            link_lists = []<br>            name_lists = []<br>            <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> conf_items:<br>                url_p_list = url_conf_cat + item.attrs[<span class="hljs-string">&#x27;href&#x27;</span>]<br>                name_lists.append(item.text)<br>                link_lists.append(url_p_list)<br>            <span class="hljs-comment"># print(len(link_lists))</span><br>            <span class="hljs-comment"># print(name_lists)</span><br>            time.sleep(<span class="hljs-number">4</span>)<br><br>            <span class="hljs-keyword">for</span> i, link <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(link_lists):<br>                name = name_lists[i]<br>                <span class="hljs-keyword">try</span>:<br>                    driver.get(link)<br><br>                    time.sleep(<span class="hljs-number">2</span>)<br><br>                    <span class="hljs-comment"># 查找下载按钮并点击</span><br>                    pdf_link = WebDriverWait(driver, <span class="hljs-number">10</span>).until(<br>                        EC.element_to_be_clickable((By.CLASS_NAME, <span class="hljs-string">&quot;title-pdf&quot;</span>))<br>                    )<br>                    pdf_link.click()<br><br>                    <span class="hljs-comment"># 等待页面加载完成</span><br>                    time.sleep(<span class="hljs-number">1</span>)<br><br>                    <span class="hljs-comment"># 获取页面源码</span><br>                    page_source = driver.page_source<br><br>                    <span class="hljs-comment"># 使用BeautifulSoup解析HTML内容</span><br>                    soup = BeautifulSoup(page_source, <span class="hljs-string">&#x27;html.parser&#x27;</span>)<br><br>                    <span class="hljs-comment"># 查找iframe标签</span><br>                    iframe = soup.find(<span class="hljs-string">&#x27;iframe&#x27;</span>)<br><br>                    <span class="hljs-comment"># 提取iframe中的src链接</span><br>                    iframe_src = iframe[<span class="hljs-string">&#x27;src&#x27;</span>]<br>                    <span class="hljs-comment"># print(&quot;iframe中的src链接:&quot;, iframe_src)</span><br><br>                    pdf_url = <span class="hljs-string">&#x27;https://papers.cool&#x27;</span> + iframe_src<br><br>                    driver.get(pdf_url)<br><br>                    page_source1 = driver.page_source<br><br>                    <span class="hljs-comment"># 使用BeautifulSoup解析HTML内容</span><br>                    soup = BeautifulSoup(page_source, <span class="hljs-string">&#x27;html.parser&#x27;</span>)<br><br>                    <span class="hljs-comment"># print(soup.prettify())</span><br><br>                    time.sleep(<span class="hljs-number">2</span>)<br><br>                    save_button = WebDriverWait(driver, <span class="hljs-number">10</span>).until(<br>                        EC.element_to_be_clickable((By.ID, <span class="hljs-string">&quot;download&quot;</span>))<br>                    )<br>                    time.sleep(<span class="hljs-number">12</span>)<br>                    save_button.click()<br><br>                    time.sleep(<span class="hljs-number">3</span>)<br><br>                    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;confs:&#x27;</span> + <span class="hljs-built_in">str</span>(conf_name) + <span class="hljs-string">&#x27;-paper:&#x27;</span> + <span class="hljs-built_in">str</span>(name))<br><br>                <span class="hljs-keyword">except</span>:<br>                    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;confs:&#x27;</span> + <span class="hljs-built_in">str</span>(conf_name) + <span class="hljs-string">&#x27;-paper:&#x27;</span> + <span class="hljs-built_in">str</span>(name) + <span class="hljs-string">&#x27;下载失败&#x27;</span>)<br><br>            <span class="hljs-comment"># 等待一段时间，确保页面加载完成</span><br>            time.sleep(<span class="hljs-number">4</span>)<br><br></code></pre></td></tr></table></figure><p>上述部分是爬取论文网站的代码。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具 ʕ•ᴥ•ʔ</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>工具</tag>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>实用网站大全！🦸🏻‍♂️</title>
+    <link href="/2024/06/12/%E5%B7%A5%E5%85%B7/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99%E5%A4%A7%E5%85%A8/"/>
+    <url>/2024/06/12/%E5%B7%A5%E5%85%B7/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99%E5%A4%A7%E5%85%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="实用网站大全"><a href="#实用网站大全" class="headerlink" title="实用网站大全"></a>实用网站大全</h1><p>1.<a href="https://papers.cool/">https://papers.cool/</a> papers.cool 文章阅读网站</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具 ʕ•ᴥ•ʔ</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>工具</tag>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>LSTM介绍！💐</title>
     <link href="/2024/06/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E6%A8%A1%E5%9E%8B/LSTM/"/>
     <url>/2024/06/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/NLP/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/NLP%E6%A8%A1%E5%9E%8B/LSTM/</url>
     
     <content type="html"><![CDATA[]]></content>
     
     
+    <categories>
+      
+      <category>AI ʢᵕᴗᵕʡ</category>
+      
+      <category>NLP</category>
+      
+      <category>NLP基础知识</category>
+      
+      <category>NLP模型</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>NLP</tag>
+      
+    </tags>
     
   </entry>
   
